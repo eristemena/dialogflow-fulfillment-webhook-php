@@ -1,5 +1,5 @@
 {
-    "name": "eristemena/dialogflow-fulfillment-webhook",
+    "name": "eristemena/dialogflow-fulfillment-webhook-php",
     "description": "Dialogflow Fulfillment Webhook v1 & v2",
     "require": {
         "php": ">=5.4"
