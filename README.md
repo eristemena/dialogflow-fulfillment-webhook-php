@@ -4,6 +4,8 @@ This Library is inspired by [dialogflow/dialogflow-fulfillment-nodejs](https://g
 
 It supports Dialogflow's fulfillment webhook JSON requests and responses for v1 and v2 agents.
 
+For full class reference please refer to the [https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/README.md](doc).
+
 ## Installation
 
 Install via composer: `composer require eristemena/dialogflow-fulfillment-webhook-php`.
@@ -28,11 +30,58 @@ $agent = \Dialogflow\WebhookClient::fromData($request->json()->all());
 
 ### Get Request Info
 
-Get intent name
+- Intent
 
 ```
 $intent = $agent->getIntent();
 ```
 
+- Action
+
+```
+$intent = $agent->getAction();
+```
+
+- Query
+
+```
+$intent = $agent->getQuery();
+```
+
+- Parameters
+
+```
+$intent = $agent->getParameters();
+```
+
+- Session
+
+```
+$intent = $agent->getSession();
+```
+
+- Contexts
+
+```
+$intent = $agent->getContexts();
+```
+
+- Language
+
+```
+$intent = $agent->getLocale();
+```
+
+- Original Request (ex: google, facebook, slack, etc)
+
+```
+$intent = $agent->getOriginalRequest();
+```
+
+- Agent Version (1 or 2)
+
+```
+$intent = $agent->getAgentVersion();
+```
 
 
