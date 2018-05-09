@@ -88,6 +88,10 @@ class WebhookClient extends RichMessage
             }
         }
 
+        if(!$this->requestSource && isset($data['result']['source'])){
+            $this->requestSource = $data['result']['source'];
+        }
+
         $this->query = $data['result']['resolvedQuery'];
         $this->locale = $data['lang'];
     }
