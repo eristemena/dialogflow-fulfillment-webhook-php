@@ -1,3 +1,5 @@
 vendor
 build
 reports
+.DS_Store
+composer.lock
