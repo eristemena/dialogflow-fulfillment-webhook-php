@@ -68,11 +68,16 @@ class Text extends RichMessage
         }
         else
         {
-            return [
+            $out = [
                 'type' => self::v1MessageObjectText,
-                'platform' => $this->requestSource,
                 'speech' => $this->text
             ];
+
+            if( in_array($this->requestSource, $this->supportedRichMessagePlatforms) ){
+                $out['platform'] = $this->requestSource;
+            }
+
+            return $out;
         }
     }
 
@@ -107,9 +112,12 @@ class Text extends RichMessage
             $out = [
                 'text' => [
                     'text' => [$this->text]
-                ],
-                'platform' => $this->v2PlatformMap[$this->requestSource]
+                ]
             ];
+
+            if( in_array($this->requestSource, $this->supportedRichMessagePlatforms) ){
+                $out['platform'] = $this->v2PlatformMap[$this->requestSource];
+            }
 
             return $out;
         }

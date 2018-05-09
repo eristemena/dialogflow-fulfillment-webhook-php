@@ -13,6 +13,7 @@ abstract class RichMessage
     protected $requestSource;
 
     protected $v2PlatformMap = [
+        'unspecified' => 'PLATFORM_UNSPECIFIED',
         'facebook' => 'FACEBOOK',
         'slack' => 'SLACK',
         'telegram' => 'TELEGRAM',
@@ -23,8 +24,17 @@ abstract class RichMessage
         'google' => 'ACTIONS_ON_GOOGLE'
     ];
 
+    protected $supportedRichMessagePlatforms = [
+        'facebook', 'slack', 'telegram', 'kik', 'skype', 'line', 'viber', 'google'
+    ];
+
     /** @var array */
     protected $payload;
+
+    public function doesSupportRichMessage()
+    {
+        return in_array($this->requestSource, $this->supportedRichMessagePlatforms);
+    }
 
     protected function setAgentVersion($agentVersion)
     {
@@ -39,8 +49,8 @@ abstract class RichMessage
 
     protected function setRequestSource($requestSource)
     {
-        if(!isset($this->v2PlatformMap[$requestSource])){
-            throw new RuntimeException('Unsupported requestSource');
+        if($requestSource==null){
+            $requestSource = 'unspecified';
         }
 
         $this->requestSource = $requestSource;

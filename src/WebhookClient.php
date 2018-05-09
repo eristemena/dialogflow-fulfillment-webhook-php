@@ -43,6 +43,9 @@ class WebhookClient extends RichMessage
     /** @var array */
     protected $messages = [];
 
+    /** @var string */
+    protected $text;
+
     public function __construct($data)
     {
         if(isset($data['result'])){
@@ -250,6 +253,10 @@ class WebhookClient extends RichMessage
                 ->setAgentVersion($this->agentVersion)
                 ->setRequestSource($this->requestSource)
             ;
+
+            if(!$this->doesSupportRichMessage()){
+                $this->text = $message;
+            }
         }elseif($message instanceof RichMessage){
             $message->setAgentVersion($this->agentVersion)
                 ->setRequestSource($this->requestSource)
@@ -292,6 +299,10 @@ class WebhookClient extends RichMessage
 
         $out['messages'] = $messages;
 
+        if($this->text){
+            $out['speech'] = $this->text;
+        }
+
         return $out;
     }
 
@@ -313,6 +324,10 @@ class WebhookClient extends RichMessage
         }
 
         $out['fulfillmentMessages'] = $messages;
+
+        if($this->text){
+            $out['fulfillmentText'] = $this->text;
+        }
 
         return $out;
     }
