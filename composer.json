@@ -1,0 +1,23 @@
+{
+    "name": "erisristemena/dialogflow-fulfillment-webhook",
+    "description": "Dialogflow Fulfillment Webhook v2",
+    "require": {
+        "php": ">=5.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dialogflow\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Eris Ristemena",
+            "email": "e.ristemena@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "clean/phpdoc-md": "^0.10.0"
+    }
+}

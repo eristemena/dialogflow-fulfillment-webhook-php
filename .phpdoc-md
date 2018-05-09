@@ -1,0 +1,14 @@
+<?php
+return (object)[
+    'rootNamespace' => 'Dialogflow',
+    'destDirectory' => 'docs',
+    'format' => 'github',
+    'classes' => [
+        '\Dialogflow\WebhookClient',
+        '\Dialogflow\RichMessage\Card',
+        '\Dialogflow\RichMessage\Image',
+        '\Dialogflow\RichMessage\Payload',
+        '\Dialogflow\RichMessage\Suggestion',
+        '\Dialogflow\RichMessage\Text',
+    ],
+];
