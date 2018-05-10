@@ -14,7 +14,9 @@ Install via composer: `composer require eristemena/dialogflow-fulfillment-webhoo
 
 ### Initiate Agent
 
-To initiate agent, use `\Dialogflow\WebhookClient` constructor with input parameter as array of request coming from Dialogflow. In Vanilla PHP, this can be done as follow,
+To initiate agent, use `\Dialogflow\WebhookClient` constructor with input parameter as array of request coming from Dialogflow. 
+
+In Vanilla PHP, this can be done as follow,
 
 ```
 use \Dialogflow\WebhookClient;
@@ -34,58 +36,58 @@ $agent = \Dialogflow\WebhookClient::fromData($request->json()->all());
 
 ### Get Request Info
 
-- Intent
+- [Intent](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetaction)
 
 ```
 $intent = $agent->getIntent();
 ```
 
-- Action
+- [Action](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetaction)
 
 ```
-$intent = $agent->getAction();
+$action = $agent->getAction();
 ```
 
-- Query
+- [Query](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetquery)
 
 ```
-$intent = $agent->getQuery();
+$query = $agent->getQuery();
 ```
 
-- Parameters
+- [Parameters](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetparameters)
 
 ```
-$intent = $agent->getParameters();
+$parameters = $agent->getParameters();
 ```
 
-- Session
+- [Session](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetsession)
 
 ```
-$intent = $agent->getSession();
+$session = $agent->getSession();
 ```
 
-- Contexts
+- [Contexts](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetcontexts)
 
 ```
-$intent = $agent->getContexts();
+$context = $agent->getContexts();
 ```
 
-- Language
+- [Language](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetlocale)
 
 ```
-$intent = $agent->getLocale();
+$language = $agent->getLocale();
 ```
 
-- Original Request (ex: google, facebook, slack, etc)
+- [Original Request](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetoriginalrequest) (ex: google, facebook, slack, etc)
 
 ```
-$intent = $agent->getOriginalRequest();
+$originalRequest = $agent->getOriginalRequest();
 ```
 
-- Agent Version (1 or 2)
+- [Agent Version](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetagentversion) (1 or 2)
 
 ```
-$intent = $agent->getAgentVersion();
+$agentVersion = $agent->getAgentVersion();
 ```
 
 ### Send Reply
@@ -93,7 +95,7 @@ $intent = $agent->getAgentVersion();
 To send a reply, use `reply()` method.
 
 ```
-$agent->reply("Hi, how can we help you");
+$agent->reply("Hi, how can we help you?");
 ```
 
 Then use `render()` to get response in array. All you have to do is to print the array as JSON,
