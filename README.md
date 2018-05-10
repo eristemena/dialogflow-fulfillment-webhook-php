@@ -19,7 +19,11 @@ To initiate agent, use `\Dialogflow\WebhookClient` constructor with input parame
 ```
 use \Dialogflow\WebhookClient;
 
-$agent = new \Dialogflow\WebhookClient($_POST);
+$agent = new WebhookClient($_POST);
+
+// or
+
+$agent = WebhookClient::fromData($_POST);
 ```
 
 or if you're using Laravel,
