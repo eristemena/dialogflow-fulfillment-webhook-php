@@ -14,8 +14,6 @@
 |[getLifespan](#contextgetlifespan)|The number of queries this context will remain active after being invoked|
 |[getName](#contextgetname)|The name of the context|
 |[getParameters](#contextgetparameters)|The parameters being passed through the context|
-|[renderV1](#contextrenderv1)|Render response as array for API V1|
-|[renderV2](#contextrenderv2)|Render response as array for API V2|
 
 
 
@@ -108,55 +106,6 @@ The parameters being passed through the context
 **Return Values**
 
 `null|array`
-
-
-
-
-
-### Context::renderV1  
-
-**Description**
-
-```php
-public renderV1 (void)
-```
-
-Render response as array for API V1 
-
- 
-
-**Parameters**
-
-`This function has no parameters.`
-
-**Return Values**
-
-`array`
-
-
-
-
-
-### Context::renderV2  
-
-**Description**
-
-```php
-public renderV2 (string $session)
-```
-
-Render response as array for API V2 
-
- 
-
-**Parameters**
-
-* `(string) $session`
-: session  
-
-**Return Values**
-
-`array`
 
 
 
