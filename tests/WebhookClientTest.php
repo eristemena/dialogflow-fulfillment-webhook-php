@@ -39,6 +39,12 @@ class WebhookClientTest extends TestCase
         $this->assertInstanceOf('\Dialogflow\WebhookClient', $this->agentv1google);
     }
 
+    public function testFromData()
+    {
+        $data_v1_google = json_decode(file_get_contents(__DIR__ . '/stubs/request-v1-google.json'), true);
+        $this->assertInstanceOf('\Dialogflow\WebhookClient', WebhookClient::fromData($data_v1_google));
+    }
+
     /**
      * @expectedException RuntimeException
      */
@@ -147,7 +153,8 @@ class WebhookClientTest extends TestCase
                     'textToSpeech' => 'Welcome',
                     'displayText' => 'Welcome'
                 ]
-            ]
+            ],
+            'contextOut' => []
         ], $this->agentv1google->render());
     }
 
@@ -168,7 +175,8 @@ class WebhookClientTest extends TestCase
                         ]
                     ]
                 ]
-            ]
+            ],
+            'outputContexts' => []
         ], $this->agentv2google->render());
     }
 
@@ -183,7 +191,8 @@ class WebhookClientTest extends TestCase
                     'platform' => 'facebook',
                     'speech' => 'Welcome'
                 ]
-            ]
+            ],
+            'contextOut' => []
         ], $this->agentv1facebook->render());
     }
 
@@ -201,7 +210,8 @@ class WebhookClientTest extends TestCase
                     ],
                     'platform' => 'FACEBOOK'
                 ]
-            ]
+            ],
+            'outputContexts' => []
         ], $this->agentv2facebook->render());
     }
 
@@ -216,7 +226,8 @@ class WebhookClientTest extends TestCase
                     'speech' => 'Welcome'
                 ]
             ],
-            'speech' => 'Welcome'
+            'speech' => 'Welcome',
+            'contextOut' => []
         ], $this->agentv1web->render());
     }
 
@@ -238,7 +249,8 @@ class WebhookClientTest extends TestCase
                     'textToSpeech' => 'Welcome',
                     'displayText' => 'Welcome'
                 ]
-            ]
+            ],
+            'contextOut' => []
         ];
 
         $this->assertEquals($expectedArray, $array);
@@ -266,7 +278,8 @@ class WebhookClientTest extends TestCase
                         ]
                     ]
                 ]
-            ]
+            ],
+            'outputContexts' => []
         ], $this->agentv2google->render());
     }
 }
