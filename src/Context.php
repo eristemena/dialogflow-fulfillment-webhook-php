@@ -22,7 +22,7 @@ class Context
 
     /**
      * The name of the context
-     * 
+     *
      * @return string
      */
     public function getName()
@@ -32,7 +32,7 @@ class Context
 
     /**
      * The number of queries this context will remain active after being invoked
-     * 
+     *
      * @return null|string
      */
     public function getLifespan()
@@ -42,7 +42,7 @@ class Context
 
     /**
      * The parameters being passed through the context
-     * 
+     *
      * @return null|array
      */
     public function getParameters()

@@ -38,7 +38,7 @@ abstract class RichMessage
 
     protected function setAgentVersion($agentVersion)
     {
-        if($agentVersion!=self::API_V1 && $agentVersion!=self::API_V2){
+        if ($agentVersion!=self::API_V1 && $agentVersion!=self::API_V2) {
             throw new RuntimeException('Invalid agent version');
         }
 
@@ -49,7 +49,7 @@ abstract class RichMessage
 
     protected function setRequestSource($requestSource)
     {
-        if($requestSource==null){
+        if ($requestSource==null) {
             $requestSource = 'unspecified';
         }
 
@@ -65,11 +65,11 @@ abstract class RichMessage
      */
     public function render()
     {
-        if($this->agentVersion==self::API_V1){
+        if ($this->agentVersion==self::API_V1) {
             return $this->renderV1();
-        }elseif($this->agentVersion==self::API_V2){
+        } elseif ($this->agentVersion==self::API_V2) {
             return $this->renderV2();
-        }else{
+        } else {
             throw new RuntimeException('Invalid agent version');
         }
     }

@@ -5,7 +5,7 @@ namespace Dialogflow\RichMessage;
 class Card extends RichMessage
 {
     /**
-     * Enum for Dialogflow v1 text message object 
+     * Enum for Dialogflow v1 text message object
      * https://dialogflow.com/docs/reference/agent/message-objects
      */
     const v1MessageObjectCard = 1;
@@ -37,7 +37,7 @@ class Card extends RichMessage
 
     /**
      * Set the title for a Card
-     * 
+     *
      * @param string $title
      */
     public function title($title)
@@ -49,7 +49,7 @@ class Card extends RichMessage
 
     /**
      * Set the text for a Card
-     * 
+     *
      * @param string $text
      */
     public function text($text)
@@ -61,7 +61,7 @@ class Card extends RichMessage
 
     /**
      * Set the image for a Card
-     * 
+     *
      * @param string $image image URL
      */
     public function image($imageUrl)
@@ -73,7 +73,7 @@ class Card extends RichMessage
 
     /**
      * Set the button for a Card
-     * 
+     *
      * @param string $buttonText button text
      * @param string $buttonUrl button link URL
      */
@@ -92,28 +92,29 @@ class Card extends RichMessage
      */
     protected function renderV1()
     {
-        if($this->requestSource=='google')
-        {
+        if ($this->requestSource=='google') {
             $out = [
                 'type' => 'basic_card',
                 'platform' => $this->requestSource,
                 'title' => $this->title
             ];
 
-            if(!$this->text && !$this->imageUrl){
+            if (!$this->text && !$this->imageUrl) {
                 $out['formattedText'] = ' '; // AoG requires text or image in card
             }
 
-            if($this->text) $out['formattedText'] = $this->text;
+            if ($this->text) {
+                $out['formattedText'] = $this->text;
+            }
 
-            if($this->imageUrl){
+            if ($this->imageUrl) {
                 $out['image'] = [
                     'url' => $this->imageUrl,
                     'accessibilityText' => 'accessibility text'
                 ];
             }
 
-            if($this->buttonText && $this->buttonUrl){
+            if ($this->buttonText && $this->buttonUrl) {
                 $out['buttons'] = [
                     [
                         'title' => $this->buttonText,
@@ -125,21 +126,25 @@ class Card extends RichMessage
             }
 
             return $out;
-        }
-        else
-        {
+        } else {
             $out = [
                 'type' => self::v1MessageObjectCard,
                 'title' => $this->title
             ];
 
-            if($this->text) $out['subtitle'] = $this->text;
-            if($this->imageUrl) $out['imageUrl'] = $this->imageUrl;
+            if ($this->text) {
+                $out['subtitle'] = $this->text;
+            }
+            if ($this->imageUrl) {
+                $out['imageUrl'] = $this->imageUrl;
+            }
 
             // this is required in the response even if there are no buttons for some reason
-            if($this->requestSource=='slack') $out['buttons'] = [];
+            if ($this->requestSource=='slack') {
+                $out['buttons'] = [];
+            }
 
-            if($this->buttonText && $this->buttonUrl){
+            if ($this->buttonText && $this->buttonUrl) {
                 $out['buttons'] = [
                     [
                         'text' => $this->buttonText,
@@ -161,8 +166,7 @@ class Card extends RichMessage
      */
     protected function renderV2()
     {
-        if($this->requestSource=='google')
-        {
+        if ($this->requestSource=='google') {
             $out = [
                 'basicCard' => [
                     'title' => $this->title,
@@ -170,16 +174,18 @@ class Card extends RichMessage
                 'platform' => $this->v2PlatformMap[$this->requestSource]
             ];
 
-            if($this->text) $out['basicCard']['formattedText'] = $this->text;
+            if ($this->text) {
+                $out['basicCard']['formattedText'] = $this->text;
+            }
 
-            if($this->imageUrl){
+            if ($this->imageUrl) {
                 $out['basicCard']['image'] = [
                     'imageUri' => $this->imageUrl,
                     'accessibilityText' => 'accessibility text'
                 ];
             }
 
-            if($this->buttonText && $this->buttonUrl){
+            if ($this->buttonText && $this->buttonUrl) {
                 $out['basicCard']['buttons'] = [
                     [
                         'title' => $this->buttonText,
@@ -191,9 +197,7 @@ class Card extends RichMessage
             }
 
             return $out;
-        }
-        else
-        {
+        } else {
             $out = [
                 'card' => [
                     'title' => $this->title
@@ -201,13 +205,15 @@ class Card extends RichMessage
                 'platform' => $this->v2PlatformMap[$this->requestSource]
             ];
 
-            if($this->text) $out['card']['subtitle'] = $this->text;
+            if ($this->text) {
+                $out['card']['subtitle'] = $this->text;
+            }
 
-            if($this->imageUrl){
+            if ($this->imageUrl) {
                 $out['card']['imageUri'] = $this->imageUrl;
             }
 
-            if($this->buttonText && $this->buttonUrl){
+            if ($this->buttonText && $this->buttonUrl) {
                 $out['card']['buttons'] = [
                     [
                         'text' => $this->buttonText,

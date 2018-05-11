@@ -5,7 +5,7 @@ namespace Dialogflow\RichMessage;
 class Text extends RichMessage
 {
     /**
-     * Enum for Dialogflow v1 text message object 
+     * Enum for Dialogflow v1 text message object
      * https://dialogflow.com/docs/reference/agent/message-objects
      */
     const v1MessageObjectText = 0;
@@ -28,7 +28,7 @@ class Text extends RichMessage
 
     /**
      * Set the text for a Text
-     * 
+     *
      * @param string $text containing the text response content
      */
     public function text($text)
@@ -40,7 +40,7 @@ class Text extends RichMessage
 
     /**
      * Set the SSML for a Text
-     * 
+     *
      * @param string $text containing the SSML response content
      */
     public function ssml($ssml)
@@ -57,23 +57,20 @@ class Text extends RichMessage
      */
     protected function renderV1()
     {
-        if($this->requestSource=='google')
-        {
+        if ($this->requestSource=='google') {
             return [
                 'type' => 'simple_response',
                 'platform' => $this->requestSource,
                 'textToSpeech' => $this->text,
                 'displayText' => $this->text
             ];
-        }
-        else
-        {
+        } else {
             $out = [
                 'type' => self::v1MessageObjectText,
                 'speech' => $this->text
             ];
 
-            if( in_array($this->requestSource, $this->supportedRichMessagePlatforms) ){
+            if (in_array($this->requestSource, $this->supportedRichMessagePlatforms)) {
                 $out['platform'] = $this->requestSource;
             }
 
@@ -88,8 +85,7 @@ class Text extends RichMessage
      */
     protected function renderV2()
     {
-        if($this->requestSource=='google')
-        {
+        if ($this->requestSource=='google') {
             $out = [
                 'platform' => 'ACTIONS_ON_GOOGLE',
                 'simpleResponses' => [
@@ -97,25 +93,23 @@ class Text extends RichMessage
                 ]
             ];
 
-            if($this->ssml){
+            if ($this->ssml) {
                 $out['simpleResponses']['simpleResponses'][0]['ssml'] = $this->ssml;
-            }else{
+            } else {
                 $out['simpleResponses']['simpleResponses'][0]['textToSpeech'] = $this->text;
             }
 
             $out['simpleResponses']['simpleResponses'][0]['displayText'] = $this->text;
 
             return $out;
-        }
-        else
-        {
+        } else {
             $out = [
                 'text' => [
                     'text' => [$this->text]
                 ]
             ];
 
-            if( in_array($this->requestSource, $this->supportedRichMessagePlatforms) ){
+            if (in_array($this->requestSource, $this->supportedRichMessagePlatforms)) {
                 $out['platform'] = $this->v2PlatformMap[$this->requestSource];
             }
 

@@ -29,7 +29,7 @@ class Image extends RichMessage
 
     /**
      * Set the image for a Image
-     * 
+     *
      * @param string $imageUrl
      */
     public function image($imageUrl)
@@ -46,14 +46,13 @@ class Image extends RichMessage
      */
     protected function renderV1()
     {
-        if($this->requestSource=='google')
-        {
+        if ($this->requestSource=='google') {
             $out = [
                 'type' => 'basic_card',
                 'platform' => $this->requestSource
             ];
 
-            if($this->imageUrl){
+            if ($this->imageUrl) {
                 $out['image'] = [
                     'url' => $this->imageUrl,
                     'accessibilityText' => 'accessibility text'
@@ -61,15 +60,15 @@ class Image extends RichMessage
             }
 
             return $out;
-        }
-        else
-        {
+        } else {
             $out = [
                 'type' => self::v1MessageObjectImage,
                 'platform' => $this->requestSource
             ];
 
-            if($this->imageUrl) $out['imageUrl'] = $this->imageUrl;
+            if ($this->imageUrl) {
+                $out['imageUrl'] = $this->imageUrl;
+            }
 
             return $out;
         }
@@ -82,14 +81,13 @@ class Image extends RichMessage
      */
     protected function renderV2()
     {
-        if($this->requestSource=='google')
-        {
+        if ($this->requestSource=='google') {
             $out = [
                 'basicCard' => [],
                 'platform' => $this->v2PlatformMap[$this->requestSource]
             ];
 
-            if($this->imageUrl){
+            if ($this->imageUrl) {
                 $out['basicCard']['image'] = [
                     'imageUri' => $this->imageUrl,
                     'accessibilityText' => 'accessibility text'
@@ -97,15 +95,15 @@ class Image extends RichMessage
             }
 
             return $out;
-        }
-        else
-        {
+        } else {
             $out = [
                 'image' => [],
                 'platform' => $this->v2PlatformMap[$this->requestSource]
             ];
 
-            if($this->imageUrl) $out['image']['imageUri'] = $this->imageUrl;
+            if ($this->imageUrl) {
+                $out['image']['imageUri'] = $this->imageUrl;
+            }
 
             return $out;
         }

@@ -89,7 +89,7 @@ class WebhookClientTest extends TestCase
 
         $this->assertInternalType('array', $contexts);
 
-        if(count($contexts)>0){
+        if (count($contexts)>0) {
             $context = $contexts[0];
 
             $this->assertInstanceOf('\Dialogflow\Context', $context);
