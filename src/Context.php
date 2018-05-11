@@ -49,47 +49,4 @@ class Context
     {
         return $this->parameters;
     }
-
-    /**
-     * Render response as array for API V1
-     *
-     * @return array
-     */
-    public function renderV1()
-    {
-        $out = ['name' => $this->name];
-
-        if($this->lifespan){
-            $out['lifespan'] = $this->lifespan;
-        }
-
-        if($this->parameters){
-            $out['parameters'] = $this->parameters;
-        }
-
-        return $out;
-    }
-
-    /**
-     * Render response as array for API V2
-     *
-     * @param string $session session
-     * @return array
-     */
-    public function renderV2($session)
-    {
-        $out = [
-            'name' => $session.'/contexts/'.$this->name
-        ];
-
-        if($this->lifespan){
-            $out['lifespanCount'] = $this->lifespan;
-        }
-
-        if($this->parameters){
-            $out['parameters'] = $this->parameters;
-        }
-
-        return $out;
-    }
 }
