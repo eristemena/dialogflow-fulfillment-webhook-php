@@ -5,6 +5,7 @@ return (object)[
     'format' => 'github',
     'classes' => [
         '\Dialogflow\WebhookClient',
+        '\Dialogflow\Context',
         '\Dialogflow\RichMessage\Card',
         '\Dialogflow\RichMessage\Image',
         '\Dialogflow\RichMessage\Payload',

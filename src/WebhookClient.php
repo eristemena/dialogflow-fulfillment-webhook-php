@@ -343,7 +343,7 @@ class WebhookClient extends RichMessage
     }
 
     /**
-     * Set a new Dialogflow outgoing context.
+     * Replace all Dialogflow outgoing contexts.
      * Reference: https://dialogflow.com/docs/contexts
      *
      * @param array $contexts

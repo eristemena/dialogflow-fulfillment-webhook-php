@@ -27,7 +27,7 @@ Dialogflow\RichMessage\RichMessage
 |[getSession](#webhookclientgetsession)|Get session id.|
 |[reply](#webhookclientreply)|Response to incoming request.|
 |[setContext](#webhookclientsetcontext)|Set a new Dialogflow outgoing context.|
-|[setContexts](#webhookclientsetcontexts)|Set a new Dialogflow outgoing context.|
+|[setContexts](#webhookclientsetcontexts)|Replace all Dialogflow outgoing contexts.|
 
 ## Inherited methods
 
@@ -403,7 +403,7 @@ Reference: https://dialogflow.com/docs/contexts
 public setContexts (array $contexts)
 ```
 
-Set a new Dialogflow outgoing context. 
+Replace all Dialogflow outgoing contexts. 
 
 Reference: https://dialogflow.com/docs/contexts 
 
