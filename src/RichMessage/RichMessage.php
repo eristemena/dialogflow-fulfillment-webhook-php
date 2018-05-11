@@ -31,6 +31,11 @@ abstract class RichMessage
     /** @var array */
     protected $payload;
 
+    /**
+     * Check if request source support rich message.
+     *
+     * @return boolean
+     */
     public function doesSupportRichMessage()
     {
         return in_array($this->requestSource, $this->supportedRichMessagePlatforms);

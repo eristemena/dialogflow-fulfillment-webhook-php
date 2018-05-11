@@ -49,6 +49,11 @@ class WebhookClient extends RichMessage
     /** @var array */
     protected $outgoingContexts = [];
 
+    /**
+     * Constructor for WebhookClient object.
+     * 
+     * @param array $data request data payload from Dialogflow
+     */
     public function __construct($data)
     {
         if (isset($data['result'])) {
@@ -58,6 +63,15 @@ class WebhookClient extends RichMessage
         } else {
             throw new RuntimeException('Invalid Dialogflow request');
         }
+    }
+
+    /**
+     * @param array $data
+     * @return WebhookClient
+     */
+    public static function fromData($data)
+    {
+        return new self($data);
     }
 
     private function parseRequestV1($data)
