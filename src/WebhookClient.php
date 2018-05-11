@@ -46,6 +46,9 @@ class WebhookClient extends RichMessage
     /** @var string */
     protected $text;
 
+    /** @var array */
+    protected $outgoingContexts = [];
+
     public function __construct($data)
     {
         if(isset($data['result'])){
@@ -272,15 +275,90 @@ class WebhookClient extends RichMessage
      * Set a new Dialogflow outgoing context.
      * Reference: https://dialogflow.com/docs/contexts
      *
-     * @param string|array $context
+     * @param string|array|\Dialogflow\Context $context
      * @return \Dialogflow\WebhookClient
      */
     public function setContext($context)
     {
+        if(is_string($context)){
+            $outgoingContext = new Context($context);
+        }elseif(is_array($context)){
+            if(!isset($context['name'])){
+                throw new RuntimeException("Context must have a name");
+            }
 
+            $name = $context['name'];
+
+            $lifespan = 1;
+            if($context['lifespan']){
+                $lifespan = is_numeric($context['lifespan']) ? $context['lifespan'] : null;
+            }
+
+            $parameters = [];
+            if($context['parameters']){
+                $parameters = is_array($context['parameters']) ? $context['parameters'] : null;
+            }
+
+            $outgoingContext = new Context($name, $lifespan, $parameters);
+        }elseif($context instanceof Context){
+            $outgoingContext = $context;
+        }else{
+            throw new RuntimeException("Context must be provided");
+        }
+
+        $this->outgoingContexts[] = $outgoingContext;
+
+        return $this;
     }
 
     /**
+     * Clear an existing outgoing context. 
+     * Reference: https://dialogflow.com/docs/contexts
+     *
+     * @param string $contextName
+     * @return \Dialogflow\WebhookClient
+     */
+    public function clearContext($contextName)
+    {
+        foreach($this->outgoingContexts as $i => $contex){
+            if($context->getName() == $contextName){
+                unset($this->outgoingContexts[$i]);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Clear all existing outgoing contexts. 
+     * Reference: https://dialogflow.com/docs/contexts
+     *
+     * @return \Dialogflow\WebhookClient
+     */
+    public function clearOutgoingContexts()
+    {
+        $this->outgoingContexts = [];
+
+        return $this;
+    }
+
+    /**
+     * Set a new Dialogflow outgoing context.
+     * Reference: https://dialogflow.com/docs/contexts
+     *
+     * @param array $contexts
+     * @return \Dialogflow\WebhookClient
+     */
+    public function setContexts($contexts)
+    {
+        $this->outgoingContexts = $contexts;
+
+        return $this;
+    }
+
+    /**
+     * Render response as array for API V1
+     *
      * @return array
      */
     protected function renderV1()
@@ -303,10 +381,29 @@ class WebhookClient extends RichMessage
             $out['speech'] = $this->text;
         }
 
+        $outgoingContexts = [];
+        foreach($this->outgoingContexts as $outgoingContext){
+            $outContexts = ['name' => $outgoingContext->getName()];
+
+            if($outgoingContext->getLifespan()){
+                $outContexts['lifespan'] = $outgoingContext->getLifespan();
+            }
+
+            if($outgoingContext->getParameters()){
+                $outContexts['parameters'] = $outgoingContext->getParameters();
+            }
+
+            $outgoingContexts[] = $outContexts;
+        }
+        $out['contextOut'] = $outgoingContexts;
+
         return $out;
     }
 
     /**
+     * Render response as array for API V2
+     *
+     * @param string $session session
      * @return array
      */
     protected function renderV2()
@@ -328,6 +425,24 @@ class WebhookClient extends RichMessage
         if($this->text){
             $out['fulfillmentText'] = $this->text;
         }
+
+        $outgoingContexts = [];
+        foreach($this->outgoingContexts as $outgoingContext){
+            $outContexts = [
+                'name' => $this->session.'/contexts/'.$outgoingContext->getName()
+            ];
+
+            if($outgoingContext->getLifespan()){
+                $outContexts['lifespanCount'] = $outgoingContext->getLifespan();
+            }
+
+            if($outgoingContext->getParameters()){
+                $outContexts['parameters'] = $outgoingContext->getParameters();
+            }
+
+            $outgoingContexts[] = $outContexts;
+        }
+        $out['outputContexts'] = $outgoingContexts;
 
         return $out;
     }

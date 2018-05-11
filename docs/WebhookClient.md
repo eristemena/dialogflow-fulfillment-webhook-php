@@ -13,6 +13,8 @@ Dialogflow\RichMessage\RichMessage
 | Name | Description |
 |------|-------------|
 |[__construct](#webhookclient__construct)||
+|[clearContext](#webhookclientclearcontext)|Clear an existing outgoing context.|
+|[clearOutgoingContexts](#webhookclientclearoutgoingcontexts)|Clear all existing outgoing contexts.|
 |[getAction](#webhookclientgetaction)|Get action name.|
 |[getAgentVersion](#webhookclientgetagentversion)|The agent version (v1 or v2) based on Dialogflow webhook request.|
 |[getContexts](#webhookclientgetcontexts)|Get contexts.|
@@ -25,11 +27,13 @@ Dialogflow\RichMessage\RichMessage
 |[getSession](#webhookclientgetsession)|Get session id.|
 |[reply](#webhookclientreply)|Response to incoming request.|
 |[setContext](#webhookclientsetcontext)|Set a new Dialogflow outgoing context.|
+|[setContexts](#webhookclientsetcontexts)|Set a new Dialogflow outgoing context.|
 
 ## Inherited methods
 
 | Name | Description |
 |------|-------------|
+|doesSupportRichMessage|-|
 |render|Render response as array|
 
 
@@ -51,6 +55,54 @@ public __construct (void)
 `This function has no parameters.`
 
 **Return Values**
+
+
+
+
+### WebhookClient::clearContext  
+
+**Description**
+
+```php
+public clearContext (string $contextName)
+```
+
+Clear an existing outgoing context. 
+
+Reference: https://dialogflow.com/docs/contexts 
+
+**Parameters**
+
+* `(string) $contextName`
+
+**Return Values**
+
+`\Dialogflow\WebhookClient`
+
+
+
+
+
+### WebhookClient::clearOutgoingContexts  
+
+**Description**
+
+```php
+public clearOutgoingContexts (void)
+```
+
+Clear all existing outgoing contexts. 
+
+Reference: https://dialogflow.com/docs/contexts 
+
+**Parameters**
+
+`This function has no parameters.`
+
+**Return Values**
+
+`\Dialogflow\WebhookClient`
+
 
 
 
@@ -324,7 +376,7 @@ Response to incoming request.
 **Description**
 
 ```php
-public setContext (string|array $context)
+public setContext (string|array|\Dialogflow\Context $context)
 ```
 
 Set a new Dialogflow outgoing context. 
@@ -333,7 +385,31 @@ Reference: https://dialogflow.com/docs/contexts
 
 **Parameters**
 
-* `(string|array) $context`
+* `(string|array|\Dialogflow\Context) $context`
+
+**Return Values**
+
+`\Dialogflow\WebhookClient`
+
+
+
+
+
+### WebhookClient::setContexts  
+
+**Description**
+
+```php
+public setContexts (array $contexts)
+```
+
+Set a new Dialogflow outgoing context. 
+
+Reference: https://dialogflow.com/docs/contexts 
+
+**Parameters**
+
+* `(array) $contexts`
 
 **Return Values**
 

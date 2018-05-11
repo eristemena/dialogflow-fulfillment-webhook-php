@@ -19,6 +19,7 @@ Dialogflow\RichMessage\RichMessage
 
 | Name | Description |
 |------|-------------|
+|doesSupportRichMessage|-|
 |render|Render response as array|
 
 
