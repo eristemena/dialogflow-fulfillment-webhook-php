@@ -20,7 +20,7 @@ Dialogflow\RichMessage\RichMessage
 
 | Name | Description |
 |------|-------------|
-|doesSupportRichMessage|-|
+|doesSupportRichMessage|Check if request source support rich message.|
 |render|Render response as array|
 
 

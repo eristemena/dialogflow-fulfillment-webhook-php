@@ -12,9 +12,10 @@ Dialogflow\RichMessage\RichMessage
 
 | Name | Description |
 |------|-------------|
-|[__construct](#webhookclient__construct)||
+|[__construct](#webhookclient__construct)|Constructor for WebhookClient object.|
 |[clearContext](#webhookclientclearcontext)|Clear an existing outgoing context.|
 |[clearOutgoingContexts](#webhookclientclearoutgoingcontexts)|Clear all existing outgoing contexts.|
+|[fromData](#webhookclientfromdata)||
 |[getAction](#webhookclientgetaction)|Get action name.|
 |[getAgentVersion](#webhookclientgetagentversion)|The agent version (v1 or v2) based on Dialogflow webhook request.|
 |[getContexts](#webhookclientgetcontexts)|Get contexts.|
@@ -33,7 +34,7 @@ Dialogflow\RichMessage\RichMessage
 
 | Name | Description |
 |------|-------------|
-|doesSupportRichMessage|-|
+|doesSupportRichMessage|Check if request source support rich message.|
 |render|Render response as array|
 
 
@@ -43,16 +44,17 @@ Dialogflow\RichMessage\RichMessage
 **Description**
 
 ```php
-public __construct (void)
+public __construct (array $data)
 ```
 
- 
+Constructor for WebhookClient object. 
 
  
 
 **Parameters**
 
-`This function has no parameters.`
+* `(array) $data`
+: request data payload from Dialogflow  
 
 **Return Values**
 
@@ -102,6 +104,30 @@ Reference: https://dialogflow.com/docs/contexts
 **Return Values**
 
 `\Dialogflow\WebhookClient`
+
+
+
+
+
+### WebhookClient::fromData  
+
+**Description**
+
+```php
+public static fromData (array $data)
+```
+
+ 
+
+ 
+
+**Parameters**
+
+* `(array) $data`
+
+**Return Values**
+
+`\WebhookClient`
 
 
 
