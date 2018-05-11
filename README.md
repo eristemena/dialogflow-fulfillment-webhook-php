@@ -69,7 +69,7 @@ $session = $agent->getSession();
 - [Contexts](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetcontexts)
 
 ```
-$context = $agent->getContexts();
+$contexts = $agent->getContexts();
 ```
 
 - [Language](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetlocale)
