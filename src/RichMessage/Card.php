@@ -6,7 +6,7 @@ class Card extends RichMessage
 {
     /**
      * Enum for Dialogflow v1 text message object
-     * https://dialogflow.com/docs/reference/agent/message-objects
+     * https://dialogflow.com/docs/reference/agent/message-objects.
      */
     const v1MessageObjectCard = 1;
 
@@ -36,7 +36,7 @@ class Card extends RichMessage
     }
 
     /**
-     * Set the title for a Card
+     * Set the title for a Card.
      *
      * @param string $title
      */
@@ -48,7 +48,7 @@ class Card extends RichMessage
     }
 
     /**
-     * Set the text for a Card
+     * Set the text for a Card.
      *
      * @param string $text
      */
@@ -60,7 +60,7 @@ class Card extends RichMessage
     }
 
     /**
-     * Set the image for a Card
+     * Set the image for a Card.
      *
      * @param string $image image URL
      */
@@ -72,10 +72,10 @@ class Card extends RichMessage
     }
 
     /**
-     * Set the button for a Card
+     * Set the button for a Card.
      *
      * @param string $buttonText button text
-     * @param string $buttonUrl button link URL
+     * @param string $buttonUrl  button link URL
      */
     public function button($buttonText, $buttonUrl)
     {
@@ -86,17 +86,17 @@ class Card extends RichMessage
     }
 
     /**
-     * Render response as array for API V1
+     * Render response as array for API V1.
      *
      * @return array
      */
     protected function renderV1()
     {
-        if ($this->requestSource=='google') {
+        if ($this->requestSource == 'google') {
             $out = [
-                'type' => 'basic_card',
+                'type'     => 'basic_card',
                 'platform' => $this->requestSource,
-                'title' => $this->title
+                'title'    => $this->title,
             ];
 
             if (!$this->text && !$this->imageUrl) {
@@ -109,27 +109,27 @@ class Card extends RichMessage
 
             if ($this->imageUrl) {
                 $out['image'] = [
-                    'url' => $this->imageUrl,
-                    'accessibilityText' => 'accessibility text'
+                    'url'               => $this->imageUrl,
+                    'accessibilityText' => 'accessibility text',
                 ];
             }
 
             if ($this->buttonText && $this->buttonUrl) {
                 $out['buttons'] = [
                     [
-                        'title' => $this->buttonText,
+                        'title'         => $this->buttonText,
                         'openUrlAction' => [
-                            'url' => $this->buttonUrl
-                        ]
-                    ]
+                            'url' => $this->buttonUrl,
+                        ],
+                    ],
                 ];
             }
 
             return $out;
         } else {
             $out = [
-                'type' => self::v1MessageObjectCard,
-                'title' => $this->title
+                'type'  => self::v1MessageObjectCard,
+                'title' => $this->title,
             ];
 
             if ($this->text) {
@@ -140,16 +140,16 @@ class Card extends RichMessage
             }
 
             // this is required in the response even if there are no buttons for some reason
-            if ($this->requestSource=='slack') {
+            if ($this->requestSource == 'slack') {
                 $out['buttons'] = [];
             }
 
             if ($this->buttonText && $this->buttonUrl) {
                 $out['buttons'] = [
                     [
-                        'text' => $this->buttonText,
-                        'postback' => $this->buttonUrl
-                    ]
+                        'text'     => $this->buttonText,
+                        'postback' => $this->buttonUrl,
+                    ],
                 ];
             }
 
@@ -160,18 +160,18 @@ class Card extends RichMessage
     }
 
     /**
-     * Render response as array for API V2
+     * Render response as array for API V2.
      *
      * @return array
      */
     protected function renderV2()
     {
-        if ($this->requestSource=='google') {
+        if ($this->requestSource == 'google') {
             $out = [
                 'basicCard' => [
                     'title' => $this->title,
                 ],
-                'platform' => $this->v2PlatformMap[$this->requestSource]
+                'platform' => $this->v2PlatformMap[$this->requestSource],
             ];
 
             if ($this->text) {
@@ -180,19 +180,19 @@ class Card extends RichMessage
 
             if ($this->imageUrl) {
                 $out['basicCard']['image'] = [
-                    'imageUri' => $this->imageUrl,
-                    'accessibilityText' => 'accessibility text'
+                    'imageUri'          => $this->imageUrl,
+                    'accessibilityText' => 'accessibility text',
                 ];
             }
 
             if ($this->buttonText && $this->buttonUrl) {
                 $out['basicCard']['buttons'] = [
                     [
-                        'title' => $this->buttonText,
+                        'title'         => $this->buttonText,
                         'openUriAction' => [
-                            'uri' => $this->buttonUrl
-                        ]
-                    ]
+                            'uri' => $this->buttonUrl,
+                        ],
+                    ],
                 ];
             }
 
@@ -200,9 +200,9 @@ class Card extends RichMessage
         } else {
             $out = [
                 'card' => [
-                    'title' => $this->title
+                    'title' => $this->title,
                 ],
-                'platform' => $this->v2PlatformMap[$this->requestSource]
+                'platform' => $this->v2PlatformMap[$this->requestSource],
             ];
 
             if ($this->text) {
@@ -216,9 +216,9 @@ class Card extends RichMessage
             if ($this->buttonText && $this->buttonUrl) {
                 $out['card']['buttons'] = [
                     [
-                        'text' => $this->buttonText,
-                        'postback' => $this->buttonUrl
-                    ]
+                        'text'     => $this->buttonText,
+                        'postback' => $this->buttonUrl,
+                    ],
                 ];
             }
 

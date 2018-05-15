@@ -2,11 +2,8 @@
 
 namespace Dialogflow\tests\RichMessage;
 
-use RuntimeException;
-
-use PHPUnit\Framework\TestCase;
 use Dialogflow\RichMessage\Image;
-use Dialogflow\RichMessage\RichMessage;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 class ImageTest extends TestCase
@@ -16,6 +13,7 @@ class ImageTest extends TestCase
         $class = new ReflectionClass('Dialogflow\RichMessage\Image');
         $method = $class->getMethod($name);
         $method->setAccessible(true);
+
         return $method;
     }
 
@@ -82,12 +80,12 @@ class ImageTest extends TestCase
     {
         $image = $this->getImageV1Google();
         $this->assertEquals([
-            'type' => 'basic_card',
+            'type'     => 'basic_card',
             'platform' => 'google',
-            'image' => [
-                'url' => 'https://picsum.photos/200/300',
-                'accessibilityText' => 'accessibility text'
-            ]
+            'image'    => [
+                'url'               => 'https://picsum.photos/200/300',
+                'accessibilityText' => 'accessibility text',
+            ],
         ], $image->render());
     }
 
@@ -95,13 +93,13 @@ class ImageTest extends TestCase
     {
         $image = $this->getImageV2Google();
         $this->assertEquals([
-            'platform' => 'ACTIONS_ON_GOOGLE',
+            'platform'  => 'ACTIONS_ON_GOOGLE',
             'basicCard' => [
                 'image' => [
-                    'imageUri' => 'https://picsum.photos/200/300',
-                    'accessibilityText' => 'accessibility text'
-                ]
-            ]
+                    'imageUri'          => 'https://picsum.photos/200/300',
+                    'accessibilityText' => 'accessibility text',
+                ],
+            ],
         ], $image->render());
     }
 
@@ -109,9 +107,9 @@ class ImageTest extends TestCase
     {
         $image = $this->getImageV1Facebook();
         $this->assertEquals([
-            'type' => 3,
+            'type'     => 3,
             'imageUrl' => 'https://picsum.photos/200/300',
-            'platform' => 'facebook'
+            'platform' => 'facebook',
         ], $image->render());
     }
 
@@ -120,9 +118,9 @@ class ImageTest extends TestCase
         $image = $this->getImageV2Facebook();
         $this->assertEquals([
             'platform' => 'FACEBOOK',
-            'image' => [
+            'image'    => [
                 'imageUri' => 'https://picsum.photos/200/300',
-            ]
+            ],
         ], $image->render());
     }
 }

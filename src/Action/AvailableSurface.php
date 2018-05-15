@@ -8,7 +8,7 @@ class AvailableSurface
     protected $surfaces = [];
 
     /**
-     * @param array $data request array
+     * @param array $data         request array
      * @param array $capabilities
      */
     public function __construct($data)
@@ -22,7 +22,7 @@ class AvailableSurface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasScreen()
     {
@@ -36,7 +36,7 @@ class AvailableSurface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasAudio()
     {
@@ -50,7 +50,7 @@ class AvailableSurface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasMediaPlayback()
     {
@@ -64,7 +64,7 @@ class AvailableSurface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasWebBrowser()
     {

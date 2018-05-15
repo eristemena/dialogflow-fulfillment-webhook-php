@@ -38,6 +38,7 @@ class SimpleResponse implements ResponseInterface
      * Set display text.
      *
      * @param string $displayText
+     *
      * @return Dialogflow\Action\Response\SimpleResponse
      */
     public function displayText($displayText)
@@ -51,6 +52,7 @@ class SimpleResponse implements ResponseInterface
      * Set ssml.
      *
      * @param string $ssml
+     *
      * @return Dialogflow\Action\Response\SimpleResponse
      */
     public function ssml($ssml)
@@ -64,6 +66,7 @@ class SimpleResponse implements ResponseInterface
      * Set text to speech.
      *
      * @param string $textToSpeech
+     *
      * @return Dialogflow\Action\Response\SimpleResponse
      */
     public function textToSpeech($textToSpeech)
@@ -74,7 +77,7 @@ class SimpleResponse implements ResponseInterface
     }
 
     /**
-     * Render response as array
+     * Render response as array.
      *
      * @return array
      */

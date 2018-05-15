@@ -6,7 +6,7 @@ class Payload extends RichMessage
 {
     /**
      * Enum for Dialogflow v1 text message object
-     * https://dialogflow.com/docs/reference/agent/message-objects
+     * https://dialogflow.com/docs/reference/agent/message-objects.
      */
     const v1MessageObjectText = 0;
 
@@ -14,6 +14,7 @@ class Payload extends RichMessage
      * Create a new Payload instance.
      *
      * @param array $payload
+     *
      * @return Dialogflow\Response\Text
      */
     public static function create($payload)
@@ -25,7 +26,7 @@ class Payload extends RichMessage
     }
 
     /**
-     * Set the payload for a Payload
+     * Set the payload for a Payload.
      *
      * @param array $payload containing the payload response content
      */
@@ -37,7 +38,7 @@ class Payload extends RichMessage
     }
 
     /**
-     * Render rich message as array
+     * Render rich message as array.
      *
      * @return array
      */

@@ -2,11 +2,8 @@
 
 namespace Dialogflow\tests\RichMessage;
 
-use RuntimeException;
-
-use PHPUnit\Framework\TestCase;
 use Dialogflow\RichMessage\Card;
-use Dialogflow\RichMessage\RichMessage;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 class CardTest extends TestCase
@@ -16,6 +13,7 @@ class CardTest extends TestCase
         $class = new ReflectionClass('Dialogflow\RichMessage\Card');
         $method = $class->getMethod($name);
         $method->setAccessible(true);
+
         return $method;
     }
 
@@ -25,8 +23,7 @@ class CardTest extends TestCase
             ->title('This is title')
             ->text('This is text body, you can put whatever here.')
             ->image('https://picsum.photos/200/300')
-            ->button('This is a button', 'https://docs.dialogflow.com/')
-        ;
+            ->button('This is a button', 'https://docs.dialogflow.com/');
 
         $setAgentVersion = self::getMethod('setAgentVersion');
         $setAgentVersion->invokeArgs($card, [1]);
@@ -43,8 +40,7 @@ class CardTest extends TestCase
             ->title('This is title')
             ->text('This is text body, you can put whatever here.')
             ->image('https://picsum.photos/200/300')
-            ->button('This is a button', 'https://docs.dialogflow.com/')
-        ;
+            ->button('This is a button', 'https://docs.dialogflow.com/');
 
         $setAgentVersion = self::getMethod('setAgentVersion');
         $setAgentVersion->invokeArgs($card, [1]);
@@ -61,8 +57,7 @@ class CardTest extends TestCase
             ->title('This is title')
             ->text('This is text body, you can put whatever here.')
             ->image('https://picsum.photos/200/300')
-            ->button('This is a button', 'https://docs.dialogflow.com/')
-        ;
+            ->button('This is a button', 'https://docs.dialogflow.com/');
 
         $setAgentVersion = self::getMethod('setAgentVersion');
         $setAgentVersion->invokeArgs($card, [2]);
@@ -79,8 +74,7 @@ class CardTest extends TestCase
             ->title('This is title')
             ->text('This is text body, you can put whatever here.')
             ->image('https://picsum.photos/200/300')
-            ->button('This is a button', 'https://docs.dialogflow.com/')
-        ;
+            ->button('This is a button', 'https://docs.dialogflow.com/');
 
         $setAgentVersion = self::getMethod('setAgentVersion');
         $setAgentVersion->invokeArgs($card, [2]);
@@ -102,22 +96,22 @@ class CardTest extends TestCase
     {
         $card = $this->getCardV1Google();
         $this->assertEquals([
-            'type' => 'basic_card',
-            'platform' => 'google',
-            'title' => 'This is title',
+            'type'          => 'basic_card',
+            'platform'      => 'google',
+            'title'         => 'This is title',
             'formattedText' => 'This is text body, you can put whatever here.',
-            'image' => [
-                'url' => 'https://picsum.photos/200/300',
-                'accessibilityText' => 'accessibility text'
+            'image'         => [
+                'url'               => 'https://picsum.photos/200/300',
+                'accessibilityText' => 'accessibility text',
             ],
             'buttons' => [
                 [
-                    'title' => 'This is a button',
+                    'title'         => 'This is a button',
                     'openUrlAction' => [
-                        'url' => 'https://docs.dialogflow.com/'
-                    ]
-                ]
-            ]
+                        'url' => 'https://docs.dialogflow.com/',
+                    ],
+                ],
+            ],
         ], $card->render());
     }
 
@@ -125,23 +119,23 @@ class CardTest extends TestCase
     {
         $card2 = $this->getCardV2Google();
         $this->assertEquals([
-            'platform' => 'ACTIONS_ON_GOOGLE',
+            'platform'  => 'ACTIONS_ON_GOOGLE',
             'basicCard' => [
-                'title' => 'This is title',
+                'title'         => 'This is title',
                 'formattedText' => 'This is text body, you can put whatever here.',
-                'image' => [
-                    'imageUri' => 'https://picsum.photos/200/300',
-                    'accessibilityText' => 'accessibility text'
+                'image'         => [
+                    'imageUri'          => 'https://picsum.photos/200/300',
+                    'accessibilityText' => 'accessibility text',
                 ],
                 'buttons' => [
                     [
-                        'title' => 'This is a button',
+                        'title'         => 'This is a button',
                         'openUriAction' => [
-                            'uri' => 'https://docs.dialogflow.com/'
-                        ]
-                    ]
-                ]
-            ]
+                            'uri' => 'https://docs.dialogflow.com/',
+                        ],
+                    ],
+                ],
+            ],
         ], $card2->render());
     }
 
@@ -149,17 +143,17 @@ class CardTest extends TestCase
     {
         $card3 = $this->getCardV1Facebook();
         $this->assertEquals([
-            'type' => 1,
-            'title' => 'This is title',
+            'type'     => 1,
+            'title'    => 'This is title',
             'subtitle' => 'This is text body, you can put whatever here.',
             'imageUrl' => 'https://picsum.photos/200/300',
-            'buttons' => [
+            'buttons'  => [
                 [
-                    'text' => 'This is a button',
-                    'postback' => 'https://docs.dialogflow.com/'
-                ]
+                    'text'     => 'This is a button',
+                    'postback' => 'https://docs.dialogflow.com/',
+                ],
             ],
-            'platform' => 'facebook'
+            'platform' => 'facebook',
         ], $card3->render());
     }
 
@@ -168,17 +162,17 @@ class CardTest extends TestCase
         $card4 = $this->getCardV2Facebook();
         $this->assertEquals([
             'platform' => 'FACEBOOK',
-            'card' => [
-                'title' => 'This is title',
+            'card'     => [
+                'title'    => 'This is title',
                 'subtitle' => 'This is text body, you can put whatever here.',
                 'imageUri' => 'https://picsum.photos/200/300',
-                'buttons' => [
+                'buttons'  => [
                     [
-                        'text' => 'This is a button',
-                        'postback' => 'https://docs.dialogflow.com/'
-                    ]
+                        'text'     => 'This is a button',
+                        'postback' => 'https://docs.dialogflow.com/',
+                    ],
                 ],
-            ]
+            ],
         ], $card4->render());
     }
 }

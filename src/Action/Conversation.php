@@ -2,19 +2,19 @@
 
 namespace Dialogflow\Action;
 
-use \Dialogflow\RichMessage\Payload;
-use \Dialogflow\Action\Response\ResponseInterface;
-use \Dialogflow\Action\Response\SimpleResponse;
+use Dialogflow\Action\Response\ResponseInterface;
+use Dialogflow\Action\Response\SimpleResponse;
+use Dialogflow\RichMessage\Payload;
 
 class Conversation
 {
     /** @var null|string */
     protected $id;
 
-    /** @var boolean */
+    /** @var bool */
     protected $expectUserResponse = true;
 
-    /** @var boolean */
+    /** @var bool */
     protected $sandbox = false;
 
     /** @var \Dialogflow\Action\Surface */
@@ -45,6 +45,7 @@ class Conversation
      * Add a message.
      *
      * @param string|\Dialogflow\Action\Response\ResponseInterface $message
+     *
      * @return Conversation
      */
     public function add($message)
@@ -63,6 +64,7 @@ class Conversation
      * Follow [the guidelines](https://developers.google.com/actions/policies/general-policies#user_experience) when prompting the user for a response.
      *
      * @param string|\Dialogflow\Action\Response\ResponseInterface $message
+     *
      * @return Conversation
      */
     public function ask($message)
@@ -78,6 +80,7 @@ class Conversation
      * Have Assistant render the speech response and close the mic.
      *
      * @param string|\Dialogflow\Action\Response\ResponseInterface $message
+     *
      * @return Conversation
      */
     public function close($message)
@@ -106,7 +109,7 @@ class Conversation
     }
 
     /**
-     * Render response as array
+     * Render response as array.
      *
      * @return array
      */

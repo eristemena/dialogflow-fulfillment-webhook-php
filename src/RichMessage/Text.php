@@ -6,7 +6,7 @@ class Text extends RichMessage
 {
     /**
      * Enum for Dialogflow v1 text message object
-     * https://dialogflow.com/docs/reference/agent/message-objects
+     * https://dialogflow.com/docs/reference/agent/message-objects.
      */
     const v1MessageObjectText = 0;
 
@@ -27,7 +27,7 @@ class Text extends RichMessage
     }
 
     /**
-     * Set the text for a Text
+     * Set the text for a Text.
      *
      * @param string $text containing the text response content
      */
@@ -39,7 +39,7 @@ class Text extends RichMessage
     }
 
     /**
-     * Set the SSML for a Text
+     * Set the SSML for a Text.
      *
      * @param string $text containing the SSML response content
      */
@@ -51,23 +51,23 @@ class Text extends RichMessage
     }
 
     /**
-     * Render response as array for API V1
+     * Render response as array for API V1.
      *
      * @return array
      */
     protected function renderV1()
     {
-        if ($this->requestSource=='google') {
+        if ($this->requestSource == 'google') {
             return [
-                'type' => 'simple_response',
-                'platform' => $this->requestSource,
+                'type'         => 'simple_response',
+                'platform'     => $this->requestSource,
                 'textToSpeech' => $this->text,
-                'displayText' => $this->text
+                'displayText'  => $this->text,
             ];
         } else {
             $out = [
-                'type' => self::v1MessageObjectText,
-                'speech' => $this->text
+                'type'   => self::v1MessageObjectText,
+                'speech' => $this->text,
             ];
 
             if (in_array($this->requestSource, $this->supportedRichMessagePlatforms)) {
@@ -79,18 +79,18 @@ class Text extends RichMessage
     }
 
     /**
-     * Render response as array for API V2
+     * Render response as array for API V2.
      *
      * @return array
      */
     protected function renderV2()
     {
-        if ($this->requestSource=='google') {
+        if ($this->requestSource == 'google') {
             $out = [
-                'platform' => 'ACTIONS_ON_GOOGLE',
+                'platform'        => 'ACTIONS_ON_GOOGLE',
                 'simpleResponses' => [
-                    'simpleResponses' => []
-                ]
+                    'simpleResponses' => [],
+                ],
             ];
 
             if ($this->ssml) {
@@ -105,8 +105,8 @@ class Text extends RichMessage
         } else {
             $out = [
                 'text' => [
-                    'text' => [$this->text]
-                ]
+                    'text' => [$this->text],
+                ],
             ];
 
             if (in_array($this->requestSource, $this->supportedRichMessagePlatforms)) {
