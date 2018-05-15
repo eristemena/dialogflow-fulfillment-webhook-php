@@ -12,18 +12,18 @@ Dialogflow\RichMessage\RichMessage
 
 | Name | Description |
 |------|-------------|
-|[button](#cardbutton)|Set the button for a Card|
+|[button](#cardbutton)|Set the button for a Card.|
 |[create](#cardcreate)|Create a new Card instance.|
-|[image](#cardimage)|Set the image for a Card|
-|[text](#cardtext)|Set the text for a Card|
-|[title](#cardtitle)|Set the title for a Card|
+|[image](#cardimage)|Set the image for a Card.|
+|[text](#cardtext)|Set the text for a Card.|
+|[title](#cardtitle)|Set the title for a Card.|
 
 ## Inherited methods
 
 | Name | Description |
 |------|-------------|
 |doesSupportRichMessage|Check if request source support rich message.|
-|render|Render response as array|
+|render|Render response as array.|
 
 
 
@@ -35,7 +35,7 @@ Dialogflow\RichMessage\RichMessage
 public button (string $buttonText, string $buttonUrl)
 ```
 
-Set the button for a Card 
+Set the button for a Card. 
 
  
 
@@ -83,7 +83,7 @@ Create a new Card instance.
 public image (string $image)
 ```
 
-Set the image for a Card 
+Set the image for a Card. 
 
  
 
@@ -105,7 +105,7 @@ Set the image for a Card
 public text (string $text)
 ```
 
-Set the text for a Card 
+Set the text for a Card. 
 
  
 
@@ -126,7 +126,7 @@ Set the text for a Card
 public title (string $title)
 ```
 
-Set the title for a Card 
+Set the title for a Card. 
 
  
 

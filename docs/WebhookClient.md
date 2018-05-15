@@ -13,30 +13,32 @@ Dialogflow\RichMessage\RichMessage
 | Name | Description |
 |------|-------------|
 |[__construct](#webhookclient__construct)|Constructor for WebhookClient object.|
-|[clearContext](#webhookclientclearcontext)|Clear an existing outgoing context.|
+|[clearOutgoingContext](#webhookclientclearoutgoingcontext)|Clear an existing outgoing context.|
 |[clearOutgoingContexts](#webhookclientclearoutgoingcontexts)|Clear all existing outgoing contexts.|
 |[fromData](#webhookclientfromdata)||
 |[getAction](#webhookclientgetaction)|Get action name.|
-|[getActionConversation](#webhookclientgetactionconversation)|Get Actions on Google DialogflowConversation object|
+|[getActionConversation](#webhookclientgetactionconversation)|Get Actions on Google DialogflowConversation object.|
 |[getAgentVersion](#webhookclientgetagentversion)|The agent version (v1 or v2) based on Dialogflow webhook request.|
 |[getContexts](#webhookclientgetcontexts)|Get contexts.|
 |[getIntent](#webhookclientgetintent)|Get intent name.|
 |[getLocale](#webhookclientgetlocale)|Original request language code (i.e. "en").|
 |[getOriginalRequest](#webhookclientgetoriginalrequest)|Dialogflow original request object from detectIntent/query or platform integration (Google Assistant, Slack, etc.) in the request or null if no value.|
+|[getOutgoingContext](#webhookclientgetoutgoingcontext)|Get a Dialogflow outgoing context.|
+|[getOutgoingContexts](#webhookclientgetoutgoingcontexts)|Get all Dialogflow outgoing contexts.|
 |[getParameters](#webhookclientgetparameters)|Get parameters.|
 |[getQuery](#webhookclientgetquery)|Original user query as indicated by Dialogflow or null if no value.|
 |[getRequestSource](#webhookclientgetrequestsource)|Get request source.|
 |[getSession](#webhookclientgetsession)|Get session id.|
 |[reply](#webhookclientreply)|Response to incoming request.|
-|[setContext](#webhookclientsetcontext)|Set a new Dialogflow outgoing context.|
-|[setContexts](#webhookclientsetcontexts)|Replace all Dialogflow outgoing contexts.|
+|[setOutgoingContext](#webhookclientsetoutgoingcontext)|Set a new Dialogflow outgoing context.|
+|[setOutgoingContexts](#webhookclientsetoutgoingcontexts)|Replace all Dialogflow outgoing contexts.|
 
 ## Inherited methods
 
 | Name | Description |
 |------|-------------|
 |doesSupportRichMessage|Check if request source support rich message.|
-|render|Render response as array|
+|render|Render response as array.|
 
 
 
@@ -62,17 +64,17 @@ Constructor for WebhookClient object.
 
 
 
-### WebhookClient::clearContext  
+### WebhookClient::clearOutgoingContext  
 
 **Description**
 
 ```php
-public clearContext (string $contextName)
+public clearOutgoingContext (string $contextName)
 ```
 
 Clear an existing outgoing context. 
 
-Reference: https://dialogflow.com/docs/contexts 
+Reference: https://dialogflow.com/docs/contexts. 
 
 **Parameters**
 
@@ -96,7 +98,7 @@ public clearOutgoingContexts (void)
 
 Clear all existing outgoing contexts. 
 
-Reference: https://dialogflow.com/docs/contexts 
+Reference: https://dialogflow.com/docs/contexts. 
 
 **Parameters**
 
@@ -144,7 +146,7 @@ public getAction (void)
 
 Get action name. 
 
-Reference: https://dialogflow.com/docs/actions-and-parameters 
+Reference: https://dialogflow.com/docs/actions-and-parameters. 
 
 **Parameters**
 
@@ -166,7 +168,7 @@ Reference: https://dialogflow.com/docs/actions-and-parameters
 public getActionConversation (void)
 ```
 
-Get Actions on Google DialogflowConversation object 
+Get Actions on Google DialogflowConversation object. 
 
  
 
@@ -192,7 +194,7 @@ public getAgentVersion (void)
 
 The agent version (v1 or v2) based on Dialogflow webhook request. 
 
-Reference: https://dialogflow.com/docs/reference/v2-comparison 
+Reference: https://dialogflow.com/docs/reference/v2-comparison. 
 
 **Parameters**
 
@@ -216,7 +218,7 @@ public getContexts (void)
 
 Get contexts. 
 
-Reference: https://dialogflow.com/docs/actions-and-parameters 
+Reference: https://dialogflow.com/docs/actions-and-parameters. 
 
 **Parameters**
 
@@ -240,7 +242,7 @@ public getIntent (void)
 
 Get intent name. 
 
-Reference: https://dialogflow.com/docs/intents 
+Reference: https://dialogflow.com/docs/intents. 
 
 **Parameters**
 
@@ -288,7 +290,7 @@ public getOriginalRequest (void)
 
 Dialogflow original request object from detectIntent/query or platform integration (Google Assistant, Slack, etc.) in the request or null if no value. 
 
-Reference: https://dialogflow.com/docs/reference/agent/query#query_parameters_and_json_fields 
+Reference: https://dialogflow.com/docs/reference/agent/query#query_parameters_and_json_fields. 
 
 **Parameters**
 
@@ -297,6 +299,55 @@ Reference: https://dialogflow.com/docs/reference/agent/query#query_parameters_an
 **Return Values**
 
 `array|null`
+
+
+
+
+
+### WebhookClient::getOutgoingContext  
+
+**Description**
+
+```php
+public getOutgoingContext (string $name)
+```
+
+Get a Dialogflow outgoing context. 
+
+Reference: https://dialogflow.com/docs/contexts. 
+
+**Parameters**
+
+* `(string) $name`
+: context name  
+
+**Return Values**
+
+`null|\Context`
+
+
+
+
+
+### WebhookClient::getOutgoingContexts  
+
+**Description**
+
+```php
+public getOutgoingContexts (void)
+```
+
+Get all Dialogflow outgoing contexts. 
+
+Reference: https://dialogflow.com/docs/contexts. 
+
+**Parameters**
+
+`This function has no parameters.`
+
+**Return Values**
+
+`array`
 
 
 
@@ -312,7 +363,7 @@ public getParameters (void)
 
 Get parameters. 
 
-Reference: https://dialogflow.com/docs/actions-and-parameters 
+Reference: https://dialogflow.com/docs/actions-and-parameters. 
 
 **Parameters**
 
@@ -360,7 +411,7 @@ public getRequestSource (void)
 
 Get request source. 
 
-Reference: https://dialogflow.com/docs/reference/agent/query#query_parameters_and_json_fields 
+Reference: https://dialogflow.com/docs/reference/agent/query#query_parameters_and_json_fields. 
 
 **Parameters**
 
@@ -384,7 +435,7 @@ public getSession (void)
 
 Get session id. 
 
-Reference: https://dialogflow.com/docs/reference/api-v2/rest/v2beta1/WebhookRequest#FIELDS.session 
+Reference: https://dialogflow.com/docs/reference/api-v2/rest/v2beta1/WebhookRequest#FIELDS.session. 
 
 **Parameters**
 
@@ -422,17 +473,17 @@ Response to incoming request.
 
 
 
-### WebhookClient::setContext  
+### WebhookClient::setOutgoingContext  
 
 **Description**
 
 ```php
-public setContext (string|array|\Dialogflow\Context $context)
+public setOutgoingContext (string|array|\Dialogflow\Context $context)
 ```
 
 Set a new Dialogflow outgoing context. 
 
-Reference: https://dialogflow.com/docs/contexts 
+Reference: https://dialogflow.com/docs/contexts. 
 
 **Parameters**
 
@@ -446,17 +497,17 @@ Reference: https://dialogflow.com/docs/contexts
 
 
 
-### WebhookClient::setContexts  
+### WebhookClient::setOutgoingContexts  
 
 **Description**
 
 ```php
-public setContexts (array $contexts)
+public setOutgoingContexts (array $contexts)
 ```
 
 Replace all Dialogflow outgoing contexts. 
 
-Reference: https://dialogflow.com/docs/contexts 
+Reference: https://dialogflow.com/docs/contexts. 
 
 **Parameters**
 

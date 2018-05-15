@@ -14,7 +14,7 @@ Dialogflow\Action\Response\ResponseInterface
 |[__construct](#simpleresponse__construct)||
 |[create](#simpleresponsecreate)|Create a new instance.|
 |[displayText](#simpleresponsedisplaytext)|Set display text.|
-|[render](#simpleresponserender)|Render response as array|
+|[render](#simpleresponserender)|Render response as array.|
 |[ssml](#simpleresponsessml)|Set ssml.|
 |[textToSpeech](#simpleresponsetexttospeech)|Set text to speech.|
 
@@ -98,7 +98,7 @@ Set display text.
 public render (void)
 ```
 
-Render response as array 
+Render response as array. 
 
  
 

@@ -11,9 +11,9 @@
 | Name | Description |
 |------|-------------|
 |[__construct](#context__construct)||
-|[getLifespan](#contextgetlifespan)|The number of queries this context will remain active after being invoked|
-|[getName](#contextgetname)|The name of the context|
-|[getParameters](#contextgetparameters)|The parameters being passed through the context|
+|[getLifespan](#contextgetlifespan)|The number of queries this context will remain active after being invoked.|
+|[getName](#contextgetname)|The name of the context.|
+|[getParameters](#contextgetparameters)|The parameters being passed through the context.|
 
 
 
@@ -47,7 +47,7 @@ public __construct (void)
 public getLifespan (void)
 ```
 
-The number of queries this context will remain active after being invoked 
+The number of queries this context will remain active after being invoked. 
 
  
 
@@ -71,7 +71,7 @@ The number of queries this context will remain active after being invoked
 public getName (void)
 ```
 
-The name of the context 
+The name of the context. 
 
  
 
@@ -95,7 +95,7 @@ The name of the context
 public getParameters (void)
 ```
 
-The parameters being passed through the context 
+The parameters being passed through the context. 
 
  
 

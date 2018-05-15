@@ -13,14 +13,14 @@ Dialogflow\RichMessage\RichMessage
 | Name | Description |
 |------|-------------|
 |[create](#payloadcreate)|Create a new Payload instance.|
-|[payload](#payloadpayload)|Set the payload for a Payload|
+|[payload](#payloadpayload)|Set the payload for a Payload.|
 
 ## Inherited methods
 
 | Name | Description |
 |------|-------------|
 |doesSupportRichMessage|Check if request source support rich message.|
-|render|Render response as array|
+|render|Render response as array.|
 
 
 
@@ -56,7 +56,7 @@ Create a new Payload instance.
 public payload (array $payload)
 ```
 
-Set the payload for a Payload 
+Set the payload for a Payload. 
 
  
 

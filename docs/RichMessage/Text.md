@@ -13,15 +13,15 @@ Dialogflow\RichMessage\RichMessage
 | Name | Description |
 |------|-------------|
 |[create](#textcreate)|Create a new Text instance.|
-|[ssml](#textssml)|Set the SSML for a Text|
-|[text](#texttext)|Set the text for a Text|
+|[ssml](#textssml)|Set the SSML for a Text.|
+|[text](#texttext)|Set the text for a Text.|
 
 ## Inherited methods
 
 | Name | Description |
 |------|-------------|
 |doesSupportRichMessage|Check if request source support rich message.|
-|render|Render response as array|
+|render|Render response as array.|
 
 
 
@@ -57,7 +57,7 @@ Create a new Text instance.
 public ssml (string $text)
 ```
 
-Set the SSML for a Text 
+Set the SSML for a Text. 
 
  
 
@@ -79,7 +79,7 @@ Set the SSML for a Text
 public text (string $text)
 ```
 
-Set the text for a Text 
+Set the text for a Text. 
 
  
 

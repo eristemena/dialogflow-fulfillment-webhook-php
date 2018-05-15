@@ -13,14 +13,14 @@ Dialogflow\RichMessage\RichMessage
 | Name | Description |
 |------|-------------|
 |[create](#suggestioncreate)|Create a new Suggestion instance.|
-|[reply](#suggestionreply)|Set the reply for a Suggestion|
+|[reply](#suggestionreply)|Set the reply for a Suggestion.|
 
 ## Inherited methods
 
 | Name | Description |
 |------|-------------|
 |doesSupportRichMessage|Check if request source support rich message.|
-|render|Render response as array|
+|render|Render response as array.|
 
 
 
@@ -56,7 +56,7 @@ Create a new Suggestion instance.
 public reply (string|array $reply)
 ```
 
-Set the reply for a Suggestion 
+Set the reply for a Suggestion. 
 
  
 

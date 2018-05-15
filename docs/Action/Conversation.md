@@ -16,7 +16,7 @@
 |[close](#conversationclose)|Have Assistant render the speech response and close the mic.|
 |[getAvailableSurface](#conversationgetavailablesurface)||
 |[getSurface](#conversationgetsurface)||
-|[render](#conversationrender)|Render response as array|
+|[render](#conversationrender)|Render response as array.|
 
 
 
@@ -171,7 +171,7 @@ public getSurface (void)
 public render (void)
 ```
 
-Render response as array 
+Render response as array. 
 
  
 

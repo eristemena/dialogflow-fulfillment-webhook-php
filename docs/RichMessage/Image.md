@@ -13,14 +13,14 @@ Dialogflow\RichMessage\RichMessage
 | Name | Description |
 |------|-------------|
 |[create](#imagecreate)|Create a new Image instance.|
-|[image](#imageimage)|Set the image for a Image|
+|[image](#imageimage)|Set the image for a Image.|
 
 ## Inherited methods
 
 | Name | Description |
 |------|-------------|
 |doesSupportRichMessage|Check if request source support rich message.|
-|render|Render response as array|
+|render|Render response as array.|
 
 
 
@@ -57,7 +57,7 @@ Create a new Image instance.
 public image (string $imageUrl)
 ```
 
-Set the image for a Image 
+Set the image for a Image. 
 
  
 

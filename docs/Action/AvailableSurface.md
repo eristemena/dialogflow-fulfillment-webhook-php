@@ -60,7 +60,7 @@ public hasAudio (void)
 
 **Return Values**
 
-`boolean`
+`bool`
 
 
 
@@ -84,7 +84,7 @@ public hasMediaPlayback (void)
 
 **Return Values**
 
-`boolean`
+`bool`
 
 
 
@@ -108,7 +108,7 @@ public hasScreen (void)
 
 **Return Values**
 
-`boolean`
+`bool`
 
 
 
@@ -132,7 +132,7 @@ public hasWebBrowser (void)
 
 **Return Values**
 
-`boolean`
+`bool`
 
 
 
