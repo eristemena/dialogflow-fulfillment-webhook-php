@@ -389,15 +389,19 @@ class WebhookClientTest extends TestCase
         $this->assertEquals(1, count($this->agentv2google->getOutgoingContexts()));
     }
 
+    /**
+     * @expectedException RuntimeException
+     */
     public function testSetOutgoingContextsExceptionEmptyName()
     {
-        $this->setExpectedException(RuntimeException::class);
         $this->agentv2google->setOutgoingContext([]);
     }
 
+    /**
+     * @expectedException RuntimeException
+     */
     public function testSetOutgoingContextsExceptionInvalidParam()
     {
-        $this->setExpectedException(RuntimeException::class);
         $this->agentv2google->setOutgoingContext(0);
     }
 }
