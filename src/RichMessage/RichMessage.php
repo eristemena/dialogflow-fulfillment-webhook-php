@@ -14,18 +14,18 @@ abstract class RichMessage
 
     protected $v2PlatformMap = [
         'unspecified' => 'PLATFORM_UNSPECIFIED',
-        'facebook' => 'FACEBOOK',
-        'slack' => 'SLACK',
-        'telegram' => 'TELEGRAM',
-        'kik' => 'KIK',
-        'skype' => 'SKYPE',
-        'line' => 'LINE',
-        'viber' => 'VIBER',
-        'google' => 'ACTIONS_ON_GOOGLE'
+        'facebook'    => 'FACEBOOK',
+        'slack'       => 'SLACK',
+        'telegram'    => 'TELEGRAM',
+        'kik'         => 'KIK',
+        'skype'       => 'SKYPE',
+        'line'        => 'LINE',
+        'viber'       => 'VIBER',
+        'google'      => 'ACTIONS_ON_GOOGLE',
     ];
 
     protected $supportedRichMessagePlatforms = [
-        'facebook', 'slack', 'telegram', 'kik', 'skype', 'line', 'viber', 'google'
+        'facebook', 'slack', 'telegram', 'kik', 'skype', 'line', 'viber', 'google',
     ];
 
     /** @var array */
@@ -34,7 +34,7 @@ abstract class RichMessage
     /**
      * Check if request source support rich message.
      *
-     * @return boolean
+     * @return bool
      */
     public function doesSupportRichMessage()
     {
@@ -43,7 +43,7 @@ abstract class RichMessage
 
     protected function setAgentVersion($agentVersion)
     {
-        if ($agentVersion!=self::API_V1 && $agentVersion!=self::API_V2) {
+        if ($agentVersion != self::API_V1 && $agentVersion != self::API_V2) {
             throw new RuntimeException('Invalid agent version');
         }
 
@@ -54,7 +54,7 @@ abstract class RichMessage
 
     protected function setRequestSource($requestSource)
     {
-        if ($requestSource==null) {
+        if ($requestSource == null) {
             $requestSource = 'unspecified';
         }
 
@@ -64,15 +64,15 @@ abstract class RichMessage
     }
 
     /**
-     * Render response as array
+     * Render response as array.
      *
      * @return array
      */
     public function render()
     {
-        if ($this->agentVersion==self::API_V1) {
+        if ($this->agentVersion == self::API_V1) {
             return $this->renderV1();
-        } elseif ($this->agentVersion==self::API_V2) {
+        } elseif ($this->agentVersion == self::API_V2) {
             return $this->renderV2();
         } else {
             throw new RuntimeException('Invalid agent version');
@@ -80,7 +80,7 @@ abstract class RichMessage
     }
 
     /**
-     * Render response as array for API V1
+     * Render response as array for API V1.
      *
      * @return array
      */
@@ -89,7 +89,7 @@ abstract class RichMessage
     }
 
     /**
-     * Render response as array for API V2
+     * Render response as array for API V2.
      *
      * @return array
      */

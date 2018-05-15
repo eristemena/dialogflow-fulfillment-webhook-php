@@ -2,11 +2,10 @@
 
 namespace Dialogflow\tests;
 
-use RuntimeException;
-
-use PHPUnit\Framework\TestCase;
-use Dialogflow\WebhookClient;
 use Dialogflow\Context;
+use Dialogflow\WebhookClient;
+use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 class WebhookClientTest extends TestCase
 {
@@ -19,19 +18,19 @@ class WebhookClientTest extends TestCase
 
     protected function setUp()
     {
-        $data_v1_google = json_decode(file_get_contents(__DIR__ . '/stubs/request-v1-google.json'), true);
+        $data_v1_google = json_decode(file_get_contents(__DIR__.'/stubs/request-v1-google.json'), true);
         $this->agentv1google = new WebhookClient($data_v1_google);
 
-        $data_v1_facebook = json_decode(file_get_contents(__DIR__ . '/stubs/request-v1-facebook.json'), true);
+        $data_v1_facebook = json_decode(file_get_contents(__DIR__.'/stubs/request-v1-facebook.json'), true);
         $this->agentv1facebook = new WebhookClient($data_v1_facebook);
 
-        $data_v1_web = json_decode(file_get_contents(__DIR__ . '/stubs/request-v1-web.json'), true);
+        $data_v1_web = json_decode(file_get_contents(__DIR__.'/stubs/request-v1-web.json'), true);
         $this->agentv1web = new WebhookClient($data_v1_web);
 
-        $data_v2_google = json_decode(file_get_contents(__DIR__ . '/stubs/request-v2-google.json'), true);
+        $data_v2_google = json_decode(file_get_contents(__DIR__.'/stubs/request-v2-google.json'), true);
         $this->agentv2google = new WebhookClient($data_v2_google);
 
-        $data_v2_facebook = json_decode(file_get_contents(__DIR__ . '/stubs/request-v2-facebook.json'), true);
+        $data_v2_facebook = json_decode(file_get_contents(__DIR__.'/stubs/request-v2-facebook.json'), true);
         $this->agentv2facebook = new WebhookClient($data_v2_facebook);
     }
 
@@ -42,7 +41,7 @@ class WebhookClientTest extends TestCase
 
     public function testFromData()
     {
-        $data_v1_google = json_decode(file_get_contents(__DIR__ . '/stubs/request-v1-google.json'), true);
+        $data_v1_google = json_decode(file_get_contents(__DIR__.'/stubs/request-v1-google.json'), true);
         $this->assertInstanceOf('\Dialogflow\WebhookClient', WebhookClient::fromData($data_v1_google));
     }
 
@@ -81,10 +80,10 @@ class WebhookClientTest extends TestCase
     public function testParameters()
     {
         $expectedParameters = [
-            'date' => null,
-            'kota' => '1470',
+            'date'     => null,
+            'kota'     => '1470',
             'propinsi' => null,
-            'shalat' => 'isha'
+            'shalat'   => 'isha',
         ];
 
         $this->assertEquals($expectedParameters, $this->agentv1google->getParameters());
@@ -96,7 +95,7 @@ class WebhookClientTest extends TestCase
 
         $this->assertInternalType('array', $contexts);
 
-        if (count($contexts)>0) {
+        if (count($contexts) > 0) {
             $context = $contexts[0];
 
             $this->assertInstanceOf('\Dialogflow\Context', $context);
@@ -105,14 +104,14 @@ class WebhookClientTest extends TestCase
             $this->assertEquals(0, $context->getLifespan());
 
             $expectedParameters = [
-                "date" => null,
-                "propinsi" => null,
-                "kota.original" => "jakarta utara",
-                "kota" => "1470",
-                "shalat.original" => "isya",
-                "date.original" => null,
-                "shalat" => "isha",
-                "propinsi.original" => null
+                'date'              => null,
+                'propinsi'          => null,
+                'kota.original'     => 'jakarta utara',
+                'kota'              => '1470',
+                'shalat.original'   => 'isya',
+                'date.original'     => null,
+                'shalat'            => 'isha',
+                'propinsi.original' => null,
             ];
 
             $this->assertEquals($expectedParameters, $context->getParameters());
@@ -149,13 +148,13 @@ class WebhookClientTest extends TestCase
         $this->assertEquals([
             'messages' => [
                 [
-                    'type' => 'simple_response',
-                    'platform' => 'google',
+                    'type'         => 'simple_response',
+                    'platform'     => 'google',
                     'textToSpeech' => 'Welcome',
-                    'displayText' => 'Welcome'
-                ]
+                    'displayText'  => 'Welcome',
+                ],
             ],
-            'contextOut' => []
+            'contextOut' => [],
         ], $this->agentv1google->render());
     }
 
@@ -166,18 +165,18 @@ class WebhookClientTest extends TestCase
         $this->assertEquals([
             'fulfillmentMessages' => [
                 [
-                    'platform' => 'ACTIONS_ON_GOOGLE',
+                    'platform'        => 'ACTIONS_ON_GOOGLE',
                     'simpleResponses' => [
                         'simpleResponses' => [
                             [
                                 'textToSpeech' => 'Welcome',
-                                'displayText' => 'Welcome'
-                            ]
-                        ]
-                    ]
-                ]
+                                'displayText'  => 'Welcome',
+                            ],
+                        ],
+                    ],
+                ],
             ],
-            'outputContexts' => []
+            'outputContexts' => [],
         ], $this->agentv2google->render());
     }
 
@@ -188,12 +187,12 @@ class WebhookClientTest extends TestCase
         $this->assertEquals([
             'messages' => [
                 [
-                    'type' => 0,
+                    'type'     => 0,
                     'platform' => 'facebook',
-                    'speech' => 'Welcome'
-                ]
+                    'speech'   => 'Welcome',
+                ],
             ],
-            'contextOut' => []
+            'contextOut' => [],
         ], $this->agentv1facebook->render());
     }
 
@@ -206,13 +205,13 @@ class WebhookClientTest extends TestCase
                 [
                     'text' => [
                         'text' => [
-                            'Welcome'
-                        ]
+                            'Welcome',
+                        ],
                     ],
-                    'platform' => 'FACEBOOK'
-                ]
+                    'platform' => 'FACEBOOK',
+                ],
             ],
-            'outputContexts' => []
+            'outputContexts' => [],
         ], $this->agentv2facebook->render());
     }
 
@@ -223,12 +222,12 @@ class WebhookClientTest extends TestCase
         $this->assertEquals([
             'messages' => [
                 [
-                    'type' => 0,
-                    'speech' => 'Welcome'
-                ]
+                    'type'   => 0,
+                    'speech' => 'Welcome',
+                ],
             ],
-            'speech' => 'Welcome',
-            'contextOut' => []
+            'speech'     => 'Welcome',
+            'contextOut' => [],
         ], $this->agentv1web->render());
     }
 
@@ -236,8 +235,7 @@ class WebhookClientTest extends TestCase
     {
         $text = \Dialogflow\RichMessage\Text::create()
             ->text('Welcome')
-            ->ssml('Hi, welcome')
-        ;
+            ->ssml('Hi, welcome');
 
         $this->agentv1google->reply($text);
 
@@ -245,13 +243,13 @@ class WebhookClientTest extends TestCase
         $expectedArray = [
             'messages' => [
                 [
-                    'type' => 'simple_response',
-                    'platform' => 'google',
+                    'type'         => 'simple_response',
+                    'platform'     => 'google',
                     'textToSpeech' => 'Welcome',
-                    'displayText' => 'Welcome'
-                ]
+                    'displayText'  => 'Welcome',
+                ],
             ],
-            'contextOut' => []
+            'contextOut' => [],
         ];
 
         $this->assertEquals($expectedArray, $array);
@@ -261,26 +259,25 @@ class WebhookClientTest extends TestCase
     {
         $text = \Dialogflow\RichMessage\Text::create()
             ->text('Welcome')
-            ->ssml('Hi, welcome')
-        ;
+            ->ssml('Hi, welcome');
 
         $this->agentv2google->reply($text);
 
         $this->assertEquals([
             'fulfillmentMessages' => [
                 [
-                    'platform' => 'ACTIONS_ON_GOOGLE',
+                    'platform'        => 'ACTIONS_ON_GOOGLE',
                     'simpleResponses' => [
                         'simpleResponses' => [
                             [
-                                'ssml' => 'Hi, welcome',
-                                'displayText' => 'Welcome'
-                            ]
-                        ]
-                    ]
-                ]
+                                'ssml'        => 'Hi, welcome',
+                                'displayText' => 'Welcome',
+                            ],
+                        ],
+                    ],
+                ],
             ],
-            'outputContexts' => []
+            'outputContexts' => [],
         ], $this->agentv2google->render());
     }
 
@@ -296,15 +293,15 @@ class WebhookClientTest extends TestCase
 
         $this->assertEquals([
             'expectUserResponse' => true,
-            'richResponse' => [
+            'richResponse'       => [
                 'items' => [
                     [
                         'simpleResponse' => [
-                            'textToSpeech' => 'How are you?'
-                        ]
-                    ]
-                ]
-            ]
+                            'textToSpeech' => 'How are you?',
+                        ],
+                    ],
+                ],
+            ],
         ], $conv->render());
 
         $this->agentv2google->reply($conv);
@@ -312,18 +309,18 @@ class WebhookClientTest extends TestCase
             'payload' => [
                 'google' => [
                     'expectUserResponse' => true,
-                    'richResponse' => [
+                    'richResponse'       => [
                         'items' => [
                             [
                                 'simpleResponse' => [
-                                    'textToSpeech' => 'How are you?'
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                                    'textToSpeech' => 'How are you?',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
-            'outputContexts' => []
+            'outputContexts' => [],
         ], $this->agentv2google->render());
     }
 
@@ -334,15 +331,15 @@ class WebhookClientTest extends TestCase
 
         $this->assertEquals([
             'expectUserResponse' => false,
-            'richResponse' => [
+            'richResponse'       => [
                 'items' => [
                     [
                         'simpleResponse' => [
-                            'textToSpeech' => 'Thank you'
-                        ]
-                    ]
-                ]
-            ]
+                            'textToSpeech' => 'Thank you',
+                        ],
+                    ],
+                ],
+            ],
         ], $conv->render());
     }
 
@@ -358,9 +355,9 @@ class WebhookClientTest extends TestCase
         $this->agentv2google->setOutgoingContext(new Context('context1', 2, ['param1' => 10]));
         $this->agentv2google->setOutgoingContext('context2');
         $this->agentv2google->setOutgoingContext([
-                'name' => 'context3',
-                'lifespan' => 3,
-                'parameters' => ['param1' => 10]
+                'name'       => 'context3',
+                'lifespan'   => 3,
+                'parameters' => ['param1' => 10],
         ]);
 
         $context1 = $this->agentv2google->getOutgoingContext('context1');

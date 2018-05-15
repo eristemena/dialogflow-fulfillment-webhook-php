@@ -9,20 +9,20 @@ class Surface
     const CAPABILITY_MEDIA_PLAYBACK = 'actions.capability.MEDIA_RESPONSE_AUDIO';
     const CAPABILITY_WEB_BROWSER = 'actions.capability.WEB_BROWSER';
 
-    /** @var boolean */
+    /** @var bool */
     protected $hasScreen = false;
 
-    /** @var boolean */
+    /** @var bool */
     protected $hasAudio = false;
 
-    /** @var boolean */
+    /** @var bool */
     protected $hasMediaPlayback = false;
 
-    /** @var boolean */
+    /** @var bool */
     protected $hasWebBrowser = false;
 
     /**
-     * @param array $data request array
+     * @param array $data         request array
      * @param array $capabilities
      */
     public function __construct($data)
@@ -32,19 +32,19 @@ class Surface
                 case self::CAPABILITY_AUDIO:
                     $this->hasAudio = true;
                     break;
-                
+
                 case self::CAPABILITY_SCREEN:
                     $this->hasScreen = true;
                     break;
-                
+
                 case self::CAPABILITY_MEDIA_PLAYBACK:
                     $this->hasMediaPlayback = true;
                     break;
-                
+
                 case self::CAPABILITY_WEB_BROWSER:
                     $this->hasWebBrowser = true;
                     break;
-                
+
                 default:
                     break;
             }
@@ -52,7 +52,7 @@ class Surface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasScreen()
     {
@@ -60,7 +60,7 @@ class Surface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasAudio()
     {
@@ -68,7 +68,7 @@ class Surface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasMediaPlayback()
     {
@@ -76,7 +76,7 @@ class Surface
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function hasWebBrowser()
     {

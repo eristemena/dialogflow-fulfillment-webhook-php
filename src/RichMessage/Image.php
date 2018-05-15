@@ -6,7 +6,7 @@ class Image extends RichMessage
 {
     /**
      * Enum for Dialogflow v1 text message object
-     * https://dialogflow.com/docs/reference/agent/message-objects
+     * https://dialogflow.com/docs/reference/agent/message-objects.
      */
     const v1MessageObjectImage = 3;
 
@@ -17,6 +17,7 @@ class Image extends RichMessage
      * Create a new Image instance.
      *
      * @param string $image image URL
+     *
      * @return Dialogflow\Response\Text
      */
     public static function create($imageUrl = null)
@@ -28,7 +29,7 @@ class Image extends RichMessage
     }
 
     /**
-     * Set the image for a Image
+     * Set the image for a Image.
      *
      * @param string $imageUrl
      */
@@ -40,30 +41,30 @@ class Image extends RichMessage
     }
 
     /**
-     * Render response as array for API V1
+     * Render response as array for API V1.
      *
      * @return array
      */
     protected function renderV1()
     {
-        if ($this->requestSource=='google') {
+        if ($this->requestSource == 'google') {
             $out = [
-                'type' => 'basic_card',
-                'platform' => $this->requestSource
+                'type'     => 'basic_card',
+                'platform' => $this->requestSource,
             ];
 
             if ($this->imageUrl) {
                 $out['image'] = [
-                    'url' => $this->imageUrl,
-                    'accessibilityText' => 'accessibility text'
+                    'url'               => $this->imageUrl,
+                    'accessibilityText' => 'accessibility text',
                 ];
             }
 
             return $out;
         } else {
             $out = [
-                'type' => self::v1MessageObjectImage,
-                'platform' => $this->requestSource
+                'type'     => self::v1MessageObjectImage,
+                'platform' => $this->requestSource,
             ];
 
             if ($this->imageUrl) {
@@ -75,30 +76,30 @@ class Image extends RichMessage
     }
 
     /**
-     * Render response as array for API V2
+     * Render response as array for API V2.
      *
      * @return array
      */
     protected function renderV2()
     {
-        if ($this->requestSource=='google') {
+        if ($this->requestSource == 'google') {
             $out = [
                 'basicCard' => [],
-                'platform' => $this->v2PlatformMap[$this->requestSource]
+                'platform'  => $this->v2PlatformMap[$this->requestSource],
             ];
 
             if ($this->imageUrl) {
                 $out['basicCard']['image'] = [
-                    'imageUri' => $this->imageUrl,
-                    'accessibilityText' => 'accessibility text'
+                    'imageUri'          => $this->imageUrl,
+                    'accessibilityText' => 'accessibility text',
                 ];
             }
 
             return $out;
         } else {
             $out = [
-                'image' => [],
-                'platform' => $this->v2PlatformMap[$this->requestSource]
+                'image'    => [],
+                'platform' => $this->v2PlatformMap[$this->requestSource],
             ];
 
             if ($this->imageUrl) {

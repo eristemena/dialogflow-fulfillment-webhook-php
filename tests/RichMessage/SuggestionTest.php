@@ -2,11 +2,8 @@
 
 namespace Dialogflow\tests\RichMessage;
 
-use RuntimeException;
-
-use PHPUnit\Framework\TestCase;
 use Dialogflow\RichMessage\Suggestion;
-use Dialogflow\RichMessage\RichMessage;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 class SuggestionTest extends TestCase
@@ -16,6 +13,7 @@ class SuggestionTest extends TestCase
         $class = new ReflectionClass('Dialogflow\RichMessage\Suggestion');
         $method = $class->getMethod($name);
         $method->setAccessible(true);
+
         return $method;
     }
 
@@ -82,16 +80,16 @@ class SuggestionTest extends TestCase
     {
         $suggestion = $this->getSuggestionV1Google();
         $this->assertEquals([
-            'type' => 'suggestion_chips',
-            'platform' => 'google',
+            'type'        => 'suggestion_chips',
+            'platform'    => 'google',
             'suggestions' => [
                 [
-                    'title' => 'Quick Reply 1'
+                    'title' => 'Quick Reply 1',
                 ],
                 [
-                    'title' => 'Quick Reply 2'
-                ]
-            ]
+                    'title' => 'Quick Reply 2',
+                ],
+            ],
         ], $suggestion->render());
     }
 
@@ -99,17 +97,17 @@ class SuggestionTest extends TestCase
     {
         $suggestion = $this->getSuggestionV2Google();
         $this->assertEquals([
-            'platform' => 'ACTIONS_ON_GOOGLE',
+            'platform'    => 'ACTIONS_ON_GOOGLE',
             'suggestions' => [
                 'suggestions' => [
                     [
-                        'title' => 'Quick Reply 1'
+                        'title' => 'Quick Reply 1',
                     ],
                     [
-                        'title' => 'Quick Reply 2'
-                    ]
-                ]
-            ]
+                        'title' => 'Quick Reply 2',
+                    ],
+                ],
+            ],
         ], $suggestion->render());
     }
 
@@ -117,12 +115,12 @@ class SuggestionTest extends TestCase
     {
         $suggestion = $this->getSuggestionV1Facebook();
         $this->assertEquals([
-            'type' => 2,
+            'type'    => 2,
             'replies' => [
                 'Quick Reply 1',
-                'Quick Reply 2'
+                'Quick Reply 2',
             ],
-            'platform' => 'facebook'
+            'platform' => 'facebook',
         ], $suggestion->render());
     }
 
@@ -130,13 +128,13 @@ class SuggestionTest extends TestCase
     {
         $suggestion = $this->getSuggestionV2Facebook();
         $this->assertEquals([
-            'platform' => 'FACEBOOK',
+            'platform'     => 'FACEBOOK',
             'quickReplies' => [
                 'quickReplies' => [
                     'Quick Reply 1',
-                    'Quick Reply 2'
-                ]
-            ]
+                    'Quick Reply 2',
+                ],
+            ],
         ], $suggestion->render());
     }
 
@@ -145,12 +143,12 @@ class SuggestionTest extends TestCase
         $suggestion = $this->getSuggestionV2Facebook();
         $suggestion->reply('Single quick reply');
         $this->assertEquals([
-            'platform' => 'FACEBOOK',
+            'platform'     => 'FACEBOOK',
             'quickReplies' => [
                 'quickReplies' => [
-                    'Single quick reply'
-                ]
-            ]
+                    'Single quick reply',
+                ],
+            ],
         ], $suggestion->render());
     }
 }

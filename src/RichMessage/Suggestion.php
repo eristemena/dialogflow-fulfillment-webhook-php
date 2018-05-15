@@ -6,7 +6,7 @@ class Suggestion extends RichMessage
 {
     /**
      * Enum for Dialogflow v1 text message object
-     * https://dialogflow.com/docs/reference/agent/message-objects
+     * https://dialogflow.com/docs/reference/agent/message-objects.
      */
     const v1MessageObjectSuggestions = 2;
 
@@ -17,6 +17,7 @@ class Suggestion extends RichMessage
      * Create a new Suggestion instance.
      *
      * @param string|array|null $reply
+     *
      * @return Dialogflow\Response\Suggestion
      */
     public static function create($reply = null)
@@ -31,7 +32,7 @@ class Suggestion extends RichMessage
     }
 
     /**
-     * Set the reply for a Suggestion
+     * Set the reply for a Suggestion.
      *
      * @param string|array $reply
      */
@@ -47,17 +48,17 @@ class Suggestion extends RichMessage
     }
 
     /**
-     * Render response as array for API V1
+     * Render response as array for API V1.
      *
      * @return array
      */
     protected function renderV1()
     {
-        if ($this->requestSource=='google') {
+        if ($this->requestSource == 'google') {
             $out = [
                 'suggestions' => [],
-                'type' => 'suggestion_chips',
-                'platform' => $this->requestSource
+                'type'        => 'suggestion_chips',
+                'platform'    => $this->requestSource,
             ];
 
             foreach ($this->replies as $i => $reply) {
@@ -67,7 +68,7 @@ class Suggestion extends RichMessage
             return $out;
         } else {
             $out = [
-                'type' => self::v1MessageObjectSuggestions
+                'type' => self::v1MessageObjectSuggestions,
             ];
 
             $out['replies'] = $this->replies;
@@ -79,17 +80,17 @@ class Suggestion extends RichMessage
     }
 
     /**
-     * Render response as array for API V2
+     * Render response as array for API V2.
      *
      * @return array
      */
     protected function renderV2()
     {
-        if ($this->requestSource=='google') {
+        if ($this->requestSource == 'google') {
             $out = [
                 'suggestions' => [
-                    'suggestions' => []
-                ]
+                    'suggestions' => [],
+                ],
             ];
 
             foreach ($this->replies as $i => $reply) {
@@ -102,8 +103,8 @@ class Suggestion extends RichMessage
         } else {
             $out = [
                 'quickReplies' => [
-                    'quickReplies' => $this->replies
-                ]
+                    'quickReplies' => $this->replies,
+                ],
             ];
 
             $out['platform'] = $this->v2PlatformMap[$this->requestSource];

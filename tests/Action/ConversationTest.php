@@ -2,21 +2,18 @@
 
 namespace Dialogflow\tests\Action;
 
-use RuntimeException;
-
-use PHPUnit\Framework\TestCase;
-
-use Dialogflow\WebhookClient;
 use Dialogflow\Action\Response\SimpleResponse;
+use Dialogflow\WebhookClient;
+use PHPUnit\Framework\TestCase;
 
 class ConversationTest extends TestCase
 {
-    private function getAgent($type='google')
+    private function getAgent($type = 'google')
     {
-        if ($type=='facebook') {
-            $data = json_decode(file_get_contents(__DIR__ . '/../stubs/request-v2-facebook.json'), true);
+        if ($type == 'facebook') {
+            $data = json_decode(file_get_contents(__DIR__.'/../stubs/request-v2-facebook.json'), true);
         } else {
-            $data = json_decode(file_get_contents(__DIR__ . '/../stubs/request-v2-google.json'), true);
+            $data = json_decode(file_get_contents(__DIR__.'/../stubs/request-v2-google.json'), true);
         }
 
         return new WebhookClient($data);
@@ -41,16 +38,16 @@ class ConversationTest extends TestCase
 
         $this->assertEquals([
             'expectUserResponse' => true,
-            'richResponse' => [
+            'richResponse'       => [
                 'items' => [
                     [
                         'simpleResponse' => [
-                            'ssml' => '<speak>ssml here</speak>',
-                            'displayText' => 'Display text'
-                        ]
-                    ]
-                ]
-            ]
+                            'ssml'        => '<speak>ssml here</speak>',
+                            'displayText' => 'Display text',
+                        ],
+                    ],
+                ],
+            ],
         ], $conv->render());
     }
 
