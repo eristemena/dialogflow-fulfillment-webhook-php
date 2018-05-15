@@ -1,10 +1,17 @@
 {
     "name": "eristemena/dialogflow-fulfillment-webhook-php",
     "description": "Dialogflow Fulfillment Webhook v1 & v2",
+    "keywords": [
+        "Dialogflow",
+        "api.ai",
+        "webhook",
+        "client library",
+        "fulfillment"
+    ],
+    "license": "MIT",
     "require": {
         "php": ">=5.4"
     },
-    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Dialogflow\\": "src/"
