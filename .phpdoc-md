@@ -11,5 +11,9 @@ return (object)[
         '\Dialogflow\RichMessage\Payload',
         '\Dialogflow\RichMessage\Suggestion',
         '\Dialogflow\RichMessage\Text',
+        '\Dialogflow\Action\Conversation',
+        '\Dialogflow\Action\Surface',
+        '\Dialogflow\Action\AvailableSurface',
+        '\Dialogflow\Action\Response\SimpleResponse',
     ],
 ];

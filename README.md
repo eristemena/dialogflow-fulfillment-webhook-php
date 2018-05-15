@@ -1,5 +1,8 @@
 # Dialogflow Fulfillment PHP Library
 
+[![Build Status](https://travis-ci.org/eristemena/dialogflow-fulfillment-webhook-php.svg?branch=master)](https://travis-ci.org/eristemena/dialogflow-fulfillment-webhook-php)
+[![codecov](https://codecov.io/gh/eristemena/dialogflow-fulfillment-webhook-php/branch/master/graph/badge.svg)](https://codecov.io/gh/eristemena/dialogflow-fulfillment-webhook-php)
+
 This Library is inspired by [dialogflow/dialogflow-fulfillment-nodejs](https://github.com/dialogflow/dialogflow-fulfillment-nodejs).
 
 It supports Dialogflow's fulfillment webhook JSON requests and responses for v1 and v2 agents.

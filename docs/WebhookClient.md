@@ -17,6 +17,7 @@ Dialogflow\RichMessage\RichMessage
 |[clearOutgoingContexts](#webhookclientclearoutgoingcontexts)|Clear all existing outgoing contexts.|
 |[fromData](#webhookclientfromdata)||
 |[getAction](#webhookclientgetaction)|Get action name.|
+|[getActionConversation](#webhookclientgetactionconversation)|Get Actions on Google DialogflowConversation object|
 |[getAgentVersion](#webhookclientgetagentversion)|The agent version (v1 or v2) based on Dialogflow webhook request.|
 |[getContexts](#webhookclientgetcontexts)|Get contexts.|
 |[getIntent](#webhookclientgetintent)|Get intent name.|
@@ -152,6 +153,30 @@ Reference: https://dialogflow.com/docs/actions-and-parameters
 **Return Values**
 
 `string`
+
+
+
+
+
+### WebhookClient::getActionConversation  
+
+**Description**
+
+```php
+public getActionConversation (void)
+```
+
+Get Actions on Google DialogflowConversation object 
+
+ 
+
+**Parameters**
+
+`This function has no parameters.`
+
+**Return Values**
+
+`null|\Dialogflow\Action\Conversation`
 
 
 
@@ -378,7 +403,7 @@ Reference: https://dialogflow.com/docs/reference/api-v2/rest/v2beta1/WebhookRequ
 **Description**
 
 ```php
-public reply (string|\Dialogflow\Richmessage $message)
+public reply (string|\Dialogflow\Richmessage|\Dialogflow\Action\Conversation $message)
 ```
 
 Response to incoming request. 
@@ -387,7 +412,7 @@ Response to incoming request.
 
 **Parameters**
 
-* `(string|\Dialogflow\Richmessage) $message`
+* `(string|\Dialogflow\Richmessage|\Dialogflow\Action\Conversation) $message`
 
 **Return Values**
 

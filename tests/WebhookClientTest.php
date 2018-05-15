@@ -6,6 +6,7 @@ use RuntimeException;
 
 use PHPUnit\Framework\TestCase;
 use Dialogflow\WebhookClient;
+use Dialogflow\Context;
 
 class WebhookClientTest extends TestCase
 {
@@ -281,5 +282,125 @@ class WebhookClientTest extends TestCase
             ],
             'outputContexts' => []
         ], $this->agentv2google->render());
+    }
+
+    public function testNonActionConversation()
+    {
+        $this->assertEquals(null, $this->agentv2facebook->getActionConversation());
+    }
+
+    public function testAskActionConversation()
+    {
+        $conv = $this->agentv2google->getActionConversation();
+        $conv->ask('How are you?');
+
+        $this->assertEquals([
+            'expectUserResponse' => true,
+            'richResponse' => [
+                'items' => [
+                    [
+                        'simpleResponse' => [
+                            'textToSpeech' => 'How are you?'
+                        ]
+                    ]
+                ]
+            ]
+        ], $conv->render());
+
+        $this->agentv2google->reply($conv);
+        $this->assertEquals([
+            'payload' => [
+                'google' => [
+                    'expectUserResponse' => true,
+                    'richResponse' => [
+                        'items' => [
+                            [
+                                'simpleResponse' => [
+                                    'textToSpeech' => 'How are you?'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'outputContexts' => []
+        ], $this->agentv2google->render());
+    }
+
+    public function testCloseActionConversation()
+    {
+        $conv = $this->agentv2google->getActionConversation();
+        $conv->close('Thank you');
+
+        $this->assertEquals([
+            'expectUserResponse' => false,
+            'richResponse' => [
+                'items' => [
+                    [
+                        'simpleResponse' => [
+                            'textToSpeech' => 'Thank you'
+                        ]
+                    ]
+                ]
+            ]
+        ], $conv->render());
+    }
+
+    public function testGetOutgoingContexts()
+    {
+        $contexts = $this->agentv2google->getOutgoingContexts();
+
+        $this->assertEquals([], $contexts);
+    }
+
+    public function testOutgoingContexts()
+    {
+        $this->agentv2google->setOutgoingContext(new Context('context1', 2, ['param1' => 10]));
+        $this->agentv2google->setOutgoingContext('context2');
+        $this->agentv2google->setOutgoingContext([
+                'name' => 'context3',
+                'lifespan' => 3,
+                'parameters' => ['param1' => 10]
+        ]);
+
+        $context1 = $this->agentv2google->getOutgoingContext('context1');
+        $context2 = $this->agentv2google->getOutgoingContext('context2');
+        $context3 = $this->agentv2google->getOutgoingContext('context3');
+        $context4 = $this->agentv2google->getOutgoingContext('context4');
+
+        $this->assertEquals('context1', $context1->getName());
+        $this->assertEquals(2, $context1->getLifespan());
+        $this->assertEquals(10, $context1->getParameters()['param1']);
+
+        $this->assertEquals('context2', $context2->getName());
+        $this->assertEquals(null, $context2->getLifespan());
+        $this->assertEquals(null, $context2->getParameters()['param1']);
+
+        $this->assertEquals('context3', $context3->getName());
+        $this->assertEquals(3, $context3->getLifespan());
+        $this->assertEquals(10, $context3->getParameters()['param1']);
+
+        $this->assertEquals(null, $context4);
+
+        $this->agentv2google->clearOutgoingContext('context1');
+        $this->assertEquals(null, $this->agentv2google->getOutgoingContext('context1'));
+
+        $this->agentv2google->clearOutgoingContexts();
+        $this->assertEquals([], $this->agentv2google->getOutgoingContexts());
+
+        $this->agentv2google->setOutgoingContexts([new Context('context5')]);
+        $this->assertEquals(1, count($this->agentv2google->getOutgoingContexts()));
+    }
+
+    public function testSetOutgoingContextsExceptionEmptyName()
+    {
+        $this->setExpectedException(RuntimeException::class);
+        $this->agentv2google->setOutgoingContext([]);
+    }
+
+    public function testSetOutgoingContextsExceptionInvalidParam()
+    {
+        $this->setExpectedException(RuntimeException::class);
+        $this->agentv2google->setOutgoingContext(0);
     }
 }

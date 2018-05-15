@@ -7,6 +7,7 @@ use RuntimeException;
 use Dialogflow\RichMessage\RichMessage;
 use Dialogflow\RichMessage\Text;
 use Dialogflow\RichMessage\Payload;
+use Dialogflow\Action\Conversation;
 
 class WebhookClient extends RichMessage
 {
@@ -51,7 +52,7 @@ class WebhookClient extends RichMessage
 
     /**
      * Constructor for WebhookClient object.
-     * 
+     *
      * @param array $data request data payload from Dialogflow
      */
     public function __construct($data)
@@ -261,7 +262,7 @@ class WebhookClient extends RichMessage
     /**
      * Response to incoming request.
      *
-     * @param string|\Dialogflow\Richmessage $message
+     * @param string|\Dialogflow\Richmessage|\Dialogflow\Action\Conversation $message
      * @return \Dialogflow\WebhookClient
      */
     public function reply($message)
@@ -282,9 +283,43 @@ class WebhookClient extends RichMessage
             ;
 
             $this->messages[] = $message;
+        } elseif ($message instanceof Conversation) {
+            $this->messages[] = Payload::create($message->render())
+                ->setAgentVersion($this->agentVersion)
+                ->setRequestSource($this->requestSource)
+            ;
         }
 
         return $this;
+    }
+
+    /**
+     * Get all Dialogflow outgoing contexts.
+     * Reference: https://dialogflow.com/docs/contexts
+     *
+     * @return array
+     */
+    public function getOutgoingContexts()
+    {
+        return $this->outgoingContexts;
+    }
+
+    /**
+     * Get a Dialogflow outgoing context.
+     * Reference: https://dialogflow.com/docs/contexts
+     *
+     * @param string $name context name
+     * @return null|Context
+     */
+    public function getOutgoingContext($name)
+    {
+        foreach ($this->outgoingContexts as $outgoingContext) {
+            if ($outgoingContext->getName() == $name) {
+                return $outgoingContext;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -294,7 +329,7 @@ class WebhookClient extends RichMessage
      * @param string|array|\Dialogflow\Context $context
      * @return \Dialogflow\WebhookClient
      */
-    public function setContext($context)
+    public function setOutgoingContext($context)
     {
         if (is_string($context)) {
             $outgoingContext = new Context($context);
@@ -334,9 +369,9 @@ class WebhookClient extends RichMessage
      * @param string $contextName
      * @return \Dialogflow\WebhookClient
      */
-    public function clearContext($contextName)
+    public function clearOutgoingContext($contextName)
     {
-        foreach ($this->outgoingContexts as $i => $contex) {
+        foreach ($this->outgoingContexts as $i => $context) {
             if ($context->getName() == $contextName) {
                 unset($this->outgoingContexts[$i]);
             }
@@ -365,11 +400,25 @@ class WebhookClient extends RichMessage
      * @param array $contexts
      * @return \Dialogflow\WebhookClient
      */
-    public function setContexts($contexts)
+    public function setOutgoingContexts($contexts)
     {
         $this->outgoingContexts = $contexts;
 
         return $this;
+    }
+
+    /**
+     * Get Actions on Google DialogflowConversation object
+     *
+     * @return null|\Dialogflow\Action\Conversation
+     */
+    public function getActionConversation()
+    {
+        if ($this->requestSource=='google') {
+            return new Conversation($this->originalRequest['payload']);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -424,7 +473,7 @@ class WebhookClient extends RichMessage
      */
     protected function renderV2()
     {
-        $out = ['fulfillmentMessages' => []];
+        $out = [];
 
         $messages = [];
 
@@ -436,7 +485,9 @@ class WebhookClient extends RichMessage
             }
         }
 
-        $out['fulfillmentMessages'] = $messages;
+        if (count($messages)) {
+            $out['fulfillmentMessages'] = $messages;
+        }
 
         if ($this->text) {
             $out['fulfillmentText'] = $this->text;
