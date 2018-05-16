@@ -2,6 +2,7 @@
 
 namespace Dialogflow\Action;
 
+use Dialogflow\Action\Interfaces\QuestionInterface;
 use Dialogflow\Action\Interfaces\ResponseInterface;
 use Dialogflow\Action\Responses\SimpleResponse;
 use Dialogflow\RichMessage\Payload;
@@ -51,7 +52,7 @@ class Conversation
     /**
      * Add a message.
      *
-     * @param string|\Dialogflow\Action\Response\ResponseInterface $message
+     * @param string|ResponseInterface|QuestionInterface $message
      *
      * @return Conversation
      */
@@ -60,6 +61,8 @@ class Conversation
         if (is_string($message)) {
             $this->messages[] = new SimpleResponse($message);
         } elseif ($message instanceof ResponseInterface) {
+            $this->messages[] = $message;
+        } elseif ($message instanceof QuestionInterface) {
             $this->messages[] = $message;
         }
 
@@ -70,7 +73,7 @@ class Conversation
      * Asks to collect user's input.
      * Follow [the guidelines](https://developers.google.com/actions/policies/general-policies#user_experience) when prompting the user for a response.
      *
-     * @param string|\Dialogflow\Action\Response\ResponseInterface $message
+     * @param string|ResponseInterface|QuestionInterface $message
      *
      * @return Conversation
      */
@@ -128,10 +131,29 @@ class Conversation
 
         $items = [];
         foreach ($this->messages as $message) {
-            $items[] = $message->render();
+            if ($message instanceof ResponseInterface) {
+                $items[] = $message->render();
+            }
+
+            if ($message instanceof QuestionInterface) {
+                if ($item = $message->renderRichResponseItem()) {
+                    $items[] = $item;
+                }
+            }
         }
 
         $out['richResponse']['items'] = $items;
+
+        $systemIntent = null;
+        foreach ($this->messages as $message) {
+            if ($message instanceof QuestionInterface) {
+                $systemIntent = $message->renderSystemIntent();
+            }
+        }
+
+        if ($systemIntent) {
+            $out['systemIntent'] = $systemIntent;
+        }
 
         return $out;
     }

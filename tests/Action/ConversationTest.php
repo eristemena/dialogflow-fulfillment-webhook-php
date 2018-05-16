@@ -2,6 +2,7 @@
 
 namespace Dialogflow\tests\Action;
 
+use Dialogflow\Action\Questions\Confirmation;
 use Dialogflow\Action\Responses\SimpleResponse;
 use Dialogflow\WebhookClient;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +27,7 @@ class ConversationTest extends TestCase
         return $agent->getActionConversation();
     }
 
-    public function testAddMessage()
+    public function testAddResponseMessage()
     {
         $conv = $this->getConversation();
 
@@ -48,6 +49,35 @@ class ConversationTest extends TestCase
                     ],
                 ],
             ],
+        ], $conv->render());
+    }
+
+    public function testAddQuestionMessage()
+    {
+        $conv = $this->getConversation();
+
+        $conv->ask(new Confirmation('Will you marry me?'));
+
+        $this->assertEquals([
+            'expectUserResponse' => true,
+            'richResponse'       => [
+                'items' => [
+                    [
+                        'simpleResponse' => [
+                            'textToSpeech' => 'PLACEHOLDER_FOR_CONFIRMATION',
+                        ],
+                    ],
+                ],
+            ],
+            'systemIntent' => [
+                'intent' => 'actions.intent.CONFIRMATION',
+                'data'   => [
+                    '@type'      => 'type.googleapis.com/google.actions.v2.ConfirmationValueSpec',
+                    'dialogSpec' => [
+                        'requestConfirmationText' => 'Will you marry me?'
+                    ]
+                ]
+            ]
         ], $conv->render());
     }
 

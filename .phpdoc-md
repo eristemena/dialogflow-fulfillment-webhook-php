@@ -14,6 +14,7 @@ return (object)[
         '\Dialogflow\Action\Conversation',
         '\Dialogflow\Action\Surface',
         '\Dialogflow\Action\AvailableSurface',
+        '\Dialogflow\Action\Questions\Confirmation',
         '\Dialogflow\Action\Responses\SimpleResponse',
     ],
 ];

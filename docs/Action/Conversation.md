@@ -48,7 +48,7 @@ Constructor for Conversation object.
 **Description**
 
 ```php
-public add (string|\Dialogflow\Action\Response\ResponseInterface $message)
+public add (string|\ResponseInterface|\QuestionInterface $message)
 ```
 
 Add a message. 
@@ -57,7 +57,7 @@ Add a message.
 
 **Parameters**
 
-* `(string|\Dialogflow\Action\Response\ResponseInterface) $message`
+* `(string|\ResponseInterface|\QuestionInterface) $message`
 
 **Return Values**
 
@@ -72,7 +72,7 @@ Add a message.
 **Description**
 
 ```php
-public ask (string|\Dialogflow\Action\Response\ResponseInterface $message)
+public ask (string|\ResponseInterface|\QuestionInterface $message)
 ```
 
 Asks to collect user's input. 
@@ -81,7 +81,7 @@ Follow [the guidelines](https://developers.google.com/actions/policies/general-p
 
 **Parameters**
 
-* `(string|\Dialogflow\Action\Response\ResponseInterface) $message`
+* `(string|\ResponseInterface|\QuestionInterface) $message`
 
 **Return Values**
 

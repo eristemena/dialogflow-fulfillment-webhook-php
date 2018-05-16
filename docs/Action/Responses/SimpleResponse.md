@@ -60,7 +60,7 @@ Create a new instance.
 
 **Return Values**
 
-`\Dialogflow\Action\Response\SimpleResponse`
+`\Dialogflow\Action\Responses\SimpleResponse`
 
 
 
@@ -84,7 +84,7 @@ Set display text.
 
 **Return Values**
 
-`\Dialogflow\Action\Response\SimpleResponse`
+`\Dialogflow\Action\Responses\SimpleResponse`
 
 
 
@@ -132,7 +132,7 @@ Set ssml.
 
 **Return Values**
 
-`\Dialogflow\Action\Response\SimpleResponse`
+`\Dialogflow\Action\Responses\SimpleResponse`
 
 
 
@@ -156,7 +156,7 @@ Set text to speech.
 
 **Return Values**
 
-`\Dialogflow\Action\Response\SimpleResponse`
+`\Dialogflow\Action\Responses\SimpleResponse`
 
 
 
