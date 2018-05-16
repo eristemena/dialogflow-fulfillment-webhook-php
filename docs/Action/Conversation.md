@@ -49,7 +49,7 @@ Constructor for Conversation object.
 **Description**
 
 ```php
-public add (string|\ResponseInterface|\QuestionInterface $message)
+public add (string|\Dialogflow\Action\Interfaces\ResponseInterface|\Dialogflow\Action\Interfaces\QuestionInterface $message)
 ```
 
 Add a message. 
@@ -58,7 +58,7 @@ Add a message.
 
 **Parameters**
 
-* `(string|\ResponseInterface|\QuestionInterface) $message`
+* `(string|\Dialogflow\Action\Interfaces\ResponseInterface|\Dialogflow\Action\Interfaces\QuestionInterface) $message`
 
 **Return Values**
 
@@ -73,7 +73,7 @@ Add a message.
 **Description**
 
 ```php
-public ask (string|\ResponseInterface|\QuestionInterface $message)
+public ask (string|\Dialogflow\Action\Interfaces\ResponseInterface|\Dialogflow\Action\Interfaces\QuestionInterface $message)
 ```
 
 Asks to collect user's input. 
@@ -82,7 +82,7 @@ Follow [the guidelines](https://developers.google.com/actions/policies/general-p
 
 **Parameters**
 
-* `(string|\ResponseInterface|\QuestionInterface) $message`
+* `(string|\Dialogflow\Action\Interfaces\ResponseInterface|\Dialogflow\Action\Interfaces\QuestionInterface) $message`
 
 **Return Values**
 
@@ -97,7 +97,7 @@ Follow [the guidelines](https://developers.google.com/actions/policies/general-p
 **Description**
 
 ```php
-public close (string|\Dialogflow\Action\Response\ResponseInterface $message)
+public close (string|\Dialogflow\Action\Interfaces\ResponseInterface|\Dialogflow\Action\Interfaces\QuestionInterface $message)
 ```
 
 Have Assistant render the speech response and close the mic. 
@@ -106,7 +106,7 @@ Have Assistant render the speech response and close the mic.
 
 **Parameters**
 
-* `(string|\Dialogflow\Action\Response\ResponseInterface) $message`
+* `(string|\Dialogflow\Action\Interfaces\ResponseInterface|\Dialogflow\Action\Interfaces\QuestionInterface) $message`
 
 **Return Values**
 

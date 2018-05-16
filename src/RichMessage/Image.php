@@ -18,7 +18,7 @@ class Image extends RichMessage
      *
      * @param string $image image URL
      *
-     * @return Dialogflow\Response\Text
+     * @return Dialogflow\Response\Image
      */
     public static function create($imageUrl = null)
     {

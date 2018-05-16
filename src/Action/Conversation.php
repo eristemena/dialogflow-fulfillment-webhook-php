@@ -18,13 +18,13 @@ class Conversation
     /** @var bool */
     protected $sandbox = false;
 
-    /** @var \Dialogflow\Action\Surface */
+    /** @var Dialogflow\Action\Surface */
     protected $surface;
 
-    /** @var null|\Dialogflow\Action\AvailableSurfaces */
+    /** @var null|Dialogflow\Action\AvailableSurfaces */
     protected $availableSurfaces;
 
-    /** @var null|\Dialogflow\Action\Arguments */
+    /** @var null|Dialogflow\Action\Arguments */
     protected $arguments;
 
     /** @var array */
@@ -59,7 +59,7 @@ class Conversation
     /**
      * Add a message.
      *
-     * @param string|ResponseInterface|QuestionInterface $message
+     * @param string|Dialogflow\Action\Interfaces\ResponseInterface|Dialogflow\Action\Interfaces\QuestionInterface $message
      *
      * @return Conversation
      */
@@ -80,7 +80,7 @@ class Conversation
      * Asks to collect user's input.
      * Follow [the guidelines](https://developers.google.com/actions/policies/general-policies#user_experience) when prompting the user for a response.
      *
-     * @param string|ResponseInterface|QuestionInterface $message
+     * @param string|Dialogflow\Action\Interfaces\ResponseInterface|Dialogflow\Action\Interfaces\QuestionInterface $message
      *
      * @return Conversation
      */
@@ -96,7 +96,7 @@ class Conversation
     /**
      * Have Assistant render the speech response and close the mic.
      *
-     * @param string|\Dialogflow\Action\Response\ResponseInterface $message
+     * @param string|Dialogflow\Action\Interfaces\ResponseInterface|Dialogflow\Action\Interfaces\QuestionInterface $message
      *
      * @return Conversation
      */
@@ -110,7 +110,7 @@ class Conversation
     }
 
     /**
-     * @return \Dialogflow\Action\Surface
+     * @return Dialogflow\Action\Surface
      */
     public function getSurface()
     {
@@ -118,7 +118,7 @@ class Conversation
     }
 
     /**
-     * @return \Dialogflow\Action\AvailableSurfaces
+     * @return Dialogflow\Action\AvailableSurfaces
      */
     public function getAvailableSurfaces()
     {
@@ -126,7 +126,7 @@ class Conversation
     }
 
     /**
-     * @return \Dialogflow\Action\Arguments
+     * @return Dialogflow\Action\Arguments
      */
     public function getArguments()
     {

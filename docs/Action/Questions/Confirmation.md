@@ -11,7 +11,7 @@ Dialogflow\Action\Interfaces\QuestionInterface
 
 | Name | Description |
 |------|-------------|
-|[__construct](#confirmation__construct)||
+|[__construct](#confirmation__construct)|Constructor for Confirmation object.|
 |[renderRichResponseItem](#confirmationrenderrichresponseitem)|Render a single Rich Response item as array.|
 |[renderSystemIntent](#confirmationrendersystemintent)|Render System Intent as array.|
 
@@ -26,7 +26,7 @@ Dialogflow\Action\Interfaces\QuestionInterface
 public __construct (string $requestConfirmationText)
 ```
 
- 
+Constructor for Confirmation object. 
 
  
 
@@ -35,6 +35,9 @@ public __construct (string $requestConfirmationText)
 * `(string) $requestConfirmationText`
 
 **Return Values**
+
+`\Dialogflow\Action\Questions\Confirmation`
+
 
 
 

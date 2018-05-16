@@ -11,7 +11,7 @@ Dialogflow\Action\Interfaces\QuestionInterface
 
 | Name | Description |
 |------|-------------|
-|[__construct](#permission__construct)||
+|[__construct](#permission__construct)|Constructor for Permission object.|
 |[renderRichResponseItem](#permissionrenderrichresponseitem)|Render a single Rich Response item as array.|
 |[renderSystemIntent](#permissionrendersystemintent)|Render System Intent as array.|
 
@@ -26,7 +26,7 @@ Dialogflow\Action\Interfaces\QuestionInterface
 public __construct (string $context, array $permissions)
 ```
 
- 
+Constructor for Permission object. 
 
  
 
@@ -36,6 +36,9 @@ public __construct (string $context, array $permissions)
 * `(array) $permissions`
 
 **Return Values**
+
+`\Dialogflow\Action\Questions\Permission`
+
 
 
 

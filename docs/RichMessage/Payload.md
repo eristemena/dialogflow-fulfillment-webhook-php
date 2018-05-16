@@ -42,7 +42,7 @@ Create a new Payload instance.
 
 **Return Values**
 
-`\Dialogflow\Response\Text`
+`\Dialogflow\Response\Payload`
 
 
 

@@ -22,8 +22,12 @@ class Permission implements QuestionInterface
     ];
 
     /**
+     * Constructor for Permission object.
+     *
      * @param string $context
      * @param array  $permissions
+     *
+     * @return Dialogflow\Action\Questions\Permission
      *
      * @throws RuntimeException
      */

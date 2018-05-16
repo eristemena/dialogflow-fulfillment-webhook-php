@@ -10,7 +10,11 @@ class Confirmation implements QuestionInterface
     protected $requestConfirmationText;
 
     /**
+     * Constructor for Confirmation object.
+     *
      * @param string $requestConfirmationText
+     *
+     * @return Dialogflow\Action\Questions\Confirmation
      */
     public function __construct($requestConfirmationText)
     {

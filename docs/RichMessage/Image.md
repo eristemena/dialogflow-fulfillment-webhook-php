@@ -43,7 +43,7 @@ Create a new Image instance.
 
 **Return Values**
 
-`\Dialogflow\Response\Text`
+`\Dialogflow\Response\Image`
 
 
 

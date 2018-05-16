@@ -15,7 +15,7 @@ class Payload extends RichMessage
      *
      * @param array $payload
      *
-     * @return Dialogflow\Response\Text
+     * @return Dialogflow\Response\Payload
      */
     public static function create($payload)
     {
