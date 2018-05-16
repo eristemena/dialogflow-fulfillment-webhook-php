@@ -75,9 +75,9 @@ class ConversationTest extends TestCase
                     '@type'      => 'type.googleapis.com/google.actions.v2.ConfirmationValueSpec',
                     'dialogSpec' => [
                         'requestConfirmationText' => 'Will you marry me?'
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ], $conv->render());
     }
 

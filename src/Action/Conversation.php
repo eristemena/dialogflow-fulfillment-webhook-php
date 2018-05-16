@@ -35,11 +35,11 @@ class Conversation
     public function __construct($payload)
     {
         if (isset($payload['conversation']['conversationId'])) {
-            $this->id =  $payload['conversation']['conversationId'];
+            $this->id = $payload['conversation']['conversationId'];
         }
 
         if (isset($payload['isInSandbox'])) {
-            $this->sandbox =  $payload['isInSandbox'];
+            $this->sandbox = $payload['isInSandbox'];
         }
 
         $this->surface = new Surface($payload['surface']);
