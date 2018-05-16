@@ -27,9 +27,9 @@ class Permission implements QuestionInterface
      * @param string $context
      * @param array  $permissions
      *
-     * @return Dialogflow\Action\Questions\Permission
-     *
      * @throws RuntimeException
+     *
+     * @return Dialogflow\Action\Questions\Permission
      */
     public function __construct($context, $permissions)
     {
