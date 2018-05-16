@@ -20,7 +20,7 @@ class Conversation
     /** @var \Dialogflow\Action\Surface */
     protected $surface;
 
-    /** @var \Dialogflow\Action\AvailableSurface */
+    /** @var null|\Dialogflow\Action\AvailableSurface */
     protected $availableSurface;
 
     /** @var array */
@@ -33,12 +33,19 @@ class Conversation
      */
     public function __construct($payload)
     {
-        $this->id = isset($payload['conversation']['conversationId']) ?: $payload['conversation']['conversationId'];
-        $this->sandbox = isset($payload['isInSandbox']) ?: $payload['isInSandbox'];
+        if (isset($payload['conversation']['conversationId'])) {
+            $this->id =  $payload['conversation']['conversationId'];
+        }
+
+        if (isset($payload['isInSandbox'])) {
+            $this->sandbox =  $payload['isInSandbox'];
+        }
 
         $this->surface = new Surface($payload['surface']);
 
-        $this->availableSurface = new AvailableSurface($payload['availableSurfaces']);
+        if (isset($payload['availableSurfaces'])) {
+            $this->availableSurface = new AvailableSurface($payload['availableSurfaces']);
+        }
     }
 
     /**
