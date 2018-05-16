@@ -3,3 +3,5 @@ build
 reports
 .DS_Store
 composer.lock
+.php_cs.cache
+coverage.xml
