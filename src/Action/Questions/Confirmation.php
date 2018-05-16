@@ -44,7 +44,7 @@ class Confirmation implements QuestionInterface
         $out['data'] = [
             '@type'      => 'type.googleapis.com/google.actions.v2.ConfirmationValueSpec',
             'dialogSpec' => [
-                'requestConfirmationText' => $this->requestConfirmationText
+                'requestConfirmationText' => $this->requestConfirmationText,
             ],
         ];
 

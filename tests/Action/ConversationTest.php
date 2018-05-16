@@ -74,7 +74,7 @@ class ConversationTest extends TestCase
                 'data'   => [
                     '@type'      => 'type.googleapis.com/google.actions.v2.ConfirmationValueSpec',
                     'dialogSpec' => [
-                        'requestConfirmationText' => 'Will you marry me?'
+                        'requestConfirmationText' => 'Will you marry me?',
                     ],
                 ],
             ],
