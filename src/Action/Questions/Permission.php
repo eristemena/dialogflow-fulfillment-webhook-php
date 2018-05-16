@@ -33,7 +33,7 @@ class Permission implements QuestionInterface
 
         foreach ($permissions as $permission) {
             if (!in_array($permission, $this->validPermissions)) {
-                throw new RuntimeException("Invalid permission: ".$permission);
+                throw new RuntimeException('Invalid permission: '.$permission);
             }
         }
 

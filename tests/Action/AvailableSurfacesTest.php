@@ -67,7 +67,7 @@ class AvailableSurfacesTest extends TestCase
             [
                 'capabilities' => [
                     [
-                        'name' => 'actions.capability.WEB_BROWSER'
+                        'name' => 'actions.capability.WEB_BROWSER',
                     ],
                 ],
             ],
