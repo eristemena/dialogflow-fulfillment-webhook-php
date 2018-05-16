@@ -2,7 +2,7 @@
 
 namespace Dialogflow\tests\Action;
 
-use Dialogflow\Action\Response\SimpleResponse;
+use Dialogflow\Action\Responses\SimpleResponse;
 use Dialogflow\WebhookClient;
 use PHPUnit\Framework\TestCase;
 

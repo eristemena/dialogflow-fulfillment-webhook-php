@@ -2,8 +2,8 @@
 
 namespace Dialogflow\Action;
 
-use Dialogflow\Action\Response\ResponseInterface;
-use Dialogflow\Action\Response\SimpleResponse;
+use Dialogflow\Action\Interfaces\ResponseInterface;
+use Dialogflow\Action\Responses\SimpleResponse;
 use Dialogflow\RichMessage\Payload;
 
 class Conversation

@@ -1,6 +1,8 @@
 <?php
 
-namespace Dialogflow\Action\Response;
+namespace Dialogflow\Action\Responses;
+
+use Dialogflow\Action\Interfaces\ResponseInterface;
 
 class SimpleResponse implements ResponseInterface
 {
@@ -27,7 +29,7 @@ class SimpleResponse implements ResponseInterface
     /**
      * Create a new instance.
      *
-     * @return Dialogflow\Action\Response\SimpleResponse
+     * @return Dialogflow\Action\Responses\SimpleResponse
      */
     public static function create()
     {
@@ -39,7 +41,7 @@ class SimpleResponse implements ResponseInterface
      *
      * @param string $displayText
      *
-     * @return Dialogflow\Action\Response\SimpleResponse
+     * @return Dialogflow\Action\Responses\SimpleResponse
      */
     public function displayText($displayText)
     {
@@ -53,7 +55,7 @@ class SimpleResponse implements ResponseInterface
      *
      * @param string $ssml
      *
-     * @return Dialogflow\Action\Response\SimpleResponse
+     * @return Dialogflow\Action\Responses\SimpleResponse
      */
     public function ssml($ssml)
     {
@@ -67,7 +69,7 @@ class SimpleResponse implements ResponseInterface
      *
      * @param string $textToSpeech
      *
-     * @return Dialogflow\Action\Response\SimpleResponse
+     * @return Dialogflow\Action\Responses\SimpleResponse
      */
     public function textToSpeech($textToSpeech)
     {

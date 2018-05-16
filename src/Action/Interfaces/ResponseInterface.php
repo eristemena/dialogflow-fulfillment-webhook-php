@@ -1,6 +1,6 @@
 <?php
 
-namespace Dialogflow\Action\Response;
+namespace Dialogflow\Action\Interfaces;
 
 interface ResponseInterface
 {
