@@ -34,7 +34,7 @@ class Arguments
     public function get($name)
     {
         foreach ($this->arguments as $argument) {
-            if ($argument['name']==$name) {
+            if ($argument['name'] == $name) {
                 if (isset($this->mapArgumentName[$name])) {
                     return $this->{$this->mapArgumentName[$name]}($argument);
                 } else {
