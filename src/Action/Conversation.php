@@ -24,6 +24,9 @@ class Conversation
     /** @var null|\Dialogflow\Action\AvailableSurfaces */
     protected $availableSurfaces;
 
+    /** @var null|\Dialogflow\Action\Arguments */
+    protected $arguments;
+
     /** @var array */
     protected $messages = [];
 
@@ -46,6 +49,10 @@ class Conversation
 
         if (isset($payload['availableSurfaces'])) {
             $this->availableSurfaces = new AvailableSurfaces($payload['availableSurfaces']);
+        }
+
+        if (isset($payload['inputs'][0]['arguments'])) {
+            $this->arguments = new Arguments($payload['inputs'][0]['arguments']);
         }
     }
 
@@ -116,6 +123,14 @@ class Conversation
     public function getAvailableSurfaces()
     {
         return $this->availableSurfaces;
+    }
+
+    /**
+     * @return \Dialogflow\Action\Arguments
+     */
+    public function getArguments()
+    {
+        return $this->arguments;
     }
 
     /**

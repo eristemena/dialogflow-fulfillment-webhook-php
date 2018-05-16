@@ -2,6 +2,7 @@
 
 namespace Dialogflow\tests\Action;
 
+use Dialogflow\Action\Conversation;
 use Dialogflow\Action\Questions\Confirmation;
 use Dialogflow\Action\Responses\SimpleResponse;
 use Dialogflow\WebhookClient;
@@ -18,6 +19,131 @@ class ConversationTest extends TestCase
         }
 
         return new WebhookClient($data);
+    }
+
+    private function getGooglePayload($question)
+    {
+        if ($question == 'CONFIRMATION') {
+            $json = '
+        {
+            "isInSandbox":true,
+            "surface":{
+                "capabilities":[
+                    {
+                        "name":"actions.capability.MEDIA_RESPONSE_AUDIO"
+                    },
+                    {
+                        "name":"actions.capability.WEB_BROWSER"
+                    },
+                    {
+                        "name":"actions.capability.AUDIO_OUTPUT"
+                    },
+                    {
+                        "name":"actions.capability.SCREEN_OUTPUT"
+                    }
+                ]
+            },
+            "inputs":[
+                {
+                    "rawInputs":[
+                        {
+                            "query":"yes",
+                            "inputType":"KEYBOARD"
+                        }
+                    ],
+                    "arguments":[
+                        {
+                            "name":"CONFIRMATION",
+                            "boolValue":true
+                        }
+                    ],
+                    "intent":"actions.intent.CONFIRMATION"
+                }
+            ],
+            "user":{
+                "userStorage":"{\"data\":{}}",
+                "lastSeen":"2018-05-15T22:55:17Z",
+                "locale":"en-US",
+                "userId":"ABwppHHRq4M6ZiJzBoAwy8GP-avPx07-N8SAWalWejgJDTZpHSj61TlzGgC1yJkQqA6OKsel7bvB-agBZiw"
+            },
+            "conversation":{
+                "conversationId":"1526425023580",
+                "type":"ACTIVE",
+                "conversationToken":"[]"
+            },
+            "availableSurfaces":[
+                {
+                    "capabilities":[
+                        {
+                            "name":"actions.capability.AUDIO_OUTPUT"
+                        },
+                        {
+                            "name":"actions.capability.SCREEN_OUTPUT"
+                        }
+                    ]
+                }
+            ]
+        }
+            ';
+        } else {
+            $json = '
+        {
+            "isInSandbox":true,
+            "surface":{
+                "capabilities":[
+                    {
+                        "name":"actions.capability.MEDIA_RESPONSE_AUDIO"
+                    },
+                    {
+                        "name":"actions.capability.WEB_BROWSER"
+                    },
+                    {
+                        "name":"actions.capability.AUDIO_OUTPUT"
+                    },
+                    {
+                        "name":"actions.capability.SCREEN_OUTPUT"
+                    }
+                ]
+            },
+            "inputs":[
+                {
+                    "rawInputs":[
+                        {
+                            "query":"yes",
+                            "inputType":"KEYBOARD"
+                        }
+                    ],
+                    "intent":"actions.intent.CONFIRMATION"
+                }
+            ],
+            "user":{
+                "userStorage":"{\"data\":{}}",
+                "lastSeen":"2018-05-15T22:55:17Z",
+                "locale":"en-US",
+                "userId":"ABwppHHRq4M6ZiJzBoAwy8GP-avPx07-N8SAWalWejgJDTZpHSj61TlzGgC1yJkQqA6OKsel7bvB-agBZiw"
+            },
+            "conversation":{
+                "conversationId":"1526425023580",
+                "type":"ACTIVE",
+                "conversationToken":"[]"
+            },
+            "availableSurfaces":[
+                {
+                    "capabilities":[
+                        {
+                            "name":"actions.capability.AUDIO_OUTPUT"
+                        },
+                        {
+                            "name":"actions.capability.SCREEN_OUTPUT"
+                        }
+                    ]
+                }
+            ]
+        }
+            ';
+        }
+
+        return json_decode($json, true);
     }
 
     private function getConversation()
@@ -103,5 +229,27 @@ class ConversationTest extends TestCase
         $this->assertTrue($availableSurface->hasScreen());
         $this->assertFalse($availableSurface->hasMediaPlayback());
         $this->assertFalse($availableSurface->hasWebBrowser());
+    }
+
+    public function testArgumentNoArgument()
+    {
+        $payload = $this->getGooglePayload('noargument');
+
+        $conv = new Conversation($payload);
+
+        $arguments = $conv->getArguments();
+
+        $this->assertEquals(null, $arguments);
+    }
+
+    public function testArgumentConfirmation()
+    {
+        $payload = $this->getGooglePayload('CONFIRMATION');
+
+        $conv = new Conversation($payload);
+
+        $arguments = $conv->getArguments();
+
+        $this->assertTrue($arguments->get('CONFIRMATION'));
     }
 }
