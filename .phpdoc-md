@@ -13,7 +13,7 @@ return (object)[
         '\Dialogflow\RichMessage\Text',
         '\Dialogflow\Action\Conversation',
         '\Dialogflow\Action\Surface',
-        '\Dialogflow\Action\AvailableSurface',
+        '\Dialogflow\Action\AvailableSurfaces',
         '\Dialogflow\Action\Questions\Confirmation',
         '\Dialogflow\Action\Responses\SimpleResponse',
     ],

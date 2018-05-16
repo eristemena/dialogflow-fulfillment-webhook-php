@@ -21,8 +21,8 @@ class Conversation
     /** @var \Dialogflow\Action\Surface */
     protected $surface;
 
-    /** @var null|\Dialogflow\Action\AvailableSurface */
-    protected $availableSurface;
+    /** @var null|\Dialogflow\Action\AvailableSurfaces */
+    protected $availableSurfaces;
 
     /** @var array */
     protected $messages = [];
@@ -45,7 +45,7 @@ class Conversation
         $this->surface = new Surface($payload['surface']);
 
         if (isset($payload['availableSurfaces'])) {
-            $this->availableSurface = new AvailableSurface($payload['availableSurfaces']);
+            $this->availableSurfaces = new AvailableSurfaces($payload['availableSurfaces']);
         }
     }
 
@@ -111,11 +111,11 @@ class Conversation
     }
 
     /**
-     * @return \Dialogflow\Action\AvailableSurface
+     * @return \Dialogflow\Action\AvailableSurfaces
      */
-    public function getAvailableSurface()
+    public function getAvailableSurfaces()
     {
-        return $this->availableSurface;
+        return $this->availableSurfaces;
     }
 
     /**

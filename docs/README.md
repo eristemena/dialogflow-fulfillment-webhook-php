@@ -9,6 +9,6 @@
 * [RichMessage\Text](RichMessage/Text.md) 
 * [Action\Conversation](Action/Conversation.md) 
 * [Action\Surface](Action/Surface.md) 
-* [Action\AvailableSurface](Action/AvailableSurface.md) 
+* [Action\AvailableSurfaces](Action/AvailableSurfaces.md) 
 * [Action\Questions\Confirmation](Action/Questions/Confirmation.md) 
 * [Action\Responses\SimpleResponse](Action/Responses/SimpleResponse.md) 

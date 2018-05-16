@@ -14,7 +14,7 @@
 |[add](#conversationadd)|Add a message.|
 |[ask](#conversationask)|Asks to collect user's input.|
 |[close](#conversationclose)|Have Assistant render the speech response and close the mic.|
-|[getAvailableSurface](#conversationgetavailablesurface)||
+|[getAvailableSurfaces](#conversationgetavailablesurfaces)||
 |[getSurface](#conversationgetsurface)||
 |[render](#conversationrender)|Render response as array.|
 
@@ -115,12 +115,12 @@ Have Assistant render the speech response and close the mic.
 
 
 
-### Conversation::getAvailableSurface  
+### Conversation::getAvailableSurfaces  
 
 **Description**
 
 ```php
-public getAvailableSurface (void)
+public getAvailableSurfaces (void)
 ```
 
  
@@ -133,7 +133,7 @@ public getAvailableSurface (void)
 
 **Return Values**
 
-`\Dialogflow\Action\AvailableSurface`
+`\Dialogflow\Action\AvailableSurfaces`
 
 
 

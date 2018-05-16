@@ -97,7 +97,7 @@ class ConversationTest extends TestCase
     {
         $conv = $this->getConversation();
 
-        $availableSurface = $conv->getAvailableSurface();
+        $availableSurface = $conv->getAvailableSurfaces();
 
         $this->assertTrue($availableSurface->hasAudio());
         $this->assertTrue($availableSurface->hasScreen());

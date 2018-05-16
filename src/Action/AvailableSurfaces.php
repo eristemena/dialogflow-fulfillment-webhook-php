@@ -2,14 +2,13 @@
 
 namespace Dialogflow\Action;
 
-class AvailableSurface
+class AvailableSurfaces
 {
     /** @var array */
     protected $surfaces = [];
 
     /**
-     * @param array $data         request array
-     * @param array $capabilities
+     * @param array $data request array
      */
     public function __construct($data)
     {
