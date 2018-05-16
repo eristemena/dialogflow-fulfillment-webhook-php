@@ -8,7 +8,7 @@ class Arguments
     protected $arguments = [];
 
     protected $mapArgumentName = [
-        'CONFIRMATION' => 'getConfirmation'
+        'CONFIRMATION' => 'getConfirmation',
     ];
 
     /**
@@ -28,6 +28,8 @@ class Arguments
      * Get argument by name.
      *
      * @param string $name
+     *
+     * @return null|array|bool
      */
     public function get($name)
     {
@@ -40,8 +42,6 @@ class Arguments
                 }
             }
         }
-
-        return null;
     }
 
     /**
