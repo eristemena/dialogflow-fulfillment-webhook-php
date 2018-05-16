@@ -13,7 +13,7 @@ class AvailableSurfacesTest extends TestCase
             [
                 'capabilities' => [
                     [
-                        'name' => 'actions.capability.AUDIO_OUTPUT'
+                        'name' => 'actions.capability.AUDIO_OUTPUT',
                     ],
                 ],
             ],
@@ -31,7 +31,7 @@ class AvailableSurfacesTest extends TestCase
             [
                 'capabilities' => [
                     [
-                        'name' => 'actions.capability.SCREEN_OUTPUT'
+                        'name' => 'actions.capability.SCREEN_OUTPUT',
                     ],
                 ],
             ],
@@ -49,7 +49,7 @@ class AvailableSurfacesTest extends TestCase
             [
                 'capabilities' => [
                     [
-                        'name' => 'actions.capability.MEDIA_RESPONSE_AUDIO'
+                        'name' => 'actions.capability.MEDIA_RESPONSE_AUDIO',
                     ],
                 ],
             ],

@@ -87,7 +87,7 @@ class ConversationTest extends TestCase
             ]
         }
             ';
-        } elseif($question == 'PERMISSION') {
+        } elseif ($question == 'PERMISSION') {
             $json = '
         {
             "isInSandbox":true,
@@ -309,8 +309,8 @@ class ConversationTest extends TestCase
             'systemIntent' => [
                 'intent' => 'actions.intent.PERMISSION',
                 'data'   => [
-                    '@type'      => 'type.googleapis.com/google.actions.v2.PermissionValueSpec',
-                    'optContext' => 'to deliver your order',
+                    '@type'       => 'type.googleapis.com/google.actions.v2.PermissionValueSpec',
+                    'optContext'  => 'to deliver your order',
                     'permissions' => [
                         'NAME',
                         'DEVICE_PRECISE_LOCATION',

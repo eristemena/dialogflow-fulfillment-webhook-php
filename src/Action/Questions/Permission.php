@@ -15,10 +15,10 @@ class Permission implements QuestionInterface
 
     /** @var array */
     protected $validPermissions = [
-    	'NAME',
-    	'DEVICE_PRECISE_LOCATION',
-    	'DEVICE_COARSE_LOCATION',
-    	'UPDATE',
+        'NAME',
+        'DEVICE_PRECISE_LOCATION',
+        'DEVICE_COARSE_LOCATION',
+        'UPDATE',
     ];
 
     /**
@@ -32,9 +32,9 @@ class Permission implements QuestionInterface
         $this->context = $context;
 
         foreach ($permissions as $permission) {
-        	if (!in_array($permission, $this->validPermissions)) {
-        		throw new RuntimeException("Invalid permission: " . $permission);
-        	}
+            if (!in_array($permission, $this->validPermissions)) {
+                throw new RuntimeException("Invalid permission: ".$permission);
+            }
         }
 
         $this->permissions = $permissions;
