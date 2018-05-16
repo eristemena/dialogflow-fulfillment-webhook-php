@@ -14,6 +14,7 @@
 |[add](#conversationadd)|Add a message.|
 |[ask](#conversationask)|Asks to collect user's input.|
 |[close](#conversationclose)|Have Assistant render the speech response and close the mic.|
+|[getArguments](#conversationgetarguments)||
 |[getAvailableSurfaces](#conversationgetavailablesurfaces)||
 |[getSurface](#conversationgetsurface)||
 |[render](#conversationrender)|Render response as array.|
@@ -110,6 +111,30 @@ Have Assistant render the speech response and close the mic.
 **Return Values**
 
 `\Conversation`
+
+
+
+
+
+### Conversation::getArguments  
+
+**Description**
+
+```php
+public getArguments (void)
+```
+
+ 
+
+ 
+
+**Parameters**
+
+`This function has no parameters.`
+
+**Return Values**
+
+`\Dialogflow\Action\Arguments`
 
 
 

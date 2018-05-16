@@ -9,6 +9,7 @@ class Arguments
 
     protected $mapArgumentName = [
         'CONFIRMATION' => 'getConfirmation',
+        'PERMISSION'   => 'getPermission',
     ];
 
     /**
@@ -54,5 +55,23 @@ class Arguments
     private function getConfirmation($argument)
     {
         return $argument['boolValue'];
+    }
+
+    /**
+     * Get permission argument.
+     *
+     * @param array $argument
+     *
+     * @return bool
+     */
+    private function getPermission($argument)
+    {
+        if (isset($argument['boolValue'])) {
+            return $argument['boolValue'];
+        } elseif (isset($argument['textValue'])) {
+            return $argument['textValue'] == 'true';
+        } else {
+            return false;
+        }
     }
 }

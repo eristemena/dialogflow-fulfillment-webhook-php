@@ -4,9 +4,11 @@ namespace Dialogflow\tests\Action;
 
 use Dialogflow\Action\Conversation;
 use Dialogflow\Action\Questions\Confirmation;
+use Dialogflow\Action\Questions\Permission;
 use Dialogflow\Action\Responses\SimpleResponse;
 use Dialogflow\WebhookClient;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 class ConversationTest extends TestCase
 {
@@ -68,6 +70,86 @@ class ConversationTest extends TestCase
             },
             "conversation":{
                 "conversationId":"1526425023580",
+                "type":"ACTIVE",
+                "conversationToken":"[]"
+            },
+            "availableSurfaces":[
+                {
+                    "capabilities":[
+                        {
+                            "name":"actions.capability.AUDIO_OUTPUT"
+                        },
+                        {
+                            "name":"actions.capability.SCREEN_OUTPUT"
+                        }
+                    ]
+                }
+            ]
+        }
+            ';
+        } elseif($question == 'PERMISSION') {
+            $json = '
+        {
+            "isInSandbox":true,
+            "surface":{
+                "capabilities":[
+                    {
+                        "name":"actions.capability.MEDIA_RESPONSE_AUDIO"
+                    },
+                    {
+                        "name":"actions.capability.WEB_BROWSER"
+                    },
+                    {
+                        "name":"actions.capability.AUDIO_OUTPUT"
+                    },
+                    {
+                        "name":"actions.capability.SCREEN_OUTPUT"
+                    }
+                ]
+            },
+            "inputs":[
+                {
+                    "rawInputs":[
+                        {
+                            "query":"ok",
+                            "inputType":"KEYBOARD"
+                        }
+                    ],
+                    "arguments":[
+                        {
+                            "textValue":"true",
+                            "name":"PERMISSION",
+                            "boolValue":true
+                        }
+                    ],
+                    "intent":"actions.intent.PERMISSION"
+                }
+            ],
+            "user":{
+                "userStorage":"{\"data\":{}}",
+                "lastSeen":"2018-05-15T22:47:52Z",
+                "permissions":[
+                    "NAME",
+                    "DEVICE_PRECISE_LOCATION"
+                ],
+                "profile":{
+                    "displayName":"Eris Ristemena",
+                    "givenName":"Eris",
+                    "familyName":"Ristemena"
+                },
+                "locale":"en-US",
+                "userId":"ABwppHHRq4M6ZiJzBoAwy8GP-avPx07-N8SAWalWejgJDTZpHSj61TlzGgC1yJkQqA6OKsel7bvB-agBZiw"
+            },
+            "device":{
+                "location":{
+                    "coordinates":{
+                        "latitude":-6.1543839,
+                        "longitude":106.9182407
+                    }
+                }
+            },
+            "conversation":{
+                "conversationId":"1526424903580",
                 "type":"ACTIVE",
                 "conversationToken":"[]"
             },
@@ -178,7 +260,7 @@ class ConversationTest extends TestCase
         ], $conv->render());
     }
 
-    public function testAddQuestionMessage()
+    public function testAddConfirmationQuestionMessage()
     {
         $conv = $this->getConversation();
 
@@ -205,6 +287,47 @@ class ConversationTest extends TestCase
                 ],
             ],
         ], $conv->render());
+    }
+
+    public function testAddPermissionQuestionMessage()
+    {
+        $conv = $this->getConversation();
+
+        $conv->ask(new Permission('to deliver your order', ['NAME', 'DEVICE_PRECISE_LOCATION']));
+
+        $this->assertEquals([
+            'expectUserResponse' => true,
+            'richResponse'       => [
+                'items' => [
+                    [
+                        'simpleResponse' => [
+                            'textToSpeech' => 'PLACEHOLDER_FOR_PERMISSION',
+                        ],
+                    ],
+                ],
+            ],
+            'systemIntent' => [
+                'intent' => 'actions.intent.PERMISSION',
+                'data'   => [
+                    '@type'      => 'type.googleapis.com/google.actions.v2.PermissionValueSpec',
+                    'optContext' => 'to deliver your order',
+                    'permissions' => [
+                        'NAME',
+                        'DEVICE_PRECISE_LOCATION',
+                    ],
+                ],
+            ],
+        ], $conv->render());
+    }
+
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testAddInvalidPermissionQuestionMessage()
+    {
+        $conv = $this->getConversation();
+
+        $conv->ask(new Permission('to deliver your order', ['NAME', 'DEVICE_UPDATE']));
     }
 
     public function testSurface()
@@ -251,5 +374,16 @@ class ConversationTest extends TestCase
         $arguments = $conv->getArguments();
 
         $this->assertTrue($arguments->get('CONFIRMATION'));
+    }
+
+    public function testPermissionConfirmation()
+    {
+        $payload = $this->getGooglePayload('PERMISSION');
+
+        $conv = new Conversation($payload);
+
+        $arguments = $conv->getArguments();
+
+        $this->assertTrue($arguments->get('PERMISSION'));
     }
 }
