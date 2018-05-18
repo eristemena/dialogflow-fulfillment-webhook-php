@@ -8,13 +8,12 @@ use Dialogflow\Action\Questions\Permission;
 use Dialogflow\Action\Responses\SimpleResponse;
 use Dialogflow\WebhookClient;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 
 class ConversationTest extends TestCase
 {
     private function getAgent($type = 'google')
     {
-        if ($type == 'facebook') {
+        if ('facebook' == $type) {
             $data = json_decode(file_get_contents(__DIR__.'/../stubs/request-v2-facebook.json'), true);
         } else {
             $data = json_decode(file_get_contents(__DIR__.'/../stubs/request-v2-google.json'), true);
@@ -25,7 +24,7 @@ class ConversationTest extends TestCase
 
     private function getGooglePayload($question)
     {
-        if ($question == 'CONFIRMATION') {
+        if ('CONFIRMATION' == $question) {
             $json = '
         {
             "isInSandbox":true,
@@ -87,7 +86,7 @@ class ConversationTest extends TestCase
             ]
         }
             ';
-        } elseif ($question == 'PERMISSION') {
+        } elseif ('PERMISSION' == $question) {
             $json = '
         {
             "isInSandbox":true,
@@ -321,7 +320,7 @@ class ConversationTest extends TestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testAddInvalidPermissionQuestionMessage()
     {

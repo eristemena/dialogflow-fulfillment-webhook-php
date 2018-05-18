@@ -92,14 +92,14 @@ class Card extends RichMessage
      */
     protected function renderV1()
     {
-        if ($this->requestSource == 'google') {
+        if ('google' == $this->requestSource) {
             $out = [
                 'type'     => 'basic_card',
                 'platform' => $this->requestSource,
                 'title'    => $this->title,
             ];
 
-            if (!$this->text && !$this->imageUrl) {
+            if (! $this->text && ! $this->imageUrl) {
                 $out['formattedText'] = ' '; // AoG requires text or image in card
             }
 
@@ -140,7 +140,7 @@ class Card extends RichMessage
             }
 
             // this is required in the response even if there are no buttons for some reason
-            if ($this->requestSource == 'slack') {
+            if ('slack' == $this->requestSource) {
                 $out['buttons'] = [];
             }
 
@@ -166,7 +166,7 @@ class Card extends RichMessage
      */
     protected function renderV2()
     {
-        if ($this->requestSource == 'google') {
+        if ('google' == $this->requestSource) {
             $out = [
                 'basicCard' => [
                     'title' => $this->title,

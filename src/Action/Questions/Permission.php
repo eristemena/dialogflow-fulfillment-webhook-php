@@ -36,7 +36,7 @@ class Permission implements QuestionInterface
         $this->context = $context;
 
         foreach ($permissions as $permission) {
-            if (!in_array($permission, $this->validPermissions)) {
+            if (! in_array($permission, $this->validPermissions)) {
                 throw new RuntimeException('Invalid permission: '.$permission);
             }
         }

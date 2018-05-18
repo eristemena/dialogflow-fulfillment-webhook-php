@@ -54,7 +54,7 @@ class Suggestion extends RichMessage
      */
     protected function renderV1()
     {
-        if ($this->requestSource == 'google') {
+        if ('google' == $this->requestSource) {
             $out = [
                 'suggestions' => [],
                 'type'        => 'suggestion_chips',
@@ -86,7 +86,7 @@ class Suggestion extends RichMessage
      */
     protected function renderV2()
     {
-        if ($this->requestSource == 'google') {
+        if ('google' == $this->requestSource) {
             $out = [
                 'suggestions' => [
                     'suggestions' => [],

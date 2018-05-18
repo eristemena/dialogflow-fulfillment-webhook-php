@@ -110,7 +110,7 @@ class WebhookClient extends RichMessage
             }
         }
 
-        if (!$this->requestSource && isset($data['result']['source'])) {
+        if (! $this->requestSource && isset($data['result']['source'])) {
             $this->requestSource = $data['result']['source'];
         }
 
@@ -274,7 +274,7 @@ class WebhookClient extends RichMessage
                 ->setAgentVersion($this->agentVersion)
                 ->setRequestSource($this->requestSource);
 
-            if (!$this->doesSupportRichMessage()) {
+            if (! $this->doesSupportRichMessage()) {
                 $this->text = $message;
             }
         } elseif ($message instanceof RichMessage) {
@@ -332,7 +332,7 @@ class WebhookClient extends RichMessage
         if (is_string($context)) {
             $outgoingContext = new Context($context);
         } elseif (is_array($context)) {
-            if (!isset($context['name'])) {
+            if (! isset($context['name'])) {
                 throw new RuntimeException('Context must have a name');
             }
 
@@ -414,7 +414,7 @@ class WebhookClient extends RichMessage
      */
     public function getActionConversation()
     {
-        if ($this->requestSource == 'google') {
+        if ('google' == $this->requestSource) {
             return new Conversation($this->originalRequest['payload']);
         } else {
             return;

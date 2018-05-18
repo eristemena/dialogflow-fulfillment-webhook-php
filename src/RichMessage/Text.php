@@ -57,7 +57,7 @@ class Text extends RichMessage
      */
     protected function renderV1()
     {
-        if ($this->requestSource == 'google') {
+        if ('google' == $this->requestSource) {
             return [
                 'type'         => 'simple_response',
                 'platform'     => $this->requestSource,
@@ -85,7 +85,7 @@ class Text extends RichMessage
      */
     protected function renderV2()
     {
-        if ($this->requestSource == 'google') {
+        if ('google' == $this->requestSource) {
             $out = [
                 'platform'        => 'ACTIONS_ON_GOOGLE',
                 'simpleResponses' => [

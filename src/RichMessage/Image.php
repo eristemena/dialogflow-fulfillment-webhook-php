@@ -47,7 +47,7 @@ class Image extends RichMessage
      */
     protected function renderV1()
     {
-        if ($this->requestSource == 'google') {
+        if ('google' == $this->requestSource) {
             $out = [
                 'type'     => 'basic_card',
                 'platform' => $this->requestSource,
@@ -82,7 +82,7 @@ class Image extends RichMessage
      */
     protected function renderV2()
     {
-        if ($this->requestSource == 'google') {
+        if ('google' == $this->requestSource) {
             $out = [
                 'basicCard' => [],
                 'platform'  => $this->v2PlatformMap[$this->requestSource],

@@ -69,7 +69,7 @@ class Arguments
         if (isset($argument['boolValue'])) {
             return $argument['boolValue'];
         } elseif (isset($argument['textValue'])) {
-            return $argument['textValue'] == 'true';
+            return 'true' == $argument['textValue'];
         } else {
             return false;
         }

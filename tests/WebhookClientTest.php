@@ -5,7 +5,6 @@ namespace Dialogflow\tests;
 use Dialogflow\Context;
 use Dialogflow\WebhookClient;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 
 class WebhookClientTest extends TestCase
 {
@@ -46,7 +45,7 @@ class WebhookClientTest extends TestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testException()
     {
@@ -390,7 +389,7 @@ class WebhookClientTest extends TestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testSetOutgoingContextsExceptionEmptyName()
     {
@@ -398,7 +397,7 @@ class WebhookClientTest extends TestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException \RuntimeException
      */
     public function testSetOutgoingContextsExceptionInvalidParam()
     {
