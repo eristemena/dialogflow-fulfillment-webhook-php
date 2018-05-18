@@ -16,6 +16,7 @@ return (object)[
         '\Dialogflow\Action\AvailableSurfaces',
         '\Dialogflow\Action\Questions\Confirmation',
         '\Dialogflow\Action\Questions\Permission',
+        '\Dialogflow\Action\Responses\BasicCard',
         '\Dialogflow\Action\Responses\SimpleResponse',
     ],
 ];

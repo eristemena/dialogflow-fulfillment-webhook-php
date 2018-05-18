@@ -12,4 +12,5 @@
 * [Action\AvailableSurfaces](Action/AvailableSurfaces.md) 
 * [Action\Questions\Confirmation](Action/Questions/Confirmation.md) 
 * [Action\Questions\Permission](Action/Questions/Permission.md) 
+* [Action\Responses\BasicCard](Action/Responses/BasicCard.md) 
 * [Action\Responses\SimpleResponse](Action/Responses/SimpleResponse.md) 
