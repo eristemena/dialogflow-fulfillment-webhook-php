@@ -11,7 +11,7 @@ Dialogflow\Action\Interfaces\ResponseInterface
 
 | Name | Description |
 |------|-------------|
-|[__construct](#simpleresponse__construct)||
+|[__construct](#simpleresponse__construct)|Create a new Simple Response instance.|
 |[create](#simpleresponsecreate)|Create a new instance.|
 |[displayText](#simpleresponsedisplaytext)|Set display text.|
 |[render](#simpleresponserender)|Render response as array.|
@@ -26,18 +26,22 @@ Dialogflow\Action\Interfaces\ResponseInterface
 **Description**
 
 ```php
-public __construct (void)
+public __construct (string|array $options)
 ```
 
- 
+Create a new Simple Response instance. 
 
  
 
 **Parameters**
 
-`This function has no parameters.`
+* `(string|array) $options`
+: (optional) options  
 
 **Return Values**
+
+`\Dialogflow\Action\Responses\SimpleResponse`
+
 
 
 
@@ -47,7 +51,7 @@ public __construct (void)
 **Description**
 
 ```php
-public static create (void)
+public static create (string|array $options)
 ```
 
 Create a new instance. 
@@ -56,7 +60,8 @@ Create a new instance.
 
 **Parameters**
 
-`This function has no parameters.`
+* `(string|array) $options`
+: (optional) options  
 
 **Return Values**
 

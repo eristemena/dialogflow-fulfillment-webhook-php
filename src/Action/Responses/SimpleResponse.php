@@ -15,6 +15,13 @@ class SimpleResponse implements ResponseInterface
     /** @var null|string */
     protected $textToSpeech;
 
+    /**
+     * Create a new Simple Response instance.
+     *
+     * @param string|array $options (optional) options
+     *
+     * @return Dialogflow\Action\Responses\SimpleResponse
+     */
     public function __construct($options = null)
     {
         if (is_string($options)) {
@@ -29,11 +36,14 @@ class SimpleResponse implements ResponseInterface
     /**
      * Create a new instance.
      *
+     *
+     * @param string|array $options (optional) options
+     *
      * @return Dialogflow\Action\Responses\SimpleResponse
      */
-    public static function create()
+    public static function create($options = null)
     {
-        return new self();
+        return new self($options);
     }
 
     /**
