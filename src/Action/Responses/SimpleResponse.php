@@ -27,9 +27,9 @@ class SimpleResponse implements ResponseInterface
         if (is_string($options)) {
             $this->textToSpeech = $options;
         } elseif (is_array($options)) {
-            $this->displayText = isset($options['displayText']) ?: $options['displayText'];
-            $this->ssml = isset($options['ssml']) ?: $options['ssml'];
-            $this->textToSpeech = isset($options['textToSpeech']) ?: $options['textToSpeech'];
+            $this->displayText = isset($options['displayText']) ? $options['displayText'] : null;
+            $this->ssml = isset($options['ssml']) ? $options['ssml'] : null;
+            $this->textToSpeech = isset($options['textToSpeech']) ? $options['textToSpeech'] : null;
         }
     }
 

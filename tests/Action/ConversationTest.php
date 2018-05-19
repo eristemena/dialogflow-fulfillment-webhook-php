@@ -234,31 +234,6 @@ class ConversationTest extends TestCase
         return $agent->getActionConversation();
     }
 
-    public function testAddResponseMessage()
-    {
-        $conv = $this->getConversation();
-
-        $conv->ask(
-            SimpleResponse::create()
-            ->displayText('Display text')
-            ->ssml('<speak>ssml here</speak>')
-        );
-
-        $this->assertEquals([
-            'expectUserResponse' => true,
-            'richResponse'       => [
-                'items' => [
-                    [
-                        'simpleResponse' => [
-                            'ssml'        => '<speak>ssml here</speak>',
-                            'displayText' => 'Display text',
-                        ],
-                    ],
-                ],
-            ],
-        ], $conv->render());
-    }
-
     public function testAddConfirmationQuestionMessage()
     {
         $conv = $this->getConversation();
