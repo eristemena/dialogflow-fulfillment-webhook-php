@@ -50,7 +50,7 @@ class SimpleResponseTest extends TestCase
             new SimpleResponse([
                 'displayText'  => 'Display text',
                 'ssml'         => '<speak>ssml here</speak>',
-                'textToSpeech' => 'Text to speech'
+                'textToSpeech' => 'Text to speech',
             ])
         );
 
@@ -60,8 +60,8 @@ class SimpleResponseTest extends TestCase
                 'items' => [
                     [
                         'simpleResponse' => [
-                            'ssml'        => '<speak>ssml here</speak>',
-                            'displayText' => 'Display text',
+                            'ssml'         => '<speak>ssml here</speak>',
+                            'displayText'  => 'Display text',
                             'textToSpeech' => 'Text to speech',
                         ],
                     ],
@@ -94,5 +94,4 @@ class SimpleResponseTest extends TestCase
             ],
         ], $conv->render());
     }
-
 }
