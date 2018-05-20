@@ -38,6 +38,8 @@ class BasicCard implements ResponseInterface
      * Set the title for a Card.
      *
      * @param string $title
+     *
+     * @return Dialogflow\Action\Responses\BasicCard
      */
     public function title($title)
     {
@@ -50,6 +52,8 @@ class BasicCard implements ResponseInterface
      * Set the formattedText for a Card.
      *
      * @param string $formattedText
+     *
+     * @return Dialogflow\Action\Responses\BasicCard
      */
     public function formattedText($formattedText)
     {
@@ -63,6 +67,8 @@ class BasicCard implements ResponseInterface
      *
      * @param string $imageUrl          image URL
      * @param string $accessibilityText (optional) accessibility text of the image
+     *
+     * @return Dialogflow\Action\Responses\BasicCard
      */
     public function image($imageUrl, $accessibilityText = null)
     {
@@ -77,6 +83,8 @@ class BasicCard implements ResponseInterface
      *
      * @param string $buttonText button text
      * @param string $buttonUrl  button link URL
+     *
+     * @return Dialogflow\Action\Responses\BasicCard
      */
     public function button($buttonText, $buttonUrl)
     {

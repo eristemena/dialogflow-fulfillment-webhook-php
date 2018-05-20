@@ -42,6 +42,9 @@ Set the button for a Card.
 
 **Return Values**
 
+`\Dialogflow\Action\Responses\BasicCard`
+
+
 
 
 
@@ -87,6 +90,9 @@ Set the formattedText for a Card.
 
 **Return Values**
 
+`\Dialogflow\Action\Responses\BasicCard`
+
+
 
 
 
@@ -110,6 +116,9 @@ Set the image for a Card.
 : (optional) accessibility text of the image  
 
 **Return Values**
+
+`\Dialogflow\Action\Responses\BasicCard`
+
 
 
 
@@ -155,6 +164,9 @@ Set the title for a Card.
 * `(string) $title`
 
 **Return Values**
+
+`\Dialogflow\Action\Responses\BasicCard`
+
 
 
 
