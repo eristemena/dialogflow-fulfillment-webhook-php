@@ -16,6 +16,11 @@ For full class reference please refer to the [doc](https://github.com/eristemena
   - [Get Request Info](#get-request-info)
   - [Send Reply](#send-reply)
   - [Rich Message](#rich-message)
+    - [Text](#text)
+    - [Image](#image)
+    - [Card](#card)
+    - [Suggestion](#suggestion)
+    - [Custom payload](#custom-payload)
 
 ## Installation
 
