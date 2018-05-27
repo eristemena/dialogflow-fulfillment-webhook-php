@@ -10,6 +10,7 @@ class Arguments
     protected $mapArgumentName = [
         'CONFIRMATION' => 'getConfirmation',
         'PERMISSION'   => 'getPermission',
+        'OPTION'       => 'getOption',
     ];
 
     /**
@@ -73,5 +74,17 @@ class Arguments
         } else {
             return false;
         }
+    }
+
+    /**
+     * Get option argument.
+     *
+     * @param array $argument
+     *
+     * @return string
+     */
+    private function getOption($argument)
+    {
+        return $argument['textValue'];
     }
 }
