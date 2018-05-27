@@ -27,7 +27,7 @@ For full class reference please refer to the [doc](https://github.com/eristemena
       - [Simple Response](#simple-response)
       - [Image](#image-1)
       - [Basic Card](#basic-card)
-      - [List](#basic-card)
+      - [List](#list)
     - [Surface Capabilities](#surface-capabilities)
 
 ## Installation
