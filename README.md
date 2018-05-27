@@ -10,6 +10,18 @@ It supports Dialogflow's fulfillment webhook JSON requests and responses for v1 
 
 For full class reference please refer to the [doc](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/README.md).
 
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Initiate Agent](#initiate-agent)
+  - [Get Request Info](#get-request-info)
+  - [Send Reply](#send-reply)
+  - [Rich Message](#rich-message)
+    - [Text](#text)
+    - [Image](#image)
+    - [Card](#card)
+    - [Suggestion](#suggestion)
+    - [Custom payload](#custom-payload)
+
 ## Installation
 
 Install via composer: `composer require eristemena/dialogflow-fulfillment-webhook-php`.
@@ -22,8 +34,8 @@ To initiate agent, use `\Dialogflow\WebhookClient` constructor with input parame
 
 In Vanilla PHP, this can be done as follow,
 
-```
-use \Dialogflow\WebhookClient;
+```php
+use Dialogflow\WebhookClient;
 
 $agent = new WebhookClient($_POST);
 
@@ -34,7 +46,7 @@ $agent = WebhookClient::fromData($_POST);
 
 or if you're using Laravel,
 
-```
+```php
 $agent = \Dialogflow\WebhookClient::fromData($request->json()->all());
 ```
 
@@ -42,55 +54,55 @@ $agent = \Dialogflow\WebhookClient::fromData($request->json()->all());
 
 - [Intent](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetaction)
 
-```
+```php
 $intent = $agent->getIntent();
 ```
 
 - [Action](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetaction)
 
-```
+```php
 $action = $agent->getAction();
 ```
 
 - [Query](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetquery)
 
-```
+```php
 $query = $agent->getQuery();
 ```
 
 - [Parameters](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetparameters)
 
-```
+```php
 $parameters = $agent->getParameters();
 ```
 
 - [Session](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetsession)
 
-```
+```php
 $session = $agent->getSession();
 ```
 
 - [Contexts](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetcontexts)
 
-```
+```php
 $contexts = $agent->getContexts();
 ```
 
 - [Language](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetlocale)
 
-```
+```php
 $language = $agent->getLocale();
 ```
 
 - [Original Request](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetoriginalrequest) (ex: google, facebook, slack, etc)
 
-```
+```php
 $originalRequest = $agent->getOriginalRequest();
 ```
 
 - [Agent Version](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetagentversion) (1 or 2)
 
-```
+```php
 $agentVersion = $agent->getAgentVersion();
 ```
 
@@ -98,20 +110,20 @@ $agentVersion = $agent->getAgentVersion();
 
 To send a reply, use `reply()` method.
 
-```
-$agent->reply("Hi, how can we help you?");
+```php
+$agent->reply('Hi, how can I help?');
 ```
 
 Then use `render()` to get response in array. All you have to do is to print the array as JSON,
 
-```
-header("Content-type: application/json");
+```php
+header('Content-type: application/json');
 echo json_decode($agent->render());
 ```
 
 or in Laravel,
 
-```
+```php
 return response()->json($agent->render());
 ```
 
@@ -119,25 +131,26 @@ The response payload will be automatically formatted according to Agent Version 
 
 ### Rich Message
 
-- Text
+#### Text
 
-```
+```php
 $text = \Dialogflow\RichMessage\Text::create()
-  ->text("This is text")
-  ->ssml("<speak>This is <say-as interpret-as="characters">ssml</say-as></speak>");
+    ->text('This is text')
+    ->ssml('<speak>This is <say-as interpret-as="characters">ssml</say-as></speak>')
+;
 $agent->reply($text);
 ```
 
-- Image
+#### Image
 
-```
+```php
 $image = \Dialogflow\RichMessage\Image::create('https://www.example.com/image.png');
 $agent->reply($image);
 ```
 
-- Card
+#### Card
 
-```
+```php
 $card = \Dialogflow\RichMessage\Card::create()
     ->title('This is title')
     ->text('this is text body')
@@ -147,16 +160,16 @@ $card = \Dialogflow\RichMessage\Card::create()
 $agent->reply($card);
 ```
 
-- Suggestion
+#### Suggestion
 
-```
+```php
 $suggestion = \Dialogflow\RichMessage\Suggestion::create(['Suggestion one', 'Suggestion two']);
 $agent->reply($suggestion);
 ```
 
-- Custom payload
+#### Custom payload
 
-```
+```php
 if($agent->getRequestSource()=='google'){
     $agent->reply(\Dialogflow\RichMessage\Payload::create([
         'expectUserResponse' => false
