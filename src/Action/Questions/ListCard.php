@@ -55,7 +55,6 @@ class ListCard implements QuestionInterface
      */
     public function renderRichResponseItem()
     {
-        return null;
     }
 
     /**
