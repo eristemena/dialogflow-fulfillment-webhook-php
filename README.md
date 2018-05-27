@@ -21,6 +21,14 @@ For full class reference please refer to the [doc](https://github.com/eristemena
     - [Card](#card)
     - [Suggestion](#suggestion)
     - [Custom payload](#custom-payload)
+  - [Actions on Google](#actions-on-google)
+    - [Send Reply](#send-reply-1)
+    - [Responses](#responses)
+      - [Simple Response](#simple-response)
+      - [Image](#image-1)
+      - [Basic Card](#basic-card)
+      - [List](#basic-card)
+    - [Surface Capabilities](#surface-capabilities)
 
 ## Installation
 
