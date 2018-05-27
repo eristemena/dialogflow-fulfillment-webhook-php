@@ -94,7 +94,13 @@ $contexts = $agent->getContexts();
 $language = $agent->getLocale();
 ```
 
-- [Original Request](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetoriginalrequest) (ex: google, facebook, slack, etc)
+- [Request Source]() (ex: `google`, `facebook`, `slack`, etc)
+
+```php
+$originalRequest = $agent->getRequestSource();
+```
+
+- [Original Request](https://github.com/eristemena/dialog-fulfillment-webhook-php/blob/master/docs/WebhookClient.md#webhookclientgetoriginalrequest), platform specific payload
 
 ```php
 $originalRequest = $agent->getOriginalRequest();
@@ -170,9 +176,165 @@ $agent->reply($suggestion);
 #### Custom payload
 
 ```php
-if($agent->getRequestSource()=='google'){
+if ($agent->getRequestSource()=='google') {
     $agent->reply(\Dialogflow\RichMessage\Payload::create([
         'expectUserResponse' => false
     ]));
+}
+```
+
+### Actions on Google
+
+This library also supports [Actions on Google](https://developers.google.com/actions/assistant/basics) specific functionalities. It's still under development, so more features will be added in the future.
+
+To use Actions on Google Dialogflow Conversation object, you must first need to ensure the `requestSource` is coming from Google Assistant,
+
+```php
+if ($agent->getRequestSource()=='google') {
+    $conv = $agent->getActionConversation();
+    
+    // here you can use the rest of Actions on Google responses and helpers
+    
+    $agent->reply($conv);
+}
+```
+
+or you can just call `getActionConversation()` method, and it will return `null` if the request doesn't come from Google Assistant.
+
+```php
+$conv = $agent->getActionConversation();
+
+if ($conv) {
+	// here you can use the rest of Actions on Google responses and helpers
+} else {
+	// the request does not come from Google Assistant
+}
+```
+
+#### Send Reply
+
+Using Dialogflow Conversation object, you can send a reply in two ways,
+
+1. Send a reply and close the conversation
+
+```php
+$conv->close('Have a nice day!');
+```
+
+2. Send a reply and wait for user's response
+
+```php
+$conv->ask('Hi, how can I help?');
+```
+
+#### Responses
+
+##### Simple Response
+
+Please see the documentation [here](https://developers.google.com/actions/assistant/responses#simple_responses).
+
+```php
+use Dialogflow\Action\Responses\SimpleResponse;
+
+$conv->ask(SimpleResponse::create()
+     ->displayText('Hello, how can i help?')
+     ->ssml('<speak>Hello,<break time="0.5s"/> <prosody rate="slow">how can i help?</prosody></speak>')
+);
+```
+
+##### Image
+
+```php
+use Dialogflow\Action\Responses\Image;
+
+$conv->close(Image::create('https://picsum.photos/400/300'));
+```
+
+##### Basic Card
+
+Please see the documentation [here](https://developers.google.com/actions/assistant/responses#basic_card).
+
+```php
+use Dialogflow\Action\Responses\BasicCard;
+
+$conv->close(BasicCard::create()
+    ->title('This is a title')
+    ->formattedText('This is a subtitle')
+    ->image('https://picsum.photos/400/300')
+    ->button('This is a button', 'https://docs.dialogflow.com/')
+);
+```
+
+##### List
+
+The single-select list presents the user with a vertical list of multiple items and allows the user to select a single one. Selecting an item from the list generates a user query (chat bubble) containing the title of the list item.
+
+Please see the documentation [here](https://developers.google.com/actions/assistant/responses#list).
+
+```php
+use Dialogflow\Action\Questions\ListCard;
+use Dialogflow\Action\Questions\ListCard\Option;
+
+$conv->ask('Please choose below');
+
+$conv->ask(ListCard::create()
+    ->title('This is a title')
+    ->addOption(Option::create()
+        ->key('OPTION_1')
+        ->title('Option 1')
+        ->synonyms(['option one','one'])
+        ->description('Select option 1')
+        ->image('https://picsum.photos/48/48')
+    )
+    ->addOption(Option::create()
+        ->key('OPTION_2')
+        ->title('Option 2')
+        ->synonyms(['option two','two'])
+        ->description('Select option 2')
+        ->image('https://picsum.photos/48/48')
+    )
+);
+```
+
+To capture the option selected by user, create a Dialogflow intent with the `actions_intent_OPTION` event. Assuming you name the intent as `Get Option`, you can get the argument as follow,
+
+```php
+if ('Get Option'==$agent->getIntent()) {
+    $conv = $agent->getActionConversation();
+    $option = $conv->getArguments()->get('OPTION');
+
+    switch ($option) {
+        case 'OPTION_1':
+            $conv->close('You choose option 1');
+            break;
+        
+        case 'OPTION_2':
+            $conv->close('You choose option 2');
+            break;
+        
+        default:
+            $conv->close('Sorry, i do not understand');
+            break;
+    }
+}
+```
+
+#### Surface Capabilities
+
+Google Assistant can be used on a variety of surfaces such as mobile devices that support audio and display experiences or a Google Home device that supports audio-only experiences.
+
+To design and build conversations that work well on all surfaces, use [surface capabilities](https://developers.google.com/actions/assistant/surface-capabilities) to control and scope your conversations properly.
+
+```php
+$surface = $conv->getSurface();
+
+if ($surface->hasScreen()) {
+	// surface has screen
+} elseif ($surface->hasAudio()) {
+	// surface has audio
+} elseif ($surface->hasMediaPlayback()) {
+	// surface can play audio
+} elseif ($surface->hasWebBrowser()) {
+	// user can interact with the content in a web browser
 }
 ```
