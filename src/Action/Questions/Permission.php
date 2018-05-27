@@ -45,6 +45,19 @@ class Permission implements QuestionInterface
     }
 
     /**
+     * Create a new Permission instance.
+     *
+     * @param string $context
+     * @param array  $permissions
+     *
+     * @return Dialogflow\Action\Questions\ListCard
+     */
+    public static function create($context, $permissions)
+    {
+        return new self($context, $permissions);
+    }
+
+    /**
      * Render a single Rich Response item as array.
      *
      * @return null|array
