@@ -24,7 +24,7 @@
 **Description**
 
 ```php
-public __construct (array $data, array $capabilities)
+public __construct (array $data)
 ```
 
  
@@ -35,7 +35,6 @@ public __construct (array $data, array $capabilities)
 
 * `(array) $data`
 : request array  
-* `(array) $capabilities`
 
 **Return Values**
 

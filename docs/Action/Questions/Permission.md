@@ -12,6 +12,7 @@ Dialogflow\Action\Interfaces\QuestionInterface
 | Name | Description |
 |------|-------------|
 |[__construct](#permission__construct)|Constructor for Permission object.|
+|[create](#permissioncreate)|Create a new Permission instance.|
 |[renderRichResponseItem](#permissionrenderrichresponseitem)|Render a single Rich Response item as array.|
 |[renderSystemIntent](#permissionrendersystemintent)|Render System Intent as array.|
 
@@ -38,6 +39,31 @@ Constructor for Permission object.
 **Return Values**
 
 `\Dialogflow\Action\Questions\Permission`
+
+
+
+
+
+### Permission::create  
+
+**Description**
+
+```php
+public static create (string $context, array $permissions)
+```
+
+Create a new Permission instance. 
+
+ 
+
+**Parameters**
+
+* `(string) $context`
+* `(array) $permissions`
+
+**Return Values**
+
+`\Dialogflow\Action\Questions\ListCard`
 
 
 
