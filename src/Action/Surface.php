@@ -22,8 +22,7 @@ class Surface
     protected $hasWebBrowser = false;
 
     /**
-     * @param array $data         request array
-     * @param array $capabilities
+     * @param array $data request array
      */
     public function __construct($data)
     {
