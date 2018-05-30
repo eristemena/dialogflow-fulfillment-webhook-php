@@ -391,4 +391,25 @@ class ConversationTest extends TestCase
         $this->assertEquals(28, $lastSeen->day);
         $this->assertEquals('Tue, 29 May 2018 02:39:40 +0700', $lastSeen->setTimezone('Asia/Jakarta')->format('r'));
     }
+
+    public function testGetDevice()
+    {
+        $agent = $this->getAgent('googleuserfull');
+        $conv = $agent->getActionConversation();
+
+        $device = $conv->getDevice();
+        $this->assertInstanceOf('\Dialogflow\Action\Device', $device);
+
+        $location = $device->getLocation();
+        $this->assertInstanceOf('\Dialogflow\Action\Device\Location', $location);
+
+        $this->assertEquals('Kelapa Gading', $location->getCity());
+        $this->assertEquals('RT.13/RW.3, Pegangsaan Dua, Kelapa Gading, Kota Jakarta Utara, Daerah Khusus Ibukota Jakarta 14250, Indonesia', $location->getFormattedAddress());
+        $this->assertEquals('14250', $location->getZipCode());
+
+        $coordinates = $location->getCoordinates();
+        $this->assertInstanceOf('\Dialogflow\Action\Device\Location\LatLang', $coordinates);
+        $this->assertEquals(-6.1544943, $coordinates->getLatitude());
+        $this->assertEquals(106.9186249, $coordinates->getLongitude());
+    }
 }

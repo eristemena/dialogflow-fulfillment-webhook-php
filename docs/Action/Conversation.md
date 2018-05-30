@@ -16,6 +16,7 @@
 |[close](#conversationclose)|Have Assistant render the speech response and close the mic.|
 |[getArguments](#conversationgetarguments)||
 |[getAvailableSurfaces](#conversationgetavailablesurfaces)||
+|[getDevice](#conversationgetdevice)||
 |[getSurface](#conversationgetsurface)||
 |[getUser](#conversationgetuser)||
 |[render](#conversationrender)|Render response as array.|
@@ -160,6 +161,30 @@ public getAvailableSurfaces (void)
 **Return Values**
 
 `\Dialogflow\Action\AvailableSurfaces`
+
+
+
+
+
+### Conversation::getDevice  
+
+**Description**
+
+```php
+public getDevice (void)
+```
+
+ 
+
+ 
+
+**Parameters**
+
+`This function has no parameters.`
+
+**Return Values**
+
+`null|\Dialogflow\Action\Device`
 
 
 

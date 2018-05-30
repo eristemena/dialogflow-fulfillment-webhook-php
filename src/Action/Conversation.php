@@ -27,6 +27,9 @@ class Conversation
     /** @var null|Dialogflow\Action\User */
     protected $user;
 
+    /** @var null|Dialogflow\Action\Device */
+    protected $device;
+
     /** @var null|Dialogflow\Action\Arguments */
     protected $arguments;
 
@@ -60,6 +63,10 @@ class Conversation
 
         if (isset($payload['user'])) {
             $this->user = new User($payload['user']);
+        }
+
+        if (isset($payload['device'])) {
+            $this->device = new Device($payload['device']);
         }
     }
 
@@ -138,6 +145,14 @@ class Conversation
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @return null|Dialogflow\Action\Device
+     */
+    public function getDevice()
+    {
+        return $this->device;
     }
 
     /**
