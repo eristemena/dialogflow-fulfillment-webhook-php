@@ -2,6 +2,7 @@
 
 namespace Dialogflow\Action;
 
+use Carbon\Carbon;
 use Dialogflow\Action\User\Name;
 
 class User
@@ -12,6 +13,9 @@ class User
     /** @var null|Dialogflow\Action\User\Name */
     protected $name;
 
+    /** @var null|Carbon\Carbon * */
+    protected $lastSeen;
+
     /**
      * @param array $data request array
      */
@@ -21,6 +25,10 @@ class User
 
         if (isset($data['profile'])) {
             $this->name = new Name($data['profile']);
+        }
+
+        if (isset($data['lastSeen'])) {
+            $this->lastSeen = new Carbon($data['lastSeen']);
         }
     }
 
@@ -42,5 +50,15 @@ class User
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Timestamp for the last access from the user.
+     *
+     * @return null|Carbon\Carbon
+     */
+    public function getLastSeen()
+    {
+        return $this->lastSeen;
     }
 }

@@ -383,5 +383,12 @@ class ConversationTest extends TestCase
         $this->assertEquals('Eris Ristemena', $user->getName()->getDisplay());
         $this->assertEquals('Eris', $user->getName()->getGiven());
         $this->assertEquals('Ristemena', $user->getName()->getFamily());
+
+        $lastSeen = $user->getLastSeen();
+        $this->assertInstanceOf('\Carbon\Carbon', $lastSeen);
+        $this->assertEquals(2018, $lastSeen->year);
+        $this->assertEquals(5, $lastSeen->month);
+        $this->assertEquals(28, $lastSeen->day);
+        $this->assertEquals('Tue, 29 May 2018 02:39:40 +0700', $lastSeen->setTimezone('Asia/Jakarta')->format('r'));
     }
 }
