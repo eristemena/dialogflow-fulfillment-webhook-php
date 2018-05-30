@@ -20,5 +20,7 @@ return (object)[
         '\Dialogflow\Action\Questions\Permission',
         '\Dialogflow\Action\Responses\BasicCard',
         '\Dialogflow\Action\Responses\SimpleResponse',
+        '\Dialogflow\Action\User',
+        '\Dialogflow\Action\User\Name',
     ],
 ];

@@ -16,3 +16,5 @@
 * [Action\Questions\Permission](Action/Questions/Permission.md) 
 * [Action\Responses\BasicCard](Action/Responses/BasicCard.md) 
 * [Action\Responses\SimpleResponse](Action/Responses/SimpleResponse.md) 
+* [Action\User](Action/User.md) 
+* [Action\User\Name](Action/User/Name.md) 
