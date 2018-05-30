@@ -24,6 +24,9 @@ class Conversation
     /** @var null|Dialogflow\Action\AvailableSurfaces */
     protected $availableSurfaces;
 
+    /** @var null|Dialogflow\Action\User */
+    protected $user;
+
     /** @var null|Dialogflow\Action\Arguments */
     protected $arguments;
 
@@ -53,6 +56,10 @@ class Conversation
 
         if (isset($payload['inputs'][0]['arguments'])) {
             $this->arguments = new Arguments($payload['inputs'][0]['arguments']);
+        }
+
+        if (isset($payload['user'])) {
+            $this->user = new User($payload['user']);
         }
     }
 
@@ -123,6 +130,14 @@ class Conversation
     public function getAvailableSurfaces()
     {
         return $this->availableSurfaces;
+    }
+
+    /**
+     * @return Dialogflow\Action\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**

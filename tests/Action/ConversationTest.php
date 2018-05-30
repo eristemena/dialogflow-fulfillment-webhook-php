@@ -15,6 +15,8 @@ class ConversationTest extends TestCase
     {
         if ('facebook' == $type) {
             $data = json_decode(file_get_contents(__DIR__.'/../stubs/request-v2-facebook.json'), true);
+        } elseif ('googleuserfull' == $type) {
+            $data = json_decode(file_get_contents(__DIR__.'/../stubs/request-v2-google-userfull.json'), true);
         } else {
             $data = json_decode(file_get_contents(__DIR__.'/../stubs/request-v2-google.json'), true);
         }
@@ -359,5 +361,27 @@ class ConversationTest extends TestCase
         $arguments = $conv->getArguments();
 
         $this->assertTrue($arguments->get('PERMISSION'));
+    }
+
+    public function testGetUser()
+    {
+        $agent = $this->getAgent();
+        $conv = $agent->getActionConversation();
+
+        $user = $conv->getUser();
+
+        $this->assertEquals('ABwppHEW9NgaT5S1NmZYR42yhs0FW1hawZHSjC_xW8FwkoZU1GMoIRAWWoThwUcA7VNX22Jzj8-KqA', $user->getId());
+        $this->assertEquals(null, $user->getName());
+
+        $agent = $this->getAgent('googleuserfull');
+        $conv = $agent->getActionConversation();
+
+        $user = $conv->getUser();
+
+        $this->assertEquals('ABwppHHRq4M6ZiJzBoAwy8WalWejgJDTZpHSj61TlzGgC1yJkQqA6OKsel7bvB-agBZiw', $user->getId());
+        $this->assertInstanceOf('\Dialogflow\Action\User\Name', $user->getName());
+        $this->assertEquals('Eris Ristemena', $user->getName()->getDisplay());
+        $this->assertEquals('Eris', $user->getName()->getGiven());
+        $this->assertEquals('Ristemena', $user->getName()->getFamily());
     }
 }

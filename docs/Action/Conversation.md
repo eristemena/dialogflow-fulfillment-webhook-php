@@ -17,6 +17,7 @@
 |[getArguments](#conversationgetarguments)||
 |[getAvailableSurfaces](#conversationgetavailablesurfaces)||
 |[getSurface](#conversationgetsurface)||
+|[getUser](#conversationgetuser)||
 |[render](#conversationrender)|Render response as array.|
 
 
@@ -183,6 +184,30 @@ public getSurface (void)
 **Return Values**
 
 `\Dialogflow\Action\Surface`
+
+
+
+
+
+### Conversation::getUser  
+
+**Description**
+
+```php
+public getUser (void)
+```
+
+ 
+
+ 
+
+**Parameters**
+
+`This function has no parameters.`
+
+**Return Values**
+
+`\Dialogflow\Action\User`
 
 
 
