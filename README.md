@@ -45,7 +45,7 @@ In Vanilla PHP, this can be done as follow,
 ```php
 use Dialogflow\WebhookClient;
 
-$agent = new WebhookClient($_POST);
+$agent = new WebhookClient(json_decode(file_get_contents('php://input'),true));
 
 // or
 
@@ -132,7 +132,7 @@ Then use `render()` to get response in array. All you have to do is to print the
 
 ```php
 header('Content-type: application/json');
-echo json_decode($agent->render());
+echo json_encode($agent->render());
 ```
 
 or in Laravel,
