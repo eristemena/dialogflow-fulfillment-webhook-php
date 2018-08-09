@@ -339,7 +339,7 @@ class WebhookClient extends RichMessage
             $name = $context['name'];
 
             $lifespan = 1;
-            if ($context['lifespan']) {
+            if (isset($context['lifespan'])) {
                 $lifespan = is_numeric($context['lifespan']) ? $context['lifespan'] : null;
             }
 
