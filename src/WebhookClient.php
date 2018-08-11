@@ -344,7 +344,7 @@ class WebhookClient extends RichMessage
             }
 
             $parameters = [];
-            if ($context['parameters']) {
+            if (isset($context['parameters'])) {
                 $parameters = is_array($context['parameters']) ? $context['parameters'] : null;
             }
 
