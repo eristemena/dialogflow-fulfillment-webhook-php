@@ -19,6 +19,7 @@ Dialogflow\RichMessage\RichMessage
 |[getAction](#webhookclientgetaction)|Get action name.|
 |[getActionConversation](#webhookclientgetactionconversation)|Get Actions on Google DialogflowConversation object.|
 |[getAgentVersion](#webhookclientgetagentversion)|The agent version (v1 or v2) based on Dialogflow webhook request.|
+|[getContext](#webhookclientgetcontext)|Convenience method to get a Dialogflow context by name.|
 |[getContexts](#webhookclientgetcontexts)|Get contexts.|
 |[getIntent](#webhookclientgetintent)|Get intent name.|
 |[getLocale](#webhookclientgetlocale)|Original request language code (i.e. "en").|
@@ -203,6 +204,31 @@ Reference: https://dialogflow.com/docs/reference/v2-comparison.
 **Return Values**
 
 `string`
+
+
+
+
+
+### WebhookClient::getContext  
+
+**Description**
+
+```php
+public getContext (string $name)
+```
+
+Convenience method to get a Dialogflow context by name. 
+
+Reference: https://dialogflow.com/docs/contexts. 
+
+**Parameters**
+
+* `(string) $name`
+: context name  
+
+**Return Values**
+
+`null|\Context`
 
 
 

@@ -117,6 +117,15 @@ class WebhookClientTest extends TestCase
         }
     }
 
+    public function testContext()
+    {
+        $weatherContext = $this->agentv2google->getContext('weather');
+        $nullContext = $this->agentv2google->getContext('null');
+
+        $this->assertInstanceOf('\Dialogflow\Context', $weatherContext);
+        $this->assertEquals(null, $nullContext);
+    }
+
     public function testRequestSource()
     {
         $this->assertEquals('google', $this->agentv1google->getRequestSource());

@@ -218,6 +218,25 @@ class WebhookClient extends RichMessage
     }
 
     /**
+     * Convenience method to get a Dialogflow context by name.
+     * Reference: https://dialogflow.com/docs/contexts.
+     *
+     * @param string $name context name
+     *
+     * @return null|Context
+     */
+    public function getContext($name)
+    {
+        if (is_array($this->contexts)) {
+            foreach ($this->contexts as $context) {
+                if ($context->getName() == $name) {
+                    return $context;
+                }
+            }
+        }
+    }
+
+    /**
      * Get request source.
      * Reference: https://dialogflow.com/docs/reference/agent/query#query_parameters_and_json_fields.
      *
