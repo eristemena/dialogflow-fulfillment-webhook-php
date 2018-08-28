@@ -13,15 +13,16 @@ abstract class RichMessage
     protected $requestSource;
 
     protected $v2PlatformMap = [
-        'unspecified' => 'PLATFORM_UNSPECIFIED',
-        'facebook'    => 'FACEBOOK',
-        'slack'       => 'SLACK',
-        'telegram'    => 'TELEGRAM',
-        'kik'         => 'KIK',
-        'skype'       => 'SKYPE',
-        'line'        => 'LINE',
-        'viber'       => 'VIBER',
-        'google'      => 'ACTIONS_ON_GOOGLE',
+        'unspecified'   => 'PLATFORM_UNSPECIFIED',
+        'facebook'      => 'FACEBOOK',
+        'slack'         => 'SLACK',
+        'slack_testbot' => 'SLACK',
+        'telegram'      => 'TELEGRAM',
+        'kik'           => 'KIK',
+        'skype'         => 'SKYPE',
+        'line'          => 'LINE',
+        'viber'         => 'VIBER',
+        'google'        => 'ACTIONS_ON_GOOGLE',
     ];
 
     protected $supportedRichMessagePlatforms = [
