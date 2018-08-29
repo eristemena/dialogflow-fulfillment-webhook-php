@@ -2,11 +2,11 @@
 
 namespace Dialogflow\Action;
 
-use Dialogflow\Action\Device\Location;
+use Dialogflow\Action\Types\Location;
 
 class Device
 {
-    /** @var null|Dialogflow\Action\Device\Location */
+    /** @var null|Dialogflow\Action\Types\Location */
     protected $location;
 
     /**
@@ -22,7 +22,7 @@ class Device
     /**
      * If granted permission to device's location in previous intent, returns device's location.
      *
-     * @return null|Dialogflow\Action\Device\Location
+     * @return null|Dialogflow\Action\Types\Location
      */
     public function getLocation()
     {

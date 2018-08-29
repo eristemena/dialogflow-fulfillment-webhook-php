@@ -1,4 +1,4 @@
-# Dialogflow\Action\Device\Location\LatLang  
+# Dialogflow\Action\Types\LatLng  
 
 
 
@@ -10,14 +10,14 @@
 
 | Name | Description |
 |------|-------------|
-|[__construct](#latlang__construct)||
-|[getLatitude](#latlanggetlatitude)|The latitude in degrees. It must be in the range [-90.0, +90.0].|
-|[getLongitude](#latlanggetlongitude)|The longitude in degrees. It must be in the range [-180.0, +180.0].|
+|[__construct](#latlng__construct)||
+|[getLatitude](#latlnggetlatitude)|The latitude in degrees. It must be in the range [-90.0, +90.0].|
+|[getLongitude](#latlnggetlongitude)|The longitude in degrees. It must be in the range [-180.0, +180.0].|
 
 
 
 
-### LatLang::__construct  
+### LatLng::__construct  
 
 **Description**
 
@@ -39,7 +39,7 @@ public __construct (array $data)
 
 
 
-### LatLang::getLatitude  
+### LatLng::getLatitude  
 
 **Description**
 
@@ -63,7 +63,7 @@ The latitude in degrees. It must be in the range [-90.0, +90.0].
 
 
 
-### LatLang::getLongitude  
+### LatLng::getLongitude  
 
 **Description**
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Dialogflow\Action\Device\Location;
+namespace Dialogflow\Action\Types;
 
-class LatLang
+class LatLng
 {
     /** @var null|number */
     protected $latitude;

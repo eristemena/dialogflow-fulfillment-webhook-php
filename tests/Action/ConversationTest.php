@@ -401,14 +401,14 @@ class ConversationTest extends TestCase
         $this->assertInstanceOf('\Dialogflow\Action\Device', $device);
 
         $location = $device->getLocation();
-        $this->assertInstanceOf('\Dialogflow\Action\Device\Location', $location);
+        $this->assertInstanceOf('\Dialogflow\Action\Types\Location', $location);
 
         $this->assertEquals('Kelapa Gading', $location->getCity());
         $this->assertEquals('RT.13/RW.3, Pegangsaan Dua, Kelapa Gading, Kota Jakarta Utara, Daerah Khusus Ibukota Jakarta 14250, Indonesia', $location->getFormattedAddress());
         $this->assertEquals('14250', $location->getZipCode());
 
         $coordinates = $location->getCoordinates();
-        $this->assertInstanceOf('\Dialogflow\Action\Device\Location\LatLang', $coordinates);
+        $this->assertInstanceOf('\Dialogflow\Action\Types\LatLng', $coordinates);
         $this->assertEquals(-6.1544943, $coordinates->getLatitude());
         $this->assertEquals(106.9186249, $coordinates->getLongitude());
     }

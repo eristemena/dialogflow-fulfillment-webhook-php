@@ -3,6 +3,7 @@
 namespace Dialogflow\Action;
 
 use Carbon\Carbon;
+use Dialogflow\Action\Types\Location;
 
 class Arguments
 {
@@ -14,6 +15,7 @@ class Arguments
         'PERMISSION'   => 'getPermission',
         'OPTION'       => 'getOption',
         'DATETIME'     => 'getDateTime',
+        'PLACE'        => 'getPlace',
     ];
 
     /**
@@ -110,5 +112,17 @@ class Arguments
         $minutes = isset($datetimeValue['time']['minutes']) ? $datetimeValue['time']['minutes'] : 0;
 
         return Carbon::create($year, $month, $day, $hours, $minutes, 0);
+    }
+
+    /**
+     * Get place argument.
+     *
+     * @param array $argument
+     *
+     * @return Dialogflow\Action\Types\Location
+     */
+    private function getPlace($argument)
+    {
+        return new Location($argument['placeValue']);
     }
 }
