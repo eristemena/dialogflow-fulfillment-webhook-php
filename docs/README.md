@@ -13,6 +13,8 @@
 * [Action\AvailableSurfaces](Action/AvailableSurfaces.md) 
 * [Action\Questions\Confirmation](Action/Questions/Confirmation.md) 
 * [Action\Questions\DateTime](Action/Questions/DateTime.md) 
+* [Action\Questions\Carousel](Action/Questions/Carousel.md) 
+* [Action\Questions\Carousel\Option](Action/Questions/Carousel/Option.md) 
 * [Action\Questions\ListCard](Action/Questions/ListCard.md) 
 * [Action\Questions\ListCard\Option](Action/Questions/ListCard/Option.md) 
 * [Action\Questions\Permission](Action/Questions/Permission.md) 

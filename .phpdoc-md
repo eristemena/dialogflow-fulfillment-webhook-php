@@ -17,6 +17,8 @@ return (object)[
         '\Dialogflow\Action\AvailableSurfaces',
         '\Dialogflow\Action\Questions\Confirmation',
         '\Dialogflow\Action\Questions\DateTime',
+        '\Dialogflow\Action\Questions\Carousel',
+        '\Dialogflow\Action\Questions\Carousel\Option',
         '\Dialogflow\Action\Questions\ListCard',
         '\Dialogflow\Action\Questions\ListCard\Option',
         '\Dialogflow\Action\Questions\Permission',
