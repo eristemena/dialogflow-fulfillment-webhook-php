@@ -24,6 +24,8 @@ return (object)[
         '\Dialogflow\Action\Questions\Permission',
         '\Dialogflow\Action\Questions\Place',
         '\Dialogflow\Action\Responses\BasicCard',
+        '\Dialogflow\Action\Responses\BrowseCarousel',
+        '\Dialogflow\Action\Responses\BrowseCarousel\Option',
         '\Dialogflow\Action\Responses\Image',
         '\Dialogflow\Action\Responses\SimpleResponse',
         '\Dialogflow\Action\Types\LatLng',

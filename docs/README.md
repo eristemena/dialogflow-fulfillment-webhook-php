@@ -20,6 +20,8 @@
 * [Action\Questions\Permission](Action/Questions/Permission.md) 
 * [Action\Questions\Place](Action/Questions/Place.md) 
 * [Action\Responses\BasicCard](Action/Responses/BasicCard.md) 
+* [Action\Responses\BrowseCarousel](Action/Responses/BrowseCarousel.md) 
+* [Action\Responses\BrowseCarousel\Option](Action/Responses/BrowseCarousel/Option.md) 
 * [Action\Responses\Image](Action/Responses/Image.md) 
 * [Action\Responses\SimpleResponse](Action/Responses/SimpleResponse.md) 
 * [Action\Types\LatLng](Action/Types/LatLng.md) 
