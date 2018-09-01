@@ -15,7 +15,7 @@ Dialogflow\Action\Interfaces\ResponseInterface
 |[create](#basiccardcreate)|Create a new Basic Card instance.|
 |[formattedText](#basiccardformattedtext)|Set the formattedText for a Card.|
 |[image](#basiccardimage)|Set the image for a Card.|
-|[render](#basiccardrender)|Render response as array.|
+|[renderRichResponseItem](#basiccardrenderrichresponseitem)|Render a single Rich Response item as array.|
 |[title](#basiccardtitle)|Set the title for a Card.|
 
 
@@ -123,15 +123,15 @@ Set the image for a Card.
 
 
 
-### BasicCard::render  
+### BasicCard::renderRichResponseItem  
 
 **Description**
 
 ```php
-public render (void)
+public renderRichResponseItem (void)
 ```
 
-Render response as array. 
+Render a single Rich Response item as array. 
 
  
 
@@ -141,7 +141,7 @@ Render response as array.
 
 **Return Values**
 
-`array`
+`null|array`
 
 
 

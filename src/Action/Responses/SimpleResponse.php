@@ -89,11 +89,11 @@ class SimpleResponse implements ResponseInterface
     }
 
     /**
-     * Render response as array.
+     * Render a single Rich Response item as array.
      *
-     * @return array
+     * @return null|array
      */
-    public function render()
+    public function renderRichResponseItem()
     {
         $out = [];
         $simpleResponse = [];

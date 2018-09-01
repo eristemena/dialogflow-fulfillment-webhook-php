@@ -14,7 +14,7 @@ Dialogflow\Action\Interfaces\ResponseInterface
 |[addOption](#browsecarouseladdoption)|Add BrowseCarousel option.|
 |[create](#browsecarouselcreate)|Create a new BrowseCarousel instance.|
 |[imageDisplayOptions](#browsecarouselimagedisplayoptions)|Type of image display option. Possible value: DEFAULT, WHITE and CROPPED.|
-|[render](#browsecarouselrender)|Render response as array.|
+|[renderRichResponseItem](#browsecarouselrenderrichresponseitem)|Render a single Rich Response item as array.|
 
 
 
@@ -91,15 +91,15 @@ Type of image display option. Possible value: DEFAULT, WHITE and CROPPED.
 
 
 
-### BrowseCarousel::render  
+### BrowseCarousel::renderRichResponseItem  
 
 **Description**
 
 ```php
-public render (void)
+public renderRichResponseItem (void)
 ```
 
-Render response as array. 
+Render a single Rich Response item as array. 
 
  
 
@@ -109,7 +109,7 @@ Render response as array.
 
 **Return Values**
 
-`array`
+`null|array`
 
 
 

@@ -14,7 +14,7 @@ Dialogflow\Action\Interfaces\ResponseInterface
 |[__construct](#simpleresponse__construct)|Create a new Simple Response instance.|
 |[create](#simpleresponsecreate)|Create a new instance.|
 |[displayText](#simpleresponsedisplaytext)|Set display text.|
-|[render](#simpleresponserender)|Render response as array.|
+|[renderRichResponseItem](#simpleresponserenderrichresponseitem)|Render a single Rich Response item as array.|
 |[ssml](#simpleresponsessml)|Set ssml.|
 |[textToSpeech](#simpleresponsetexttospeech)|Set text to speech.|
 
@@ -95,15 +95,15 @@ Set display text.
 
 
 
-### SimpleResponse::render  
+### SimpleResponse::renderRichResponseItem  
 
 **Description**
 
 ```php
-public render (void)
+public renderRichResponseItem (void)
 ```
 
-Render response as array. 
+Render a single Rich Response item as array. 
 
  
 
@@ -113,7 +113,7 @@ Render response as array.
 
 **Return Values**
 
-`array`
+`null|array`
 
 
 

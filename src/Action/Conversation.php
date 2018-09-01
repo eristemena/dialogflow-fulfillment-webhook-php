@@ -2,8 +2,10 @@
 
 namespace Dialogflow\Action;
 
+use Dialogflow\Action\Interfaces\LinkOutSuggestionInterface;
 use Dialogflow\Action\Interfaces\QuestionInterface;
 use Dialogflow\Action\Interfaces\ResponseInterface;
+use Dialogflow\Action\Interfaces\SuggestionInterface;
 use Dialogflow\Action\Responses\SimpleResponse;
 use Dialogflow\RichMessage\Payload;
 
@@ -175,9 +177,33 @@ class Conversation
         $out['expectUserResponse'] = $this->expectUserResponse;
 
         $items = [];
+        $suggestions = [];
+        $linkOutSuggestion = null;
         foreach ($this->messages as $message) {
             if ($message instanceof ResponseInterface) {
-                $items[] = $message->render();
+                $item = $message->renderRichResponseItem();
+
+                if ($item) {
+                    $items[] = $item;
+                }
+            }
+
+            if ($message instanceof SuggestionInterface) {
+                $rendered = $message->renderRichResponseSuggestion();
+
+                if (is_array($rendered)) {
+                    foreach ($rendered as $suggestion) {
+                        $suggestions[] = ['title' => $suggestion];
+                    }
+                } elseif (is_string($rendered)) {
+                    $suggestions[] = ['title' => $rendered];
+                } else {
+                    // do nothing
+                }
+            }
+
+            if ($message instanceof LinkOutSuggestionInterface) {
+                $linkOutSuggestion = $message->renderRichResponseLinkOutSuggestion();
             }
 
             if ($message instanceof QuestionInterface) {
@@ -188,6 +214,14 @@ class Conversation
         }
 
         $out['richResponse']['items'] = $items;
+
+        if (count($suggestions) > 0) {
+            $out['richResponse']['suggestions'] = $suggestions;
+        }
+
+        if ($linkOutSuggestion) {
+            $out['richResponse']['linkOutSuggestion'] = $linkOutSuggestion;
+        }
 
         $systemIntent = null;
         foreach ($this->messages as $message) {

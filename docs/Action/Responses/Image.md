@@ -13,7 +13,7 @@ Dialogflow\Action\Interfaces\ResponseInterface
 |------|-------------|
 |[__construct](#image__construct)|Create a new Image instance.|
 |[create](#imagecreate)|Create a new Image instance.|
-|[render](#imagerender)|Render response as array.|
+|[renderRichResponseItem](#imagerenderrichresponseitem)|Render a single Rich Response item as array.|
 
 
 
@@ -72,15 +72,15 @@ Create a new Image instance.
 
 
 
-### Image::render  
+### Image::renderRichResponseItem  
 
 **Description**
 
 ```php
-public render (void)
+public renderRichResponseItem (void)
 ```
 
-Render response as array. 
+Render a single Rich Response item as array. 
 
  
 
@@ -90,7 +90,7 @@ Render response as array.
 
 **Return Values**
 
-`array`
+`null|array`
 
 
 
