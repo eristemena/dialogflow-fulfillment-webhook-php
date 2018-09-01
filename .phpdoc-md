@@ -28,6 +28,8 @@ return (object)[
         '\Dialogflow\Action\Responses\BrowseCarousel\Option',
         '\Dialogflow\Action\Responses\Image',
         '\Dialogflow\Action\Responses\LinkOutSuggestion',
+        '\Dialogflow\Action\Responses\MediaObject',
+        '\Dialogflow\Action\Responses\MediaResponse',
         '\Dialogflow\Action\Responses\SimpleResponse',
         '\Dialogflow\Action\Responses\Suggestions',
         '\Dialogflow\Action\Types\LatLng',

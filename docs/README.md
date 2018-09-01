@@ -24,6 +24,8 @@
 * [Action\Responses\BrowseCarousel\Option](Action/Responses/BrowseCarousel/Option.md) 
 * [Action\Responses\Image](Action/Responses/Image.md) 
 * [Action\Responses\LinkOutSuggestion](Action/Responses/LinkOutSuggestion.md) 
+* [Action\Responses\MediaObject](Action/Responses/MediaObject.md) 
+* [Action\Responses\MediaResponse](Action/Responses/MediaResponse.md) 
 * [Action\Responses\SimpleResponse](Action/Responses/SimpleResponse.md) 
 * [Action\Responses\Suggestions](Action/Responses/Suggestions.md) 
 * [Action\Types\LatLng](Action/Types/LatLng.md) 
