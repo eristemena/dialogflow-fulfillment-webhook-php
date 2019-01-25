@@ -18,11 +18,8 @@ class BasicCard implements ResponseInterface
     /** @var string */
     protected $accessibilityText;
 
-    /** @var string */
-    protected $buttonText;
-
-    /** @var string */
-    protected $buttonUrl;
+    /** @var array */
+    protected $buttons = [];
 
     /**
      * Create a new Basic Card instance.
@@ -88,8 +85,10 @@ class BasicCard implements ResponseInterface
      */
     public function button($buttonText, $buttonUrl)
     {
-        $this->buttonText = $buttonText;
-        $this->buttonUrl = $buttonUrl;
+        $this->buttons[] = [
+            'buttonText' => $buttonText,
+            'buttonUrl' =>  $buttonUrl
+        ];
 
         return $this;
     }
@@ -119,15 +118,16 @@ class BasicCard implements ResponseInterface
             ];
         }
 
-        if ($this->buttonText && $this->buttonUrl) {
-            $basicCard['buttons'] = [
-                [
-                    'title'         => $this->buttonText,
-                    'openUrlAction' => [
-                        'url' => $this->buttonUrl,
-                    ],
-                ],
-            ];
+        if ($this->buttons) {
+            foreach ($this->buttons as $button){
+                $basicCard['buttons'][] =
+                    [
+                        'title'         => $button['buttonText'],
+                        'openUrlAction' => [
+                            'url' => $button['buttonUrl'],
+                        ],
+                    ];
+            }
         }
 
         $out['basicCard'] = $basicCard;

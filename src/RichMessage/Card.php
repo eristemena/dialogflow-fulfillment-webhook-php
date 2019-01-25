@@ -19,11 +19,8 @@ class Card extends RichMessage
     /** @var string */
     protected $imageUrl;
 
-    /** @var string */
-    protected $buttonText;
-
-    /** @var string */
-    protected $buttonUrl;
+    /** @var array */
+    protected $buttons = [];
 
     /**
      * Create a new Card instance.
@@ -76,11 +73,15 @@ class Card extends RichMessage
      *
      * @param string $buttonText button text
      * @param string $buttonUrl  button link URL
+     *
+     * @return Dialogflow\Action\Responses\BasicCard
      */
     public function button($buttonText, $buttonUrl)
     {
-        $this->buttonText = $buttonText;
-        $this->buttonUrl = $buttonUrl;
+        $this->buttons[] = [
+            'buttonText' => $buttonText,
+            'buttonUrl' =>  $buttonUrl
+        ];
 
         return $this;
     }
@@ -114,15 +115,17 @@ class Card extends RichMessage
                 ];
             }
 
-            if ($this->buttonText && $this->buttonUrl) {
-                $out['buttons'] = [
-                    [
-                        'title'         => $this->buttonText,
-                        'openUrlAction' => [
-                            'url' => $this->buttonUrl,
-                        ],
-                    ],
-                ];
+            if ($this->buttons) {
+                $out['buttons'] = [];
+                foreach ($this->buttons as $button){
+                    $out['buttons'][] =
+                        [
+                            'title'         => $button['buttonText'],
+                            'openUrlAction' => [
+                                'url' => $button['buttonUrl'],
+                            ],
+                        ];
+                }
             }
 
             return $out;
@@ -144,13 +147,15 @@ class Card extends RichMessage
                 $out['buttons'] = [];
             }
 
-            if ($this->buttonText && $this->buttonUrl) {
-                $out['buttons'] = [
-                    [
-                        'text'     => $this->buttonText,
-                        'postback' => $this->buttonUrl,
-                    ],
-                ];
+            if ($this->buttons) {
+                $out['buttons'] = [];
+                foreach ($this->buttons as $button){
+                    $out['buttons'][] =
+                        [
+                            'text'     => $button['buttonText'],
+                            'postback' => $button['buttonUrl'],
+                        ];
+                }
             }
 
             $out['platform'] = $this->requestSource;
@@ -185,15 +190,17 @@ class Card extends RichMessage
                 ];
             }
 
-            if ($this->buttonText && $this->buttonUrl) {
-                $out['basicCard']['buttons'] = [
-                    [
-                        'title'         => $this->buttonText,
-                        'openUriAction' => [
-                            'uri' => $this->buttonUrl,
-                        ],
-                    ],
-                ];
+            if ($this->buttons) {
+                $out['basicCard']['buttons'] = [];
+                foreach ($this->buttons as $button){
+                    $out['basicCard']['buttons'][] =
+                        [
+                            'title'         => $button['buttonText'],
+                            'openUriAction' => [
+                                'uri' => $button['buttonUrl'],
+                            ],
+                        ];
+                }
             }
 
             return $out;
@@ -213,13 +220,15 @@ class Card extends RichMessage
                 $out['card']['imageUri'] = $this->imageUrl;
             }
 
-            if ($this->buttonText && $this->buttonUrl) {
-                $out['card']['buttons'] = [
-                    [
-                        'text'     => $this->buttonText,
-                        'postback' => $this->buttonUrl,
-                    ],
-                ];
+            if ($this->buttons) {
+                $out['card']['buttons'] = [];
+                foreach ($this->buttons as $button){
+                    $out['card']['buttons'][] =
+                        [
+                            'text'         => $button['buttonText'],
+                            'postback' => $button['buttonUrl'],
+                        ];
+                }
             }
 
             return $out;
