@@ -73,8 +73,6 @@ class Card extends RichMessage
      *
      * @param string $buttonText button text
      * @param string $buttonUrl  button link URL
-     *
-     * @return Dialogflow\Action\Responses\BasicCard
      */
     public function button($buttonText, $buttonUrl)
     {
