@@ -87,7 +87,7 @@ class BasicCard implements ResponseInterface
     {
         $this->buttons[] = [
             'buttonText' => $buttonText,
-            'buttonUrl' =>  $buttonUrl
+            'buttonUrl' =>  $buttonUrl,
         ];
 
         return $this;
@@ -119,7 +119,7 @@ class BasicCard implements ResponseInterface
         }
 
         if ($this->buttons) {
-            foreach ($this->buttons as $button){
+            foreach ($this->buttons as $button) {
                 $basicCard['buttons'][] =
                     [
                         'title'         => $button['buttonText'],

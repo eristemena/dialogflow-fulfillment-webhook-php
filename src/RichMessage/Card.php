@@ -78,7 +78,7 @@ class Card extends RichMessage
     {
         $this->buttons[] = [
             'buttonText' => $buttonText,
-            'buttonUrl' =>  $buttonUrl
+            'buttonUrl' =>  $buttonUrl,
         ];
 
         return $this;
@@ -115,7 +115,7 @@ class Card extends RichMessage
 
             if ($this->buttons) {
                 $out['buttons'] = [];
-                foreach ($this->buttons as $button){
+                foreach ($this->buttons as $button) {
                     $out['buttons'][] =
                         [
                             'title'         => $button['buttonText'],
@@ -147,7 +147,7 @@ class Card extends RichMessage
 
             if ($this->buttons) {
                 $out['buttons'] = [];
-                foreach ($this->buttons as $button){
+                foreach ($this->buttons as $button) {
                     $out['buttons'][] =
                         [
                             'text'     => $button['buttonText'],
@@ -190,7 +190,7 @@ class Card extends RichMessage
 
             if ($this->buttons) {
                 $out['basicCard']['buttons'] = [];
-                foreach ($this->buttons as $button){
+                foreach ($this->buttons as $button) {
                     $out['basicCard']['buttons'][] =
                         [
                             'title'         => $button['buttonText'],
@@ -220,7 +220,7 @@ class Card extends RichMessage
 
             if ($this->buttons) {
                 $out['card']['buttons'] = [];
-                foreach ($this->buttons as $button){
+                foreach ($this->buttons as $button) {
                     $out['card']['buttons'][] =
                         [
                             'text'         => $button['buttonText'],
