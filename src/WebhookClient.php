@@ -297,7 +297,7 @@ class WebhookClient extends RichMessage
                 $this->text = $message;
             }
         } elseif ($message instanceof RichMessage) {
-            if (! $this->doesSupportRichMessage()){
+            if (! $this->doesSupportRichMessage()) {
                 $this->text = $message->getFallbackText();
             }
 
