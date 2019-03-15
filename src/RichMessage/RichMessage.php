@@ -44,7 +44,7 @@ abstract class RichMessage
     }
 
     /**
-     * Set the fallback text if a request source doesn't support rich messages
+     * Set the fallback text if a request source doesn't support rich messages.
      */
     public function setFallbackText($text)
     {
@@ -56,12 +56,13 @@ abstract class RichMessage
     /**
      * Alias of setFallbackText() to fit more inline with text(), button(), image(), etc.
      */
-    public function fallbackText($text){
+    public function fallbackText($text)
+    {
         return $this->setFallbackText($text);
     }
 
     /**
-     * Get the fallback text
+     * Get the fallback text.
      *
      * @return  string
      */
@@ -69,7 +70,6 @@ abstract class RichMessage
     {
         return $this->fallbackText;
     }
-
 
     protected function setAgentVersion($agentVersion)
     {
