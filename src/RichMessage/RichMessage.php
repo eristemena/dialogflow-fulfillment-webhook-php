@@ -11,6 +11,7 @@ abstract class RichMessage
 
     protected $agentVersion;
     protected $requestSource;
+    protected $fallbackText;
 
     protected $v2PlatformMap = [
         'unspecified'   => 'PLATFORM_UNSPECIFIED',
@@ -41,6 +42,34 @@ abstract class RichMessage
     {
         return in_array($this->requestSource, $this->supportedRichMessagePlatforms);
     }
+
+    /**
+     * Set the fallback text if a request source doesn't support rich messages
+     */
+    public function setFallbackText($text)
+    {
+        $this->fallbackText = $text;
+
+        return $this;
+    }
+
+    /**
+     * Alias of setFallbackText() to fit more inline with text(), button(), image(), etc.
+     */
+    public function fallbackText($text){
+        return $this->setFallbackText($text);
+    }
+
+    /**
+     * Get the fallback text
+     *
+     * @return  string
+     */
+    public function getFallbackText()
+    {
+        return $this->fallbackText;
+    }
+
 
     protected function setAgentVersion($agentVersion)
     {
