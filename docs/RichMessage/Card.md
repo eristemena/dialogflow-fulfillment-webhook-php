@@ -23,7 +23,10 @@ Dialogflow\RichMessage\RichMessage
 | Name | Description |
 |------|-------------|
 |doesSupportRichMessage|Check if request source support rich message.|
+|fallbackText|Alias of setFallbackText() to fit more inline with text(), button(), image(), etc.|
+|getFallbackText|Get the fallback text.|
 |render|Render response as array.|
+|setFallbackText|Set the fallback text if a request source doesn't support rich messages.|
 
 
 
