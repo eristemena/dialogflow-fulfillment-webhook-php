@@ -26,9 +26,7 @@ class User
             $this->lastSeen = new Carbon($data['lastSeen']);
         }
     }
-
-
-
+    
     /**
      * User's permissioned name info.
      *
