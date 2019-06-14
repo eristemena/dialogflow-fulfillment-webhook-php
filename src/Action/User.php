@@ -7,9 +7,6 @@ use Dialogflow\Action\User\Name;
 
 class User
 {
-    /** @var string */
-    protected $id;
-
     /** @var null|Dialogflow\Action\User\Name */
     protected $name;
 
@@ -21,8 +18,6 @@ class User
      */
     public function __construct($data)
     {
-        $this->id = $data['userId'];
-
         if (isset($data['profile'])) {
             $this->name = new Name($data['profile']);
         }
@@ -32,15 +27,7 @@ class User
         }
     }
 
-    /**
-     * Random string ID for Google user.
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+
 
     /**
      * User's permissioned name info.

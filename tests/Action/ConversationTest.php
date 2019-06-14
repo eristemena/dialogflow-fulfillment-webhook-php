@@ -370,7 +370,6 @@ class ConversationTest extends TestCase
 
         $user = $conv->getUser();
 
-        $this->assertEquals('ABwppHEW9NgaT5S1NmZYR42yhs0FW1hawZHSjC_xW8FwkoZU1GMoIRAWWoThwUcA7VNX22Jzj8-KqA', $user->getId());
         $this->assertEquals(null, $user->getName());
 
         $agent = $this->getAgent('googleuserfull');
@@ -378,7 +377,6 @@ class ConversationTest extends TestCase
 
         $user = $conv->getUser();
 
-        $this->assertEquals('ABwppHHRq4M6ZiJzBoAwy8WalWejgJDTZpHSj61TlzGgC1yJkQqA6OKsel7bvB-agBZiw', $user->getId());
         $this->assertInstanceOf('\Dialogflow\Action\User\Name', $user->getName());
         $this->assertEquals('Eris Ristemena', $user->getName()->getDisplay());
         $this->assertEquals('Eris', $user->getName()->getGiven());
