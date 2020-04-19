@@ -33,6 +33,7 @@ class PlaceTest extends TestCase
         $conv->ask(new Place('Where do you want to have lunch?', 'To find lunch locations'));
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => true,
             'richResponse'       => [
               'items' => [

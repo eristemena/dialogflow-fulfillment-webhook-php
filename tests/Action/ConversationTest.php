@@ -243,6 +243,7 @@ class ConversationTest extends TestCase
         $conv->ask(new Confirmation('Will you marry me?'));
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => true,
             'richResponse'       => [
                 'items' => [
@@ -272,6 +273,7 @@ class ConversationTest extends TestCase
         $conv->ask(new Permission('to deliver your order', ['NAME', 'DEVICE_PRECISE_LOCATION']));
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => true,
             'richResponse'       => [
                 'items' => [
@@ -371,6 +373,10 @@ class ConversationTest extends TestCase
         $user = $conv->getUser();
 
         $this->assertEquals(null, $user->getName());
+        
+        $storage = $user->getStorage();
+        $this->assertInstanceOf('\Dialogflow\Action\User\Storage', $storage);
+        $this->assertEquals(null, $storage->testData);
 
         $agent = $this->getAgent('googleuserfull');
         $conv = $agent->getActionConversation();
@@ -381,6 +387,17 @@ class ConversationTest extends TestCase
         $this->assertEquals('Eris Ristemena', $user->getName()->getDisplay());
         $this->assertEquals('Eris', $user->getName()->getGiven());
         $this->assertEquals('Ristemena', $user->getName()->getFamily());
+
+        $storage = $user->getStorage();
+        $storage->newData = 'New Test Data';
+
+        $this->assertInstanceOf('\Dialogflow\Action\User\Storage', $storage);
+        $this->assertEquals('Test Data', $storage->testData);
+        $this->assertEquals('New Test Data', $storage->newData);
+
+        $storage->clear();
+
+        $this->assertEquals('{"data":{}}', $storage->render());
 
         $lastSeen = $user->getLastSeen();
         $this->assertInstanceOf('\Carbon\Carbon', $lastSeen);

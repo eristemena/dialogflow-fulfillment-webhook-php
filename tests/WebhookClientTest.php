@@ -300,6 +300,7 @@ class WebhookClientTest extends TestCase
         $conv->ask('How are you?');
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => true,
             'richResponse'       => [
                 'items' => [
@@ -316,6 +317,7 @@ class WebhookClientTest extends TestCase
         $this->assertEquals([
             'payload' => [
                 'google' => [
+                    'userStorage' => '{"data":{}}',
                     'expectUserResponse' => true,
                     'richResponse'       => [
                         'items' => [
@@ -338,6 +340,7 @@ class WebhookClientTest extends TestCase
         $conv->close('Thank you');
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => false,
             'richResponse'       => [
                 'items' => [
@@ -395,6 +398,36 @@ class WebhookClientTest extends TestCase
 
         $this->agentv2google->setOutgoingContexts([new Context('context5')]);
         $this->assertEquals(1, count($this->agentv2google->getOutgoingContexts()));
+    }
+
+    public function testConversationUserStorage()
+    {
+        $conv = $this->agentv2google->getActionConversation();
+        $conv->getUser()->getStorage()->testData = 'Test Data';
+
+        $this->assertEquals([
+            'userStorage' => '{"data":{"testData":"Test Data"}}',
+            'expectUserResponse' => true,
+            'richResponse'       => [
+                'items' => [
+                ],
+            ],
+        ], $conv->render());
+
+        $this->agentv2google->reply($conv);
+        $this->assertEquals([
+            'payload' => [
+                'google' => [
+                    'userStorage' => '{"data":{"testData":"Test Data"}}',
+                    'expectUserResponse' => true,
+                    'richResponse'       => [
+                        'items' => [
+                        ],
+                    ],
+                ],
+            ],
+            'outputContexts' => [],
+        ], $this->agentv2google->render());
     }
 
     /**

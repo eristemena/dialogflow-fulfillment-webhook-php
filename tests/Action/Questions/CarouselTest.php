@@ -43,6 +43,7 @@ class CarouselTest extends TestCase
         );
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => true,
             'richResponse'       => [
               'items' => [

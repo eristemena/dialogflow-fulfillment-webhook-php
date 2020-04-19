@@ -76,7 +76,7 @@
                 }
             ],
             "user":{
-                "userStorage":"{\"data\":{}}",
+                "userStorage":"{\"data\":{\"testData\":\"Test Data\"}}",
                 "lastSeen":"2018-05-28T19:39:40Z",
                 "permissions":[
                     "NAME",

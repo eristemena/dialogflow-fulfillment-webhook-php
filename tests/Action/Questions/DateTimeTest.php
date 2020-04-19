@@ -33,6 +33,7 @@ class DateTimeTest extends TestCase
         $conv->ask(new DateTime('When do you want to come in?', 'What is the best date to schedule your appointment?', 'What time of day works best for you?'));
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => true,
             'richResponse'       => [
               'items' => [
