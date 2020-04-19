@@ -36,6 +36,7 @@ class MediaResponseTest extends TestCase
         $conv->ask(new Suggestions(['Pause', 'Stop', 'Start over']));
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => true,
             'richResponse'       => [
               'items' => [
@@ -103,6 +104,7 @@ class MediaResponseTest extends TestCase
         $conv->ask(new Suggestions(['Pause', 'Stop', 'Start over']));
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => true,
             'richResponse'       => [
               'items' => [

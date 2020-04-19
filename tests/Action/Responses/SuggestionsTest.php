@@ -28,6 +28,7 @@ class SuggestionsTest extends TestCase
         $conv->ask(new LinkOutSuggestion('Website', 'http://www.example.com'));
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => true,
             'richResponse'       => [
               'items' => [

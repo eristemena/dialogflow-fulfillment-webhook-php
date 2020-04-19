@@ -26,6 +26,7 @@ class ImageTest extends TestCase
         );
 
         $this->assertEquals([
+            'userStorage' => '{"data":{}}',
             'expectUserResponse' => false,
             'richResponse'       => [
                 'items' => [

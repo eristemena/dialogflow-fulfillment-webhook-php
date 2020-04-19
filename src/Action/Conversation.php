@@ -174,6 +174,8 @@ class Conversation
     {
         $out = [];
 
+        $out['userStorage'] = $this->getUser()->getStorage()->render();
+
         $out['expectUserResponse'] = $this->expectUserResponse;
 
         $items = [];
